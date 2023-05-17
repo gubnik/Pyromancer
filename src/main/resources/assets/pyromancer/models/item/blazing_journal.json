@@ -1,0 +1,29 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "pyromancer:item/blazing_journal"
+  },
+  "overrides": [
+    { "predicate": { "custom_model_data": 1}, "model": "pyromancer:item/blazing_journal_1" },
+
+    { "predicate": { "custom_model_data": 2}, "model": "pyromancer:item/blazing_journal_2" },
+
+    { "predicate": { "custom_model_data": 3}, "model": "pyromancer:item/blazing_journal_3" },
+
+    { "predicate": { "custom_model_data": 4}, "model": "pyromancer:item/blazing_journal_4" },
+
+    { "predicate": { "custom_model_data": 5}, "model": "pyromancer:item/blazing_journal_5" },
+
+    { "predicate": { "custom_model_data": 6}, "model": "pyromancer:item/ashen_pages_1" },
+
+    { "predicate": { "custom_model_data": 7}, "model": "pyromancer:item/ashen_pages_2" },
+
+    { "predicate": { "custom_model_data": 8}, "model": "pyromancer:item/ashen_pages_3" },
+
+    { "predicate": { "custom_model_data": 9}, "model": "pyromancer:item/ashen_pages_4" },
+
+    { "predicate": { "custom_model_data": 10}, "model": "pyromancer:item/ashen_pages_5" },
+
+    { "predicate": { "custom_model_data": 11}, "model": "pyromancer:item/ashen_pages_6" }
+  ]
+}
