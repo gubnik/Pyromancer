@@ -8,6 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
+import net.team_prometheus.pyromancer.init.ModTabs;
 
 public class ModItems {
     public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PyromancerMod.MOD_ID);
@@ -26,7 +27,7 @@ public class ModItems {
             () -> new MaceItem(Tiers.NETHERITE, 5, -2.8f, 0.5f, (new Item.Properties()).tab(CreativeModeTab.TAB_COMBAT)));
     // journal
     public static RegistryObject<Item> BLAZING_JOURNAL = ITEMS.register("blazing_journal",
-            () -> new BlazingJournal(new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
+            () -> new BlazingJournal(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
     public static void register (IEventBus eventBus){
         ITEMS.register(eventBus);
     }
