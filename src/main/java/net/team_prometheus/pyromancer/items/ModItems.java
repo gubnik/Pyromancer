@@ -28,6 +28,11 @@ public class ModItems {
     // journal
     public static RegistryObject<Item> BLAZING_JOURNAL = ITEMS.register("blazing_journal",
             () -> new BlazingJournal(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
+    // quills
+    public static RegistryObject<Item> BLAZING_QUILL = ITEMS.register("blazing_quill",
+            () -> new QuillItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
+    public static RegistryObject<Item> SMOLDERING_TWIG = ITEMS.register("smoldering_twig",
+            () -> new QuillItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
     public static void register (IEventBus eventBus){
         ITEMS.register(eventBus);
     }
