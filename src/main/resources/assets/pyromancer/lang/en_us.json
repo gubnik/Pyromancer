@@ -1,7 +1,9 @@
 {
   "attribute.name.generic.blaze_consumption": "Blaze Consumption",
 
-  "desc.item.pyromancer.blazing_quill.line1": "No effect",
+  "desc.press_shift": "Press SHIFT to reveal item info",
+  "desc.blazing_quill.line1": "No effect",
+  "desc.smoldering_twig.line1": "No effect",
 
   "item.pyromancer.blazing_journal": "Blazing Journal",
   "item.pyromancer.blazing_quill": "Blazing Quill",
