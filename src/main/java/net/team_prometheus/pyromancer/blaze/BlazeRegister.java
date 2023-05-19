@@ -11,8 +11,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.items.ModItems;
-import net.team_prometheus.pyromancer.items.PyromancyItem;
 
+@SuppressWarnings("unused")
 @Mod.EventBusSubscriber(modid = PyromancerMod.MOD_ID)
 public class BlazeRegister {
     @SubscribeEvent
@@ -40,9 +40,8 @@ public class BlazeRegister {
         if(event.player.getOffhandItem().getItem() == ModItems.BLAZING_JOURNAL.get()){
             ItemStack journal = event.player.getOffhandItem();
             int blaze_journal = journal.getOrCreateTag().getInt("blaze");
-            event.player.getCapability(PlayerBlazeProvider.PLAYER_BLAZE).ifPresent(playerBlaze ->{
-                playerBlaze.setBlaze(blaze_journal);
-            });
+            event.player.getCapability(PlayerBlazeProvider.PLAYER_BLAZE).ifPresent(playerBlaze ->
+                playerBlaze.setBlaze(blaze_journal));
         }
     }
 }
