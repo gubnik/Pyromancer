@@ -1,6 +1,7 @@
 package net.team_prometheus.pyromancer.blaze;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
 
 public class PlayerBlaze {
     private int blaze;
@@ -26,5 +27,15 @@ public class PlayerBlaze {
     }
     public void setBlaze(int amount){
         this.blaze = amount;
+    }
+    public void playerChangeBlaze(Player player, int amount){
+        player.getCapability(PlayerBlazeProvider.PLAYER_BLAZE).ifPresent(playerBlaze -> {
+            if(amount > 0) playerBlaze.addBlaze(amount);
+            else playerBlaze.removeBlaze(amount);
+        });
+    }
+    public void playerChangeBlaze(Player player, float multiplier){
+        player.getCapability(PlayerBlazeProvider.PLAYER_BLAZE).ifPresent(playerBlaze ->
+            playerBlaze.setBlaze(Math.round(playerBlaze.getBlaze()*multiplier)));
     }
 }
