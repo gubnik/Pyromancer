@@ -11,6 +11,7 @@ import net.minecraft.world.item.*;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("deprecation")
 public class MaceItem extends TieredItem implements Vanishable {
     private final float attackDamage;
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
@@ -30,9 +31,8 @@ public class MaceItem extends TieredItem implements Vanishable {
     }
     @Override
     public boolean hurtEnemy(ItemStack itemStack, @NotNull LivingEntity livingEntity, @NotNull LivingEntity entity) {
-        itemStack.hurtAndBreak(1, entity, (entity1) -> {
-            entity1.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-        });
+        itemStack.hurtAndBreak(1, entity, (entity1) ->
+            entity1.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         return true;
     }
     public float getDamage() {
