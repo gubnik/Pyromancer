@@ -33,6 +33,9 @@ public class ModItems {
             () -> new QuillItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
     public static RegistryObject<Item> SMOLDERING_TWIG = ITEMS.register("smoldering_twig",
             () -> new QuillItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
+    // pyromancies
+    public static RegistryObject<Item> SIZZLING_HAND = ITEMS.register("sizzling_hand",
+            () -> new SizzlingHand(1, 666, new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
     public static void register (IEventBus eventBus){
         ITEMS.register(eventBus);
     }
