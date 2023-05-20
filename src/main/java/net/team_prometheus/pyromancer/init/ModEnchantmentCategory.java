@@ -1,7 +1,7 @@
 package net.team_prometheus.pyromancer.init;
 
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-+import net.team_prometheus.pyromancer.items.BlazingJournal;
+import net.team_prometheus.pyromancer.items.BlazingJournal;
 import net.team_prometheus.pyromancer.items.MaceItem;
 import net.team_prometheus.pyromancer.items.PyromancyItem;
 
