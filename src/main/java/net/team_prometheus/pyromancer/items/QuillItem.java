@@ -28,7 +28,7 @@ public class QuillItem extends Item {
         }
     }
     public static String getQuillDescription(ItemStack itemStack){
-        return switch ((int)itemStack.getOrCreateTag().getDouble("quill")){
+        return switch (itemStack.getOrCreateTag().getInt("quill")){
             case(0) -> "blazing_quill";
             case(1) -> "smoldering_twig";
             default -> "invalid";

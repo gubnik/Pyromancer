@@ -2,11 +2,12 @@ package net.team_prometheus.pyromancer.blaze;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 public class PlayerBlaze {
     private int blaze;
     private int MIN_BLAZE = 0;
-    private int MAX_BLAZE = 512;
+    private int MAX_BLAZE = 256;
     public int getBlaze(){
         return blaze;
     }
@@ -37,5 +38,8 @@ public class PlayerBlaze {
     public void playerChangeBlaze(Player player, float multiplier){
         player.getCapability(PlayerBlazeProvider.PLAYER_BLAZE).ifPresent(playerBlaze ->
             playerBlaze.setBlaze(Math.round(playerBlaze.getBlaze()*multiplier)));
+    }
+    public void journalChangeBlaze(Player player, int amount, ItemStack journal) {
+        journal.getOrCreateTag().putInt("quill", journal.getOrCreateTag().getInt("quill") + amount);
     }
 }
