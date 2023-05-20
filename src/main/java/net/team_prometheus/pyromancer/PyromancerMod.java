@@ -10,6 +10,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.team_prometheus.pyromancer.blocks.ModBlocks;
+import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.init.ModAttributes;
 import net.team_prometheus.pyromancer.init.ModEnchantments;
 import net.team_prometheus.pyromancer.items.ModItems;
@@ -22,9 +23,11 @@ public class PyromancerMod {
     public static final String MOD_ID = "pyromancer";
     public static final UUID BASE_ARMOR_TOUGHNESS_UUID = UUID.fromString("52274c52-f4c7-11ed-a05b-0242ac120003");
     public static final UUID BLAZE_CONSUMPTION_UUID = UUID.fromString("39f6d6b6-f4f9-11ed-a05b-0242ac120003");
+    public static final UUID PYROMANCY_DAMAGE_UUID = UUID.fromString("847c2bea-f70c-11ed-b67e-0242ac120002");
     private static final Logger LOGGER = LogUtils.getLogger();
     public PyromancerMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModEntities.ENTITIES.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModEnchantments.ENCHANTMENTS.register(modEventBus);
