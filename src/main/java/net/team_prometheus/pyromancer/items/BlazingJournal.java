@@ -25,30 +25,25 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class BlazingJournal extends Item {
-    private float blazeConsumption;
+    private float blazeConsumption, pyromancyDamage;
     private Multimap<Attribute, AttributeModifier> defaultModifiers;
     public BlazingJournal(Properties properties) {
         super(properties);
-
-    }
-    @Override
-    public void inventoryTick(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull Entity entity, int slot, boolean selected){
-        this.blazeConsumption = switch ((int)itemStack.getOrCreateTag().getDouble("quill")){
-            case(1), (2), (3) -> 1;
-            default -> 0;
-        };
-        itemStack.getOrCreateTag().putDouble("CustomModelData", itemStack.getOrCreateTag().getDouble("quill"));
+        this.blazeConsumption = 1;
         ImmutableListMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableListMultimap.builder();
         builder.putAll(super.getDefaultAttributeModifiers(EquipmentSlot.OFFHAND));
         builder.put(ModAttributes.BLAZE_CONSUMPTION.get(), new AttributeModifier(PyromancerMod.BLAZE_CONSUMPTION_UUID, "Journal modifier", this.blazeConsumption, AttributeModifier.Operation.ADDITION));
         this.defaultModifiers = builder.build();
-
+    }
+    @Override
+    public void inventoryTick(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull Entity entity, int slot, boolean selected){
+        itemStack.getOrCreateTag().putDouble("CustomModelData", itemStack.getOrCreateTag().getInt("quill"));
     }
     @Override
     public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag){
         super.appendHoverText(itemStack, level, list, flag);
         String name = QuillItem.getQuillDescription(itemStack);
-        String quillName = "item.pyromancer." + QuillItem.getQuill((int)itemStack.getOrCreateTag().getDouble("quill")).toString();
+        String quillName = "item.pyromancer." + QuillItem.getQuill(itemStack.getOrCreateTag().getInt("quill")).toString();
         if(Screen.hasShiftDown()) {
             list.add(Component.translatable(quillName).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
             list.add(Component.translatable("desc." + name + ".line1"));
@@ -64,5 +59,8 @@ public class BlazingJournal extends Item {
     @Override
     public void onUseTick(@NotNull Level level, @NotNull LivingEntity living, ItemStack itemStack, int p_41431_) {
         itemStack.getOrCreateTag().putDouble("quill", 1);
+    }
+    public static boolean isJournal(Item item){
+        return(item instanceof BlazingJournal);
     }
 }
