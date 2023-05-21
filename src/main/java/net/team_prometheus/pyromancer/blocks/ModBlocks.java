@@ -13,7 +13,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
+import net.team_prometheus.pyromancer.init.ModTabs;
 import net.team_prometheus.pyromancer.items.ModItems;
+import net.team_prometheus.pyromancer.pyromancer_table.PyromancerTable;
 
 import java.util.function.Supplier;
 
@@ -30,7 +32,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> PYROWOOD_SLAB = registerBlock("pyrowood_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.copy(PYROWOOD_PLANKS.get())), CreativeModeTab.TAB_BUILDING_BLOCKS);
     //
-
+    public static final RegistryObject<Block> PYROMANCER_TABLE = registerBlock("pyromancer_table",
+            PyromancerTable::new, ModTabs.PYROMANCER_TAB);
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> output = BLOCKS.register(name, block);
