@@ -28,7 +28,7 @@ public class BlazingJournal extends Item {
     private float blazeConsumption, pyromancyDamage;
     private Multimap<Attribute, AttributeModifier> defaultModifiers;
     public BlazingJournal(Properties properties) {
-        super(properties);
+        super(properties.stacksTo(1));
         this.blazeConsumption = 1;
         ImmutableListMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableListMultimap.builder();
         builder.putAll(super.getDefaultAttributeModifiers(EquipmentSlot.OFFHAND));
