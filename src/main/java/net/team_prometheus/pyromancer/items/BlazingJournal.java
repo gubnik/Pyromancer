@@ -5,13 +5,11 @@ import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -25,14 +23,13 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class BlazingJournal extends Item {
-    private float blazeConsumption, pyromancyDamage;
-    private Multimap<Attribute, AttributeModifier> defaultModifiers;
+    private final Multimap<Attribute, AttributeModifier> defaultModifiers;
     public BlazingJournal(Properties properties) {
         super(properties.stacksTo(1));
-        this.blazeConsumption = 1;
+        float blazeConsumption = 1;
         ImmutableListMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableListMultimap.builder();
         builder.putAll(super.getDefaultAttributeModifiers(EquipmentSlot.OFFHAND));
-        builder.put(ModAttributes.BLAZE_CONSUMPTION.get(), new AttributeModifier(PyromancerMod.BLAZE_CONSUMPTION_UUID, "Journal modifier", this.blazeConsumption, AttributeModifier.Operation.ADDITION));
+        builder.put(ModAttributes.BLAZE_CONSUMPTION.get(), new AttributeModifier(PyromancerMod.BLAZE_CONSUMPTION_UUID, "Journal modifier", blazeConsumption, AttributeModifier.Operation.ADDITION));
         this.defaultModifiers = builder.build();
     }
     @Override
