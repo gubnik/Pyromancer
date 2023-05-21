@@ -10,9 +10,11 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.team_prometheus.pyromancer.blocks.ModBlocks;
+import net.team_prometheus.pyromancer.blocks.block_entities.ModBlockEntities;
 import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.init.ModAttributes;
 import net.team_prometheus.pyromancer.init.ModEnchantments;
+import net.team_prometheus.pyromancer.init.ModMenus;
 import net.team_prometheus.pyromancer.items.ModItems;
 import org.slf4j.Logger;
 
@@ -32,8 +34,9 @@ public class PyromancerMod {
         ModBlocks.register(modEventBus);
         ModEnchantments.ENCHANTMENTS.register(modEventBus);
         ModAttributes.ATTRIBUTES.register(modEventBus);
+        ModMenus.REGISTRY.register(modEventBus);
+        ModBlockEntities.BLOCK_ENTITY.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
-
         MinecraftForge.EVENT_BUS.register(this);
     }
     private void commonSetup(final FMLCommonSetupEvent event) {
