@@ -9,6 +9,7 @@ import org.jetbrains.annotations.Nullable;
 public class ModDamageSource {
     public static DamageSource INCINERATION = (new DamageSource("incineration")).setIsFire().bypassEnchantments();
     public static DamageSource ROT = (new DamageSource("rot")).bypassArmor().bypassEnchantments();
+    public static DamageSource BOMBSACK = (new DamageSource("bombsack"));
     public static DamageSource sizzlingHandFireball(SizzlingHandFireball fireball, @Nullable Entity entity){
         return entity == null ? (new IndirectEntityDamageSource("onFire", fireball, fireball)).setIsFire().setProjectile() : (new IndirectEntityDamageSource("fireball", fireball, entity)).setIsFire().setProjectile();
     }
