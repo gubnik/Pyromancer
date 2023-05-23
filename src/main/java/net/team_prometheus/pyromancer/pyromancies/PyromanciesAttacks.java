@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.entity.projectiles.SizzlingHandFireball;
 import net.team_prometheus.pyromancer.items.BlazingJournal;
+import net.team_prometheus.pyromancer.items.ModItems;
 import net.team_prometheus.pyromancer.items.PyromancyItem;
 
 @Mod.EventBusSubscriber
@@ -24,18 +25,24 @@ public class PyromanciesAttacks {
                 case("sizzling_hand"):
                     sizzlingHandAttack(entity, level, journal);
                     break;
+                case("crucible"):
+                    break;
                 default:
                     break;
             }
         }
     }
     public static void sizzlingHandAttack(Entity entity, Level level, ItemStack journal){
-        if (!level.isClientSide) {
+        if (!level.isClientSide
+        && journal.getItem() == ModItems.BLAZING_JOURNAL.get()
+        && journal.getOrCreateTag().getInt("blaze") >= 2) {
             SizzlingHandFireball fireball = new SizzlingHandFireball(ModEntities.SIZZLING_HAND_FIREBALL.get(), level);
             fireball.setOwner(entity);
             fireball.setPos(entity.getX(), entity.getEyeY() - 0.1, entity.getZ());
             fireball.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, 1.5f, 0.1f);
             level.addFreshEntity(fireball);
+            journal.getOrCreateTag().putInt("blaze",
+                    journal.getOrCreateTag().getInt("blaze") - 2);
         }
     }
 }

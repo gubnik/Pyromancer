@@ -15,6 +15,7 @@ import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.init.ModAttributes;
 import net.team_prometheus.pyromancer.init.ModEnchantments;
 import net.team_prometheus.pyromancer.init.ModMenus;
+import net.team_prometheus.pyromancer.init.ModParticleTypes;
 import net.team_prometheus.pyromancer.items.ModItems;
 import org.slf4j.Logger;
 
@@ -36,6 +37,7 @@ public class PyromancerMod {
         ModAttributes.ATTRIBUTES.register(modEventBus);
         ModMenus.REGISTRY.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITY.register(modEventBus);
+        ModParticleTypes.PARTICLES.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }

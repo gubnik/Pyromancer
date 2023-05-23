@@ -257,14 +257,11 @@ public class PyromancerTableMenu extends AbstractContainerMenu implements Suppli
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player entity = event.player;
         if (event.phase == TickEvent.Phase.END && entity.containerMenu instanceof PyromancerTableMenu) {
-            absoluteMadness(entity);
-        }
-    }
-    public static void absoluteMadness(Player player){
-        if(player instanceof ServerPlayer serverPlayer && serverPlayer.containerMenu instanceof Supplier<?> supplier && supplier.get() instanceof Map slot){
-            quillDisplay(((Slot) slot.get(4)), ((Slot) slot.get(0)).getItem());
-            blazeCharger(((Slot) slot.get(0)).getItem(), ((Slot) slot.get(1)));
-            quillChanger(((Slot) slot.get(2)), ((Slot) slot.get(3)), ((Slot) slot.get(0)).getItem());
+            if(event.player instanceof ServerPlayer serverPlayer && serverPlayer.containerMenu instanceof Supplier<?> supplier && supplier.get() instanceof Map slot){
+                quillDisplay(((Slot) slot.get(4)), ((Slot) slot.get(0)).getItem());
+                blazeCharger(((Slot) slot.get(0)).getItem(), ((Slot) slot.get(1)));
+                quillChanger(((Slot) slot.get(2)), ((Slot) slot.get(3)), ((Slot) slot.get(0)).getItem());
+            }
         }
     }
     public static void quillDisplay(Slot slot, ItemStack journal){
