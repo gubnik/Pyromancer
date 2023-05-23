@@ -261,13 +261,38 @@ public class PyromancerTableMenu extends AbstractContainerMenu implements Suppli
         }
     }
     public static void absoluteMadness(Player player){
-        if((player instanceof ServerPlayer serverPlayer && serverPlayer.containerMenu instanceof Supplier<?> supplier && supplier.get() instanceof Map slot)){
-             if(((Slot) slot.get(0)).getItem().getItem() == ModItems.BLAZING_JOURNAL.get()){
-                 ItemStack displayItem = new ItemStack(QuillItem.getQuill(
-                         ((Slot) slot.get(0)).getItem().getOrCreateTag().getInt("quill")
-                 ));
-                 ((Slot) slot.get(4)).set(displayItem);
-             } else {((Slot) slot).set(ItemStack.EMPTY);}
+        if(player instanceof ServerPlayer serverPlayer && serverPlayer.containerMenu instanceof Supplier<?> supplier && supplier.get() instanceof Map slot){
+            quillDisplay(((Slot) slot.get(4)), ((Slot) slot.get(0)).getItem());
+            blazeCharger(((Slot) slot.get(0)).getItem(), ((Slot) slot.get(1)));
+            quillChanger(((Slot) slot.get(2)), ((Slot) slot.get(3)), ((Slot) slot.get(0)).getItem());
+        }
+    }
+    public static void quillDisplay(Slot slot, ItemStack journal){
+        if(journal.getItem() == ModItems.BLAZING_JOURNAL.get()){
+            ItemStack displayItem = new ItemStack(QuillItem.getQuill(
+                    (journal.getOrCreateTag().getInt("quill"))));
+            slot.set(displayItem);
+        } else {slot.set(ItemStack.EMPTY);}
+    }
+    public static void quillChanger(Slot slot_in, Slot slot_out, ItemStack journal){
+        if(slot_in.getItem().getItem() != QuillItem.getQuill(journal.getOrCreateTag().getInt("quill"))
+        && slot_out.getItem() == ItemStack.EMPTY && slot_in.getItem().getItem() instanceof QuillItem
+        && journal.getItem() == ModItems.BLAZING_JOURNAL.get()){
+            slot_out.set(new ItemStack(QuillItem.getQuill(journal.getOrCreateTag().getInt("quill"))));
+            journal.getOrCreateTag().putInt("quill",
+                    QuillItem.getQuillId(slot_in.getItem()));
+            slot_in.set(ItemStack.EMPTY);
+            journal.getOrCreateTag().putDouble("CustomModelData",
+                    journal.getOrCreateTag().getDouble("quill"));
+        }
+    }
+    public static void blazeCharger(ItemStack journal, Slot chargeSlot){
+        if(journal.getItem() == ModItems.BLAZING_JOURNAL.get() && chargeSlot.getItem().getItem() == Items.BLAZE_POWDER){
+            int currentCharge = journal.getOrCreateTag().getInt("blaze");
+            if(currentCharge < 512){
+                journal.getOrCreateTag().putInt("blaze", Math.min(currentCharge+8, 512));
+                chargeSlot.getItem().setCount(chargeSlot.getItem().getCount() - 1);
+            }
         }
     }
 }

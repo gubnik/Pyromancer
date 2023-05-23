@@ -1,7 +1,9 @@
 package net.team_prometheus.pyromancer.pyromancer_table;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
@@ -16,8 +18,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.team_prometheus.pyromancer.blaze.PlayerBlaze;
-import net.team_prometheus.pyromancer.blaze.PlayerBlazeProvider;
+import net.minecraftforge.server.ServerLifecycleHooks;
 import net.team_prometheus.pyromancer.items.ModItems;
 import org.jetbrains.annotations.NotNull;
 public class PyromancerTableScreen extends AbstractContainerScreen<PyromancerTableMenu> {
@@ -70,7 +71,7 @@ public class PyromancerTableScreen extends AbstractContainerScreen<PyromancerTab
     protected void renderLabels(@NotNull PoseStack poseStack, int mouseX, int mouseY) {
         if (textCondition(world, x, y, z))
             this.font.draw(poseStack,
-                    textValue(entity), 142, 41, -31232);
+                    textValue(new BlockPos(x, y, z), entity), 142, 41, -31232);
     }
     @Override
     public void onClose() {
@@ -83,19 +84,24 @@ public class PyromancerTableScreen extends AbstractContainerScreen<PyromancerTab
         assert this.minecraft != null;
         this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
     }
-    public static String textValue(Entity entity) {
+    public String textValue(BlockPos pos, Player entity) {
         if (entity == null)
-            return "";
-        return new java.text.DecimalFormat("##").format((entity.getCapability(PlayerBlazeProvider.PLAYER_BLAZE, null)).orElse(new PlayerBlaze()).getBlaze());
+            return "pizdec";
+        int blaze_count = 0;
+        AtomicReference<ItemStack> reference = new AtomicReference<>(ItemStack.EMPTY);
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity != null)
+            blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER, null).ifPresent(capability -> reference.set(capability.getStackInSlot(0).copy()));
+        return new java.text.DecimalFormat("##").format(reference.get().getOrCreateTag().getInt("blaze"));
     }
     public static boolean textCondition(LevelAccessor world, double x, double y, double z) {
         return (new Object() {
             public ItemStack getItemStack(LevelAccessor world, BlockPos pos, int slot_id) {
-                AtomicReference<ItemStack> itemStackAtomicReference = new AtomicReference<>(ItemStack.EMPTY);
-                BlockEntity _ent = world.getBlockEntity(pos);
-                if (_ent != null)
-                    _ent.getCapability(ForgeCapabilities.ITEM_HANDLER, null).ifPresent(capability -> itemStackAtomicReference.set(capability.getStackInSlot(slot_id).copy()));
-                return itemStackAtomicReference.get();
+                AtomicReference<ItemStack> reference = new AtomicReference<>(ItemStack.EMPTY);
+                BlockEntity blockEntity = world.getBlockEntity(pos);
+                if (blockEntity != null)
+                    blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER, null).ifPresent(capability -> reference.set(capability.getStackInSlot(slot_id).copy()));
+                return reference.get();
             }
         }.getItemStack(world, new BlockPos(x, y, z), 0)).getItem() == ModItems.BLAZING_JOURNAL.get();
     }
