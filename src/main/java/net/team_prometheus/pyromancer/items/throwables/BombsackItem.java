@@ -19,12 +19,12 @@ public class BombsackItem extends Item {
     }
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, @NotNull InteractionHand interactionHand) {
         ItemStack itemstack = player.getItemInHand(interactionHand);
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.FIRECHARGE_USE, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         if (!level.isClientSide) {
             Bombsack bombsack = new Bombsack(ModEntities.BOMBSACK.get(), level);
             bombsack.setItem(itemstack);
             bombsack.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
-            bombsack.shoot(player.getLookAngle().x, player.getLookAngle().y, player.getLookAngle().z, 0.7f, 0.1f);
+            bombsack.shoot(player.getLookAngle().x, player.getLookAngle().y, player.getLookAngle().z, 0.8f, 0.1f);
             level.addFreshEntity(bombsack);
         }
         player.awardStat(Stats.ITEM_USED.get(this));

@@ -43,14 +43,12 @@ public class Bombsack extends ThrowableItemProjectile {
                 this.level.addParticle(particleoptions, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
             }
         }
-
     }
     @Override
     protected void onHitEntity(@NotNull EntityHitResult entityHitResult) {
         super.onHitEntity(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        int i = entity instanceof Blaze ? 3 : 0;
-        entity.hurt(DamageSource.thrown(this, this.getOwner()), (float)i);
+        entity.hurt(DamageSource.thrown(this, this.getOwner()), 1);
     }
     @Override
     protected void onHit(@NotNull HitResult hitResult) {
@@ -60,7 +58,6 @@ public class Bombsack extends ThrowableItemProjectile {
             this.discard();
             collisionEffect(this, this.level);
         }
-
     }
     public static void collisionEffect(Bombsack bombsack, Level level){
         level.explode(bombsack, ModDamageSource.BOMBSACK, null, bombsack.getX(), bombsack.getY(), bombsack.getZ(), 1.3f, false, Explosion.BlockInteraction.NONE);
