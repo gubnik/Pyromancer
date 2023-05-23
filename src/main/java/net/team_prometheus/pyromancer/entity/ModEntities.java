@@ -8,6 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
+import net.team_prometheus.pyromancer.entity.projectiles.Bombsack;
 import net.team_prometheus.pyromancer.entity.projectiles.SizzlingHandFireball;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -16,6 +17,9 @@ public class ModEntities {
     public static final RegistryObject<EntityType<SizzlingHandFireball>> SIZZLING_HAND_FIREBALL = register("sizzling_hand_fireball",
             EntityType.Builder.<SizzlingHandFireball>of(SizzlingHandFireball::new, MobCategory.MISC)
                     .setCustomClientFactory(SizzlingHandFireball::new).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10));
+    public static final RegistryObject<EntityType<Bombsack>> BOMBSACK = register("bombsack",
+            EntityType.Builder.<Bombsack>of(Bombsack::new, MobCategory.MISC)
+                    .setCustomClientFactory(Bombsack::new).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10));
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String registry_name, EntityType.Builder<T> entityTypeBuilder) {
         return ENTITIES.register(registry_name, () -> entityTypeBuilder.build(registry_name));
     }

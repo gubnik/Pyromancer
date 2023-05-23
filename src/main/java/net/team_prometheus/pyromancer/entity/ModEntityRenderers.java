@@ -11,5 +11,6 @@ public class ModEntityRenderers {
     @SubscribeEvent
     public static void registerEntityRender(EntityRenderersEvent.RegisterRenderers event){
         event.registerEntityRenderer(ModEntities.SIZZLING_HAND_FIREBALL.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.BOMBSACK.get(), ThrownItemRenderer::new);
     }
 }
