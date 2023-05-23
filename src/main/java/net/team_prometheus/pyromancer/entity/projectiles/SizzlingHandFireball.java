@@ -13,15 +13,13 @@ import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.team_prometheus.pyromancer.entity.ModEntities;
+import net.team_prometheus.pyromancer.init.ModDamageSource;
 import net.team_prometheus.pyromancer.init.PlaySound;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -53,12 +51,17 @@ public class SizzlingHandFireball extends Fireball implements ItemSupplier {
             int i = entity.getRemainingFireTicks();
             entity.setSecondsOnFire(5);
             collisionEffect(this, entity, entity.level);
-            if (!entity.hurt(DamageSource.fireball(this, owner), 5.0F)) {
+            entity.hurt(ModDamageSource.sizzlingHandFireball(this, entity), 5.0F);
+            if (!entity.hurt(ModDamageSource.sizzlingHandFireball(this, entity), 5.0F)) {
                 entity.setRemainingFireTicks(i);
             } else if (owner instanceof LivingEntity) {
                 this.doEnchantDamageEffects((LivingEntity)owner, entity);
             }
         }
+    }
+    @Override
+    protected void onHitBlock(@NotNull BlockHitResult result){
+        collisionEffect(this, null, this.level);
     }
     @Override
     public void tick() {
@@ -104,7 +107,7 @@ public class SizzlingHandFireball extends Fireball implements ItemSupplier {
     }
     @Override
     protected float getInertia() {
-        return 1;
+        return 1f;
     }
     @Override
     protected void onHit(@NotNull HitResult hitResult) {
@@ -125,17 +128,16 @@ public class SizzlingHandFireball extends Fireball implements ItemSupplier {
         double y = fireball.getY();
         double z = fireball.getZ();
         PlaySound.run("entity.generic.explode", SoundSource.NEUTRAL, 1f, 1f, level, x, y, z, null);
-        if(level instanceof ServerLevel serverLevel){
+        if (level instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.FLAME, x, y, z, 50, 0.5, 0.5, 0.5, 0.5);
             serverLevel.sendParticles(ParticleTypes.LAVA, x, y, z, 20, 0.5, 0.5, 0.5, 0.25);
-        }
-        Vec3 _center = new Vec3(x, y, z);
-        List<Entity> _entfound = level.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(4 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(entComp -> entComp.distanceToSqr(_center))).toList();
-        for (Entity entityiterator : _entfound) {
-            if (!(fireball.getOwner() == entityiterator)) {
-                entityiterator.hurt(DamageSource.IN_FIRE, 6);
+            Vec3 _center = new Vec3(x, y, z);
+            List<Entity> _entfound = serverLevel.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(4 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(entComp -> entComp.distanceToSqr(_center))).toList();
+            for (Entity entityiterator : _entfound) {
+                if (!(fireball.getOwner() == entityiterator)) {
+                    entityiterator.hurt(DamageSource.IN_FIRE.bypassInvul(), 8);
+                }
             }
         }
     }
 }
-
