@@ -15,7 +15,7 @@ import java.util.List;
 
 public class QuillItem extends Item {
     public QuillItem(Properties properties) {
-        super(properties);
+        super(properties.stacksTo(1));
     }
     @Override
     public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag){
@@ -28,11 +28,7 @@ public class QuillItem extends Item {
         }
     }
     public static String getQuillDescription(ItemStack itemStack){
-        return switch (itemStack.getOrCreateTag().getInt("quill")){
-            case(0) -> "blazing_quill";
-            case(1) -> "smoldering_twig";
-            default -> "invalid";
-        };
+        return getQuill(itemStack.getOrCreateTag().getInt("quill")).toString();
     }
     public static Item getQuill(int id){
         return switch (id){
@@ -41,4 +37,12 @@ public class QuillItem extends Item {
             default -> Items.AIR;
         };
     }
+    public static int getQuillId(ItemStack itemStack){
+        return switch (itemStack.getItem().toString()){
+            case("blazing_quill") -> 0;
+            case("smoldering_twig") -> 1;
+            default -> -1;
+        };
+    }
+
 }
