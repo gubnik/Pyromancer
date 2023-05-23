@@ -10,7 +10,8 @@ import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.init.ModTabs;
 import net.team_prometheus.pyromancer.items.throwables.BombsackItem;
-
+import net.team_prometheus.pyromancer.items.throwables.NapalmBombsackItem;
+@SuppressWarnings("unused")
 public class ModItems {
     public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PyromancerMod.MOD_ID);
     // maces
@@ -29,6 +30,8 @@ public class ModItems {
     // throwable
     public static RegistryObject<Item> BOMBSACK = ITEMS.register("bombsack",
             () -> new BombsackItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB).stacksTo(16)));
+    public static RegistryObject<Item> NAPALM_BOMBSACK = ITEMS.register("napalm_bombsack",
+            () -> new NapalmBombsackItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB).stacksTo(16)));
     // journal
     public static RegistryObject<Item> BLAZING_JOURNAL = ITEMS.register("blazing_journal",
             () -> new BlazingJournal(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
