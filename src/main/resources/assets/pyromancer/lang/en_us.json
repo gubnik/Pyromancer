@@ -5,6 +5,10 @@
   "desc.blazing_quill.line1": "No effect",
   "desc.smoldering_twig.line1": "No effect",
 
+  "entity.pyromancer.unburned": "Unburned",
+
+  "enchantment.pyromancer.rush": "Rush",
+
   "item.pyromancer.blazing_journal": "Blazing Journal",
   "item.pyromancer.blazing_quill": "Blazing Quill",
   "item.pyromancer.smoldering_twig": "Smoldering Twig",
@@ -14,5 +18,7 @@
   "item.pyromancer.iron_mace": "Iron Mace",
   "item.pyromancer.golden_mace": "Golden Mace",
   "item.pyromancer.diamond_mace": "Diamond Mace",
-  "item.pyromancer.netherite_mace": "Netherite Mace"
+  "item.pyromancer.netherite_mace": "Netherite Mace",
+
+  "itemGroup.pyromancer_tab": "Pyromancer"
 }

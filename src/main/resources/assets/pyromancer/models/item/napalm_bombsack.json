@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pyromancer:items/napalm_bombsack"
+    "layer0": "pyromancer:item/napalm_bombsack"
   },
   "display": {
     "thirdperson_righthand": {
