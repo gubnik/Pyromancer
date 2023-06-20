@@ -20,9 +20,6 @@ import net.team_prometheus.pyromancer.items.ModItems;
 import org.jetbrains.annotations.NotNull;
 
 public class NapalmBombsack extends ThrowableItemProjectile {
-    public NapalmBombsack(PlayMessages.SpawnEntity packet, Level world) {
-        super(ModEntities.BOMBSACK.get(), world);
-    }
     public NapalmBombsack(EntityType<? extends ThrowableItemProjectile> entityType, Level level) {
         super(ModEntities.BOMBSACK.get(), level);
     }
