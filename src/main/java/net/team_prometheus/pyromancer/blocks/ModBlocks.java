@@ -1,11 +1,14 @@
 package net.team_prometheus.pyromancer.blocks;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -16,6 +19,9 @@ import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.init.ModTabs;
 import net.team_prometheus.pyromancer.items.ModItems;
 import net.team_prometheus.pyromancer.pyromancer_table.PyromancerTable;
+import net.team_prometheus.pyromancer.worldgen.features.ModFeatures;
+import net.team_prometheus.pyromancer.worldgen.tree_growers.PyrowoodTreeGrower;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -31,10 +37,26 @@ public class ModBlocks {
             () -> new StairBlock(PYROWOOD_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(PYROWOOD_PLANKS.get())), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> PYROWOOD_SLAB = registerBlock("pyrowood_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.copy(PYROWOOD_PLANKS.get())), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> PYROWOOD_LEAVES = registerBlock("pyrowood_leaves",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.JUNGLE_LEAVES).lightLevel(s -> 8)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> PYROWOOD_SAPLING = registerBlock("pyrowood_sapling",
+            () -> new WeirdSaplingBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING).color(MaterialColor.COLOR_ORANGE), new PyrowoodTreeGrower()), CreativeModeTab.TAB_DECORATIONS);
+    //
+    // flaming grove
+    public static final RegistryObject<Block> PYROMOSSED_NETHERRACK = registerBlock("pyromossed_netherrack",
+            () -> new Block(BlockBehaviour.Properties.of(Material.MOSS, MaterialColor.TERRACOTTA_ORANGE).strength(2.0F, 3.0F).sound(SoundType.NYLIUM)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> PYROMOSS_SPROUTS = registerBlock("pyromoss_sprouts",
+            () -> new TallGrassBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XYZ)){
+        protected boolean mayPlaceOn(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos) {
+            return BlocksUtil.flamingGrovePlantable(blockState);
+        }
+            }, CreativeModeTab.TAB_DECORATIONS);
+    public static final RegistryObject<Block> FIREBRIAR = registerBlock("firebriar",
+            () -> new FirebriarBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_ORANGE).strength(0,0).sound(SoundType.HARD_CROP).noCollission()), CreativeModeTab.TAB_DECORATIONS);
     //
     public static final RegistryObject<Block> PYROMANCER_TABLE = registerBlock("pyromancer_table",
             PyromancerTable::new, ModTabs.PYROMANCER_TAB);
-
+    //
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> output = BLOCKS.register(name, block);
         registerBlockItem(name, output, tab);
