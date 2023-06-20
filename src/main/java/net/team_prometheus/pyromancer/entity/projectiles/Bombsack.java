@@ -21,9 +21,6 @@ import net.team_prometheus.pyromancer.items.ModItems;
 import org.jetbrains.annotations.NotNull;
 
 public class Bombsack extends ThrowableItemProjectile {
-    public Bombsack(PlayMessages.SpawnEntity packet, Level world) {
-        super(ModEntities.BOMBSACK.get(), world);
-    }
     public Bombsack(EntityType<? extends ThrowableItemProjectile> entityType, Level level) {
         super(ModEntities.BOMBSACK.get(), level);
     }
