@@ -2,12 +2,15 @@ package net.team_prometheus.pyromancer.items;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.Tiers;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
+import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.init.ModTabs;
 import net.team_prometheus.pyromancer.items.throwables.BombsackItem;
 import net.team_prometheus.pyromancer.items.throwables.NapalmBombsackItem;
@@ -43,6 +46,9 @@ public class ModItems {
     // pyromancies
     public static RegistryObject<Item> SIZZLING_HAND = ITEMS.register("sizzling_hand",
             () -> new SizzlingHand(1, 666, new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
+    // spawn eggs
+    public static RegistryObject<Item> UNBURNED_SPAWN_EGG = ITEMS.register("unburned_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.UNBURNED, -10268354, -3297142, new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     public static void register (IEventBus eventBus){
         ITEMS.register(eventBus);
     }
