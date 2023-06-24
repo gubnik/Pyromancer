@@ -33,16 +33,5 @@ public class PyromanciesAttacks {
         }
     }
     public static void sizzlingHandAttack(Entity entity, Level level, ItemStack journal){
-        if (!level.isClientSide
-        && journal.getItem() == ModItems.BLAZING_JOURNAL.get()
-        && journal.getOrCreateTag().getInt("blaze") >= 2) {
-            SizzlingHandFireball fireball = new SizzlingHandFireball(ModEntities.SIZZLING_HAND_FIREBALL.get(), level);
-            fireball.setOwner(entity);
-            fireball.setPos(entity.getX(), entity.getEyeY() - 0.1, entity.getZ());
-            fireball.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, 1.5f, 0.1f);
-            level.addFreshEntity(fireball);
-            journal.getOrCreateTag().putInt("blaze",
-                    journal.getOrCreateTag().getInt("blaze") - 2);
-        }
     }
 }

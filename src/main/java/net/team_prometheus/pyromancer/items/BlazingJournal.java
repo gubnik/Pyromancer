@@ -23,14 +23,8 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class BlazingJournal extends Item {
-    private final Multimap<Attribute, AttributeModifier> defaultModifiers;
     public BlazingJournal(Properties properties) {
         super(properties.stacksTo(1));
-        float blazeConsumption = 1;
-        ImmutableListMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableListMultimap.builder();
-        builder.putAll(super.getDefaultAttributeModifiers(EquipmentSlot.OFFHAND));
-        builder.put(ModAttributes.BLAZE_CONSUMPTION.get(), new AttributeModifier(PyromancerMod.BLAZE_CONSUMPTION_UUID, "Journal modifier", blazeConsumption, AttributeModifier.Operation.ADDITION));
-        this.defaultModifiers = builder.build();
     }
     @Override
     public void inventoryTick(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull Entity entity, int slot, boolean selected){
@@ -42,17 +36,14 @@ public class BlazingJournal extends Item {
         String name = QuillItem.getQuillDescription(itemStack);
         String quillName = "item.pyromancer." + QuillItem.getQuill(itemStack.getOrCreateTag().getInt("quill")).toString();
         if(Screen.hasShiftDown()) {
-            list.add(Component.translatable(quillName).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
-            list.add(Component.translatable("desc." + name + ".line1"));
+            list.add(Component.translatable(quillName).withStyle(ChatFormatting.BOLD));
+            list.add(Component.translatable("desc." + name + ".line1").withStyle(ChatFormatting.GOLD));
+            list.add(Component.translatable("desc.blazing_journal.charge").withStyle(ChatFormatting.BOLD));
+            list.add(Component.literal(Integer.toString(itemStack.getOrCreateTag().getInt("blaze"))).withStyle(ChatFormatting.GOLD));
         } else {
             list.add(Component.translatable("desc.press_shift").withStyle(ChatFormatting.DARK_GRAY).withStyle(ChatFormatting.BOLD));
         }
     }
-    @Override
-    public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot slot) {
-        return slot == EquipmentSlot.OFFHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
-    }
-
     @Override
     public void onUseTick(@NotNull Level level, @NotNull LivingEntity living, ItemStack itemStack, int p_41431_) {
         itemStack.getOrCreateTag().putDouble("quill", 1);
