@@ -35,4 +35,11 @@ public class ItemUtils {
                 .get(ModAttributes.PYROMANCY_DAMAGE.get()).stream().mapToDouble(AttributeModifier::getAmount).sum()
         );
     }
+    public static void changeBlaze(Player player, int amount){
+        ItemStack supposedJournal = player.getOffhandItem();
+        if(supposedJournal.getItem() instanceof BlazingJournal){
+            supposedJournal.getOrCreateTag().putInt("blaze",
+                    supposedJournal.getOrCreateTag().getInt("blaze") + amount);
+        }
+    }
 }

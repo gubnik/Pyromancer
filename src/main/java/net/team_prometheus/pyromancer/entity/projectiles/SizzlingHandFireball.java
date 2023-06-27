@@ -26,9 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Comparator;
 import java.util.List;
 
-public class SizzlingHandFireball extends Fireball implements ItemSupplier {
-    public int lifetime;
-    public int damage = 0;
+public class SizzlingHandFireball extends PyromancyFireballProjectile implements ItemSupplier {
     public SizzlingHandFireball(PlayMessages.SpawnEntity packet, Level world) {
         super(ModEntities.SIZZLING_HAND_FIREBALL.get(), world);
     }
@@ -67,7 +65,7 @@ public class SizzlingHandFireball extends Fireball implements ItemSupplier {
     @Override
     public void tick() {
         this.lifetime+=1;
-        if(lifetime >= 10){
+        if(lifetime >= maxLifetime){
             collisionEffect(this, null, level);
             this.discard();
         }

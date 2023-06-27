@@ -8,6 +8,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.extensions.IForgeItem;
+import net.team_prometheus.pyromancer.entity.EntityUtils;
 import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.entity.projectiles.SizzlingHandFireball;
 import org.jetbrains.annotations.NotNull;
@@ -40,19 +42,12 @@ public class SizzlingHand extends PyromancyItem {
     public void onUseTick(@NotNull Level level, @NotNull LivingEntity entity, @NotNull ItemStack itemStack, int time) {
         if(entity.getOffhandItem().getItem() instanceof BlazingJournal && time % 3 == 0){
             ItemStack journal = entity.getOffhandItem();
-            if (!level.isClientSide
-                    //&& journal.getOrCreateTag().getInt("blaze") >= this.blazeConsumption
-            ) {
-                //
-                SizzlingHandFireball fireball = new SizzlingHandFireball(ModEntities.SIZZLING_HAND_FIREBALL.get(), level);
-                fireball.setOwner(entity);
-                fireball.damage = ItemUtils.getPyromancyDamage(entity instanceof Player player ? player: null);
-                fireball.setPos(entity.getX(), entity.getEyeY() - 0.3, entity.getZ());
-                //
-                fireball.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, 1.5f, 0.1f);
-                level.addFreshEntity(fireball);
-                journal.getOrCreateTag().putInt("blaze",
-                        journal.getOrCreateTag().getInt("blaze") - this.blazeConsumption);
+            if (!level.isClientSide){
+                if(entity instanceof Player player) {
+                    EntityUtils.shootPyromancyFireballProjectile(new SizzlingHandFireball(ModEntities.SIZZLING_HAND_FIREBALL.get(), level),
+                            1.5f, 0.1f, player);
+                    ItemUtils.changeBlaze(player, -1);
+                }
             }
         }
     }
