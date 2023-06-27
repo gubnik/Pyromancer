@@ -45,7 +45,7 @@ public class ModItems {
             () -> new QuillItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
     // pyromancies
     public static RegistryObject<Item> SIZZLING_HAND = ITEMS.register("sizzling_hand",
-            () -> new SizzlingHand(1, 666, new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
+            () -> new SizzlingHand(3,1, 666, new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
     // spawn eggs
     public static RegistryObject<Item> UNBURNED_SPAWN_EGG = ITEMS.register("unburned_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.UNBURNED, -10268354, -3297142, new Item.Properties().tab(CreativeModeTab.TAB_MISC)));

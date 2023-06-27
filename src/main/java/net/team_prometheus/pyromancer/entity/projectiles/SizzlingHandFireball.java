@@ -28,6 +28,7 @@ import java.util.List;
 
 public class SizzlingHandFireball extends Fireball implements ItemSupplier {
     public int lifetime;
+    public int damage = 0;
     public SizzlingHandFireball(PlayMessages.SpawnEntity packet, Level world) {
         super(ModEntities.SIZZLING_HAND_FIREBALL.get(), world);
     }
@@ -51,8 +52,8 @@ public class SizzlingHandFireball extends Fireball implements ItemSupplier {
             int i = entity.getRemainingFireTicks();
             entity.setSecondsOnFire(5);
             collisionEffect(this, entity, entity.level);
-            entity.hurt(ModDamageSource.sizzlingHandFireball(this, entity), 3.0F);
-            if (!entity.hurt(ModDamageSource.sizzlingHandFireball(this, entity), 3.0F)) {
+            entity.hurt(ModDamageSource.sizzlingHandFireball(this, entity), damage);
+            if (!entity.hurt(ModDamageSource.sizzlingHandFireball(this, entity), damage)) {
                 entity.setRemainingFireTicks(i);
             } else if (owner instanceof LivingEntity) {
                 this.doEnchantDamageEffects((LivingEntity)owner, entity);
@@ -135,7 +136,7 @@ public class SizzlingHandFireball extends Fireball implements ItemSupplier {
             List<Entity> _entfound = serverLevel.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(4 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(entComp -> entComp.distanceToSqr(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 if (!(fireball.getOwner() == entityiterator)) {
-                    entityiterator.hurt(DamageSource.IN_FIRE.bypassInvul(), 5);
+                    entityiterator.hurt(DamageSource.IN_FIRE.bypassInvul(), (float) (fireball.damage * 1.5));
                 }
             }
         }

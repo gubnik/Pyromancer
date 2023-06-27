@@ -13,10 +13,12 @@ import net.team_prometheus.pyromancer.entity.projectiles.SizzlingHandFireball;
 import org.jetbrains.annotations.NotNull;
 
 public class SizzlingHand extends PyromancyItem {
-    private final int blazeConsumption ;
-    public SizzlingHand(int blazeCost, int uses, Properties properties) {
-        super(blazeCost, uses, properties);
+    public final int blazeConsumption ;
+    public final int damage;
+    public SizzlingHand(int damage, int blazeCost, int uses, Properties properties) {
+        super(damage, blazeCost, uses, properties);
         this.blazeConsumption = blazeCost;
+        this.damage = damage;
     }
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, @NotNull Player entity, @NotNull InteractionHand hand) {
@@ -44,6 +46,7 @@ public class SizzlingHand extends PyromancyItem {
                 //
                 SizzlingHandFireball fireball = new SizzlingHandFireball(ModEntities.SIZZLING_HAND_FIREBALL.get(), level);
                 fireball.setOwner(entity);
+                fireball.damage = ItemUtils.getPyromancyDamage(entity instanceof Player player ? player: null);
                 fireball.setPos(entity.getX(), entity.getEyeY() - 0.3, entity.getZ());
                 //
                 fireball.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, 1.5f, 0.1f);
