@@ -28,9 +28,9 @@ public abstract class InventoryMixin {
     }
 
     private void cancelCI(CallbackInfo ci) {
-        ItemStack selected = getSelected();
-        if(selected.getItem() instanceof BlazingJournal){
-            ci.cancel();
-        }
+        //ItemStack selected = getSelected();
+        //if(selected.getItem() instanceof BlazingJournal){
+        //    ci.cancel();
+        //}
     }
 }
