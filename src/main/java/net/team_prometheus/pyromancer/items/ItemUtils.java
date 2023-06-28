@@ -1,5 +1,7 @@
 package net.team_prometheus.pyromancer.items;
 
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
@@ -17,10 +19,7 @@ public class ItemUtils {
                     .get(ModAttributes.BLAZE_CONSUMPTION.get());
             if(modifiers.isEmpty()) continue;
             blazeConsumption += modifiers.stream().mapToDouble(AttributeModifier::getAmount).sum();
-        }
-        return (int)( blazeConsumption + player.getMainHandItem().getAttributeModifiers(EquipmentSlot.MAINHAND)
-                .get(ModAttributes.BLAZE_CONSUMPTION.get()).stream().mapToDouble(AttributeModifier::getAmount).sum()
-        );
+        } return (int) blazeConsumption;
     }
     public static int getPyromancyDamage(Player player){
         double pyromancyDamage = 0;
@@ -30,10 +29,7 @@ public class ItemUtils {
                     .get(ModAttributes.PYROMANCY_DAMAGE.get());
             if(modifiers.isEmpty()) continue;
             pyromancyDamage += modifiers.stream().mapToDouble(AttributeModifier::getAmount).sum();
-        }
-        return (int)( pyromancyDamage + player.getMainHandItem().getAttributeModifiers(EquipmentSlot.MAINHAND)
-                .get(ModAttributes.PYROMANCY_DAMAGE.get()).stream().mapToDouble(AttributeModifier::getAmount).sum()
-        );
+        } return (int) pyromancyDamage;
     }
     public static void changeBlaze(Player player, int amount){
         ItemStack supposedJournal = player.getOffhandItem();

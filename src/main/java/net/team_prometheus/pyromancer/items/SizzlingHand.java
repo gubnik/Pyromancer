@@ -45,8 +45,9 @@ public class SizzlingHand extends PyromancyItem {
             if (!level.isClientSide){
                 if(entity instanceof Player player) {
                     EntityUtils.shootPyromancyFireballProjectile(new SizzlingHandFireball(ModEntities.SIZZLING_HAND_FIREBALL.get(), level),
-                            1.5f, 0.1f, player);
-                    ItemUtils.changeBlaze(player, -1);
+                            1.5f, 0.1f, 10, player);
+                    ItemUtils.changeBlaze(player,
+                            -1 * ItemUtils.getBlazeConsumption(player));
                 }
             }
         }

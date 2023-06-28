@@ -6,7 +6,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.*;
-import net.minecraftforge.common.extensions.IForgeItem;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.init.ModAttributes;
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 public class PyromancyItem extends Item implements Vanishable {
     private final int blazeConsumption;
     private final int damage;
-    private final Multimap<Attribute, AttributeModifier> defaultModifiers;
+    private final Multimap<Attribute, AttributeModifier> modifiers;
     public PyromancyItem(int damage, int blazeCost, int uses, Properties properties) {
         super(properties.stacksTo(1).defaultDurability(uses));
         this.blazeConsumption = blazeCost;
@@ -24,11 +23,11 @@ public class PyromancyItem extends Item implements Vanishable {
         builder.putAll(super.getDefaultAttributeModifiers(EquipmentSlot.MAINHAND));
         builder.put(ModAttributes.PYROMANCY_DAMAGE.get(), new AttributeModifier(PyromancerMod.PYROMANCY_DAMAGE_UUID, "Weapon modifier", this.damage, AttributeModifier.Operation.ADDITION));
         builder.put(ModAttributes.BLAZE_CONSUMPTION.get(), new AttributeModifier(PyromancerMod.BLAZE_CONSUMPTION_UUID, "Weapon modifier", this.blazeConsumption, AttributeModifier.Operation.ADDITION));
-        this.defaultModifiers = builder.build();
+        this.modifiers = builder.build();
     }
     @Override
     public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot slot) {
-        return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
+        return slot == EquipmentSlot.MAINHAND ? this.modifiers : super.getDefaultAttributeModifiers(slot);
     }
     public int getCost(){
         return this.blazeConsumption;

@@ -1,9 +1,10 @@
 {
   "attribute.name.generic.blaze_consumption": "Blaze Consumption",
+  "attribute.name.generic.pyromancy_damage": "Pyromancy Damage",
 
   "desc.press_shift": "Press SHIFT to reveal item info",
-  "desc.blazing_quill.line1": "No effect",
   "desc.blazing_journal.charge": "Current blaze charge:",
+  "desc.blazing_quill.line1": "No effect",
   "desc.smoldering_twig.line1": "No effect",
 
   "entity.pyromancer.unburned": "Unburned",

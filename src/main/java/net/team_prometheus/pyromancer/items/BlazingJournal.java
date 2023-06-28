@@ -1,13 +1,14 @@
 package net.team_prometheus.pyromancer.items;
 
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
@@ -20,11 +21,14 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
-@SuppressWarnings("deprecation")
 public class BlazingJournal extends Item {
+    private ImmutableListMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableListMultimap.builder();
+    private int consumption;
     public BlazingJournal(Properties properties) {
         super(properties.stacksTo(1));
+        builder.putAll(super.getDefaultAttributeModifiers(EquipmentSlot.OFFHAND));
     }
     @Override
     public void inventoryTick(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull Entity entity, int slot, boolean selected){
@@ -44,11 +48,13 @@ public class BlazingJournal extends Item {
             list.add(Component.translatable("desc.press_shift").withStyle(ChatFormatting.DARK_GRAY).withStyle(ChatFormatting.BOLD));
         }
     }
-    @Override
-    public void onUseTick(@NotNull Level level, @NotNull LivingEntity living, ItemStack itemStack, int p_41431_) {
-        itemStack.getOrCreateTag().putDouble("quill", 1);
-    }
     public static boolean isJournal(Item item){
         return(item instanceof BlazingJournal);
+    }
+
+    // TODO: sort out this mess
+    @Override
+    public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot slot) {
+        return slot == EquipmentSlot.OFFHAND ? this.builder.build() : super.getDefaultAttributeModifiers(slot);
     }
 }

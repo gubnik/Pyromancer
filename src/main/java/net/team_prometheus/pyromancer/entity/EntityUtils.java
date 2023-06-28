@@ -9,10 +9,11 @@ import net.team_prometheus.pyromancer.items.ItemUtils;
 import javax.annotation.Nullable;
 
 public class EntityUtils {
-    public static void shootPyromancyFireballProjectile(PyromancyFireballProjectile projectile, float speed, float inaccuracy, @Nullable Player shooter){
+    public static void shootPyromancyFireballProjectile(PyromancyFireballProjectile projectile, float speed, float inaccuracy, int timer, @Nullable Player shooter){
         assert shooter != null;
         projectile.setOwner(shooter);
         projectile.damage = ItemUtils.getPyromancyDamage(shooter);
+        projectile.maxLifetime = timer;
         projectile.setPos(shooter.getX(), shooter.getEyeY() - 0.3, shooter.getZ());
         projectile.shoot(shooter.getLookAngle().x, shooter.getLookAngle().y, shooter.getLookAngle().z, speed, inaccuracy);
         shooter.level.addFreshEntity(projectile);
