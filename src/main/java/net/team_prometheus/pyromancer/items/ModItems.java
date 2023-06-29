@@ -2,7 +2,6 @@ package net.team_prometheus.pyromancer.items;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -45,7 +44,7 @@ public class ModItems {
             () -> new QuillItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
     // pyromancies
     public static RegistryObject<Item> SIZZLING_HAND = ITEMS.register("sizzling_hand",
-            () -> new SizzlingHand(3,1, 666, new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
+            () -> new SizzlingHand(new Item.Properties().tab(ModTabs.PYROMANCER_TAB).stacksTo(1)));
     // spawn eggs
     public static RegistryObject<Item> UNBURNED_SPAWN_EGG = ITEMS.register("unburned_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.UNBURNED, -10268354, -3297142, new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
