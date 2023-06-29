@@ -9,7 +9,8 @@
 
   "entity.pyromancer.unburned": "Unburned",
 
-  "enchantment.pyromancer.rush": "Rush",
+  "enchantment.pyromancer.counterattack": "Counterattack",
+  "enchantment.pyromancer.sturdiness": "Sturdiness",
 
   "item.pyromancer.blazing_journal": "Blazing Journal",
   "item.pyromancer.blazing_quill": "Blazing Quill",
