@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.init;
+package net.team_prometheus.pyromancer.enchantments;
 
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.team_prometheus.pyromancer.items.BlazingJournal;

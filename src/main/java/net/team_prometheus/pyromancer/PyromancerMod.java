@@ -23,7 +23,7 @@ import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.entity.models.UnburnedModel;
 import net.team_prometheus.pyromancer.entity.unburned.UnburnedRenderer;
 import net.team_prometheus.pyromancer.init.ModAttributes;
-import net.team_prometheus.pyromancer.init.ModEnchantments;
+import net.team_prometheus.pyromancer.enchantments.ModEnchantments;
 import net.team_prometheus.pyromancer.init.ModMenus;
 import net.team_prometheus.pyromancer.init.ModParticleTypes;
 import net.team_prometheus.pyromancer.items.ModItems;

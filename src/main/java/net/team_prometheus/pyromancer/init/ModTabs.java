@@ -2,6 +2,7 @@ package net.team_prometheus.pyromancer.init;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.team_prometheus.pyromancer.enchantments.ModEnchantmentCategory;
 import net.team_prometheus.pyromancer.items.ModItems;
 import org.jetbrains.annotations.NotNull;
 

@@ -3,13 +3,11 @@ package net.team_prometheus.pyromancer.items;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.team_prometheus.pyromancer.init.ModAttributes;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -19,16 +17,13 @@ public class BlazingJournal extends Item {
     public BlazingJournal(Properties properties) {
         super(properties.stacksTo(1));
     }
+
+    public boolean isEnchantable(@NotNull ItemStack itemStack){return true;}
+    public int getEnchantmentValue(ItemStack itemStack){return 10;}
+    //public boolean isEnchantable(@NotNull ItemStack itemStack){return false;}
     @Override
     public void inventoryTick(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull Entity entity, int slot, boolean selected){
         itemStack.getOrCreateTag().putDouble("CustomModelData", itemStack.getOrCreateTag().getInt("quill"));
-        if(entity instanceof ServerPlayer player){
-            player.sendSystemMessage(
-                    Component.literal(String.valueOf(
-                            player.getAttribute(ModAttributes.BLAZE_CONSUMPTION.get()).getValue()
-                    ))
-            );
-        }
     }
     @Override
     public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag){
