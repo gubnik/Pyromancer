@@ -14,22 +14,5 @@ public class BlazingJournalEnchantment extends Enchantment {
         super(Enchantment.Rarity.COMMON, ModEnchantmentCategory.BLAZING_JOURNAL, new EquipmentSlot[]{});
         this.targetType = type;
     }
-    @Override
-    public void doPostAttack(@NotNull LivingEntity attacker, @NotNull Entity target, int level){
-        Item attackingItem = attacker.getMainHandItem().getItem();
-        boolean flag = switch (targetType){
-            case("axe") -> (attackingItem instanceof AxeItem);
-            case("sword") -> (attackingItem instanceof SwordItem);
-            case("pickaxe") -> (attackingItem instanceof PickaxeItem);
-            case("shovel") -> (attackingItem instanceof ShovelItem);
-            case("hoe") -> (attackingItem instanceof HoeItem);
-            case("mace") -> (attackingItem instanceof MaceItem);
-            default -> false;
-        };
-        if(flag){
-            actualAttack(attacker, target, level);
-        }
-    }
-    public void actualAttack(@NotNull LivingEntity attacker, @NotNull Entity target, int level){}
     public String getTargetType(){return targetType;}
 }

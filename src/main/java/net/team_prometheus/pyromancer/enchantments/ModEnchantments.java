@@ -44,11 +44,5 @@ public class ModEnchantments implements IForgeEnchantment {
 
     public static RegistryObject<Enchantment> BLASTING_STRIKE = ENCHANTMENTS.register("blazing_strike",
             () -> new BlazingJournalEnchantment("axe") {
-        @Override
-        public void actualAttack(@NotNull LivingEntity attacker, @NotNull Entity target, int level){
-            if(target.isOnFire()){
-               if(attacker instanceof ServerPlayer player){player.sendSystemMessage(Component.literal("aaa"));}
-            }
-        }
     });
 }
