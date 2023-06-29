@@ -1,12 +1,7 @@
 package net.team_prometheus.pyromancer.enchantments;
 
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.team_prometheus.pyromancer.items.MaceItem;
-import org.jetbrains.annotations.NotNull;
 
 public class BlazingJournalEnchantment extends Enchantment {
     public final String targetType;
