@@ -41,6 +41,6 @@ public class ModEnchantments implements IForgeEnchantment {
     // ^^ maces
 
     public static RegistryObject<Enchantment> BLASTING_STRIKE = ENCHANTMENTS.register("blazing_strike",
-            () -> new BlazingJournalEnchantment("axe") {
+            () -> new Enchantment(Enchantment.Rarity.RARE, ModEnchantmentCategory.BLAZING_JOURNAL, new EquipmentSlot[]{}) {
     });
 }
