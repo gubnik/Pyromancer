@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.entity.unburned;
+package net.team_prometheus.pyromancer.entity.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.entity.models.UnburnedModel;
 
+import net.team_prometheus.pyromancer.entity.unburned.Unburned;
 import org.jetbrains.annotations.NotNull;
 public class UnburnedRenderer extends MobRenderer<Unburned, UnburnedModel<Unburned>> {
     public UnburnedRenderer(EntityRendererProvider.Context renderManager) {

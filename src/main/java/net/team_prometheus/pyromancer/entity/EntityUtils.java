@@ -1,13 +1,19 @@
 package net.team_prometheus.pyromancer.entity;
 
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.team_prometheus.pyromancer.entity.projectiles.PyromancyFireballProjectile;
 import net.team_prometheus.pyromancer.init.ModAttributes;
 import net.team_prometheus.pyromancer.items.ItemUtils;
 
 import javax.annotation.Nullable;
+import java.util.Comparator;
+import java.util.List;
 
 public class EntityUtils {
     public static void shootPyromancyFireballProjectile(PyromancyFireballProjectile projectile, float speed, float inaccuracy, int timer, @Nullable Player shooter){
@@ -18,5 +24,10 @@ public class EntityUtils {
         projectile.setPos(shooter.getX(), shooter.getEyeY() - 0.3, shooter.getZ());
         projectile.shoot(shooter.getLookAngle().x, shooter.getLookAngle().y, shooter.getLookAngle().z, speed, inaccuracy);
         shooter.level.addFreshEntity(projectile);
+    }
+    public static List<? extends LivingEntity> entityCollector(Vec3 center, double radius, Level level){
+        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, new AABB(center, center).inflate(0.5), e -> true).stream().sorted(Comparator.comparingDouble(
+                entityFound -> entityFound.distanceToSqr(center))).toList();
+        return entities;
     }
 }

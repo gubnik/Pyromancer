@@ -12,7 +12,7 @@ import java.util.UUID;
 public class MoltenArmorEffect extends MobEffect {
     public UUID MOLTEN_ARMOR_MODIFIER = UUID.fromString("13caa470-1df0-11ee-be56-0242ac120002");
     protected MoltenArmorEffect() {
-        super(MobEffectCategory.HARMFUL, 0);
+        super(MobEffectCategory.HARMFUL, -7114906);
     }
     @Override
     public boolean isDurationEffectTick(int duration, int amplifier) {

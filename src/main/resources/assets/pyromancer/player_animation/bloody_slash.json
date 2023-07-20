@@ -1,0 +1,123 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"bloody_slash": {
+			"animation_length": 0.625,
+			"bones": {
+				"torso": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [0, 0, 0]
+						},
+						"0.375": {
+							"vector": [15, 0, 0],
+							"easing": "easeOutExpo"
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeOutBack"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [0, 0, 0]
+						},
+						"0.375": {
+							"vector": [0, 0, -3],
+							"easing": "easeOutExpo"
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeOutBack"
+						}
+					}
+				},
+				"head": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [0, 0, 0]
+						},
+						"0.375": {
+							"vector": [0, 0, 0],
+							"easing": "easeOutExpo"
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeOutBack"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [0, 0, 0]
+						},
+						"0.375": {
+							"vector": [0, 0, -4],
+							"easing": "easeOutExpo"
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeOutBack"
+						}
+					}
+				},
+				"right_arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [-90, -37.5, 0]
+						},
+						"0.5": {
+							"vector": [0, 90, 90],
+							"easing": "easeOutCirc"
+						},
+						"0.625": {
+							"vector": [0, 0, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [2, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, -1],
+							"easing": "easeOutCirc"
+						}
+					}
+				},
+				"left_arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [45, 0, 0]
+						},
+						"0.625": {
+							"vector": [0, 0, 0]
+						}
+					},
+					"position": {
+						"vector": [0, 0, 0]
+					}
+				}
+			}
+		}
+	}
+}

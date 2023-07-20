@@ -8,21 +8,22 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
-import net.team_prometheus.pyromancer.PyromancerMod;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecation")
 public class MaceItem extends TieredItem implements Vanishable {
     private final float attackDamage;
+    private final float attackSpeed;
+    private final float toughness;
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
     public MaceItem(Tier tier, float damage, float attackSpeed, float toughness, Item.Properties properties) {
         super(tier, properties);
         this.attackDamage = damage + tier.getAttackDamageBonus();
+        this.attackSpeed = attackSpeed;
+        this.toughness = toughness;
         ImmutableListMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableListMultimap.builder();
-        builder.putAll(super.getDefaultAttributeModifiers(EquipmentSlot.MAINHAND));
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", attackSpeed, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(PyromancerMod.BASE_ARMOR_TOUGHNESS_UUID, "Weapon modifier", toughness, AttributeModifier.Operation.ADDITION));
         this.defaultModifiers = builder.build();
     }
     @Override
@@ -35,9 +36,13 @@ public class MaceItem extends TieredItem implements Vanishable {
             entity1.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         return true;
     }
-    public float getDamage() {
+    public float getAttackDamage() {
         return this.attackDamage;
     }
+    public float getAttackSpeed() {
+        return this.attackSpeed;
+    }
+    public float getToughness(){return this.toughness;}
     public static boolean isMace(Item item){
         return(item instanceof MaceItem);
     }
