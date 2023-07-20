@@ -7,10 +7,16 @@
   "desc.blazing_quill.line1": "No effect",
   "desc.smoldering_twig.line1": "+1 to pyromancy damage and blaze consumption",
 
+  "desc.embers.main": "Ember (activated on right click)",
+  "desc.embers.soulflame_ignition": "Soulflame Ignition",
+  "desc.embers.ashen_form": "Ashen Form",
+  "desc.embers.heavenly_flame": "Heavenly Flame",
+
   "entity.pyromancer.unburned": "Unburned",
 
   "enchantment.pyromancer.counterattack": "Counterattack",
   "enchantment.pyromancer.sturdiness": "Sturdiness",
+  "enchantment.pyromancer.close_combat": "Close Combat",
 
   "item.pyromancer.blazing_journal": "Blazing Journal",
   "item.pyromancer.blazing_quill": "Blazing Quill",

@@ -1,7 +1,5 @@
 package net.team_prometheus.pyromancer.items.embers;
 
-import dev.kosmx.playerAnim.api.layered.IAnimation;
-import dev.kosmx.playerAnim.api.layered.KeyframeAnimationPlayer;
 import dev.kosmx.playerAnim.core.data.KeyframeAnimation;
 import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationRegistry;
 import net.minecraft.ChatFormatting;
@@ -10,16 +8,19 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TieredItem;
+import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.items.MaceItem;
 
 import java.util.Objects;
 import java.util.function.Function;
 
 public enum Ember {
-    SOULFLAME_IGNITION("soulflame_ignition", 2, 5d, EmberAttacks::soulflameIgnition, EmberInfusionType.SOULFLAME, EmberWeaponType.SWORD,
-            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation("pyromancer", "soulflame_ignition"))), 4, 100),
+    SOULFLAME_IGNITION("soulflame_ignition", 8, 5d, EmberAttacks::soulflameIgnition, EmberInfusionType.SOULFLAME, EmberWeaponType.ANY,
+            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "soulflame_ignition"))), 4, 0),
     ASHEN_FORM("ashen_form", 4, 8d, EmberAttacks::ashenForm, EmberInfusionType.FLAME, EmberWeaponType.ANY,
-            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation("pyromancer", "ashen_form"))), 2, 100);
+            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "ashen_form"))), 2, 100),
+    HEAVENLY_FLAME("heavenly_flame", 8, 4d, EmberAttacks::heavenlyFlame, EmberInfusionType.HELLBLAZE, EmberWeaponType.SWORD,
+            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "heavenly_flame"))), 4, 100);
     private final String name;
     private final int cost;
     private final double damage;

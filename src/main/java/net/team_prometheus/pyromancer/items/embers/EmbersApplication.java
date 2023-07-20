@@ -1,18 +1,11 @@
 package net.team_prometheus.pyromancer.items.embers;
 
-import dev.kosmx.playerAnim.api.AnimUtils;
 import dev.kosmx.playerAnim.api.TransformType;
 import dev.kosmx.playerAnim.api.firstPerson.FirstPersonConfiguration;
 import dev.kosmx.playerAnim.api.firstPerson.FirstPersonMode;
-import dev.kosmx.playerAnim.api.layered.IAnimation;
 import dev.kosmx.playerAnim.api.layered.KeyframeAnimationPlayer;
-import dev.kosmx.playerAnim.api.layered.ModifierLayer;
 import dev.kosmx.playerAnim.api.layered.modifier.AbstractFadeModifier;
-import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationAccess;
-import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationRegistry;
 import net.minecraft.client.player.AbstractClientPlayer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.item.AxeItem;
@@ -20,24 +13,20 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.event.ItemStackedOnOtherEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.IItemHandler;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.init.SetupAnimations;
-import net.team_prometheus.pyromancer.items.ItemUtils;
 import net.team_prometheus.pyromancer.items.MaceItem;
 import net.team_prometheus.pyromancer.items.ModItems;
 import net.team_prometheus.pyromancer.network.FunnyMagicWorks;
 import net.team_prometheus.pyromancer.network.NetworkCore;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
-
+@SuppressWarnings("unused")
 @Mod.EventBusSubscriber
 public class EmbersApplication {
     @SubscribeEvent
@@ -51,24 +40,25 @@ public class EmbersApplication {
                 && (itemStack.getItem() instanceof SwordItem
                 || itemStack.getItem() instanceof AxeItem
                 || itemStack.getItem() instanceof MaceItem)
-                && emberTag.equals("") && carriedItemstack.getOrCreateTag().getString("ember").equals("")
-        //&& Ember.byName(hoverEmberTag).getWeaponType().getWeaponType().isInstance(itemStack.getItem())
+                && emberTag.equals("") && !hoverEmberTag.equals("")
+        && Ember.byName(hoverEmberTag).getWeaponType().getWeapon().isInstance(itemStack.getItem())
         ) {
             event.setCanceled(event.isCancelable());
-            itemStack.getOrCreateTag().putString("ember", Ember.SOULFLAME_IGNITION.getName());
+            itemStack.getOrCreateTag().putString("ember", hoverEmberTag);
         }
     }
     @SubscribeEvent
     public static void emberUsed(PlayerInteractEvent.RightClickItem event){
         ItemStack itemStack = event.getItemStack();
         String emberTag = itemStack.getOrCreateTag().getString("ember");
-        if(!emberTag.equals("")) {
+        if (!emberTag.equals("")) {
             Player player = event.getEntity();
             Ember ember = Ember.byName(emberTag);
             if (itemStack.getItem().getUseDuration(itemStack) == 0 && ember.getWeaponType().getWeapon().isInstance(itemStack.getItem())) {
                 PyromancerMod.queueServerWork(ember.getAnimationDelay(), () -> {
                     ember.getFunction().apply(player);
-                    emberCooldown(player, ember.getCooldown(), emberTag);});
+                    emberCooldown(player, ember.getCooldown(), emberTag);
+                });
                 playAnimation(ember);
             }
         }
@@ -100,6 +90,12 @@ public class EmbersApplication {
                             .setShowRightArm(true)
                             .setShowRightItem(true)
                     ));
+        }
+    }
+    @SubscribeEvent
+    public static void attackCancel(AttackEntityEvent event){
+        if(SetupAnimations.animationData.get((AbstractClientPlayer) event.getEntity()).isActive()) {
+            event.setCanceled(event.isCancelable());
         }
     }
 }

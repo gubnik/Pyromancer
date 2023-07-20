@@ -1,30 +1,16 @@
 package net.team_prometheus.pyromancer.items.embers;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.data.BuiltinRegistries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.team_prometheus.pyromancer.entity.EntityUtils;
 import net.team_prometheus.pyromancer.init.ModDamageSource;
-import net.team_prometheus.pyromancer.worldgen.biomes.ModBiomes;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Comparator;
-import java.util.List;
-
+@SuppressWarnings("unused")
 public class EmberAttacks {
-    @Nullable
     public static int soulflameIgnition(Player player){
         Ember ember = Ember.SOULFLAME_IGNITION;
         float damage = (float) ember.getDamage();
@@ -71,7 +57,6 @@ public class EmberAttacks {
         }
         return 0;
     }
-    @Nullable
     public static int ashenForm(Player player){
         double x = player.getX();
         double y = player.getY() + 1.5;
@@ -89,5 +74,14 @@ public class EmberAttacks {
                 lz * k
         );
         return 0;
+    }
+    public static int heavenlyFlame(Player player){
+        double x = player.getX();
+        double y = player.getY() + 1.5;
+        double z = player.getZ();
+        return 0;
+    }
+    public static void heavenlyFlameSupport(int delay, double x, double y, double z, Player player){
+        //
     }
 }
