@@ -1,13 +1,8 @@
 package net.team_prometheus.pyromancer.entity.unburned;
 
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
-import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.BossEvent;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -20,7 +15,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import net.team_prometheus.pyromancer.init.ModDamageSource;
 import org.jetbrains.annotations.NotNull;
@@ -82,29 +76,42 @@ public class Unburned extends Monster {
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
     }
     public void handleEntityEvent(byte bt){
-        if(bt == 66){
-            this.explosionAnimationState.stop();
-            this.kickAnimationState.stop();
-            this.attackAnimationState.stop();
-            this.jumpingAnimationState.stop();
-            this.emergeAnimationState.start(this.tickCount);
-        }
-        if(bt == 4) {
-            this.explosionAnimationState.stop();
-            this.kickAnimationState.stop();
-            this.attackAnimationState.start(this.tickCount);
-            this.attackTick = this.tickCount;
-        } else if(bt == 61) {
-            this.attackAnimationState.stop();
-            this.kickAnimationState.stop();
-            this.explosionAnimationState.start(this.tickCount);
-            this.explosionTick = this.tickCount;
-        } else if(bt == 62){
-            this.attackAnimationState.stop();
-            this.explosionAnimationState.stop();
-            this.kickAnimationState.start(this.tickCount);
-        } else {
-            super.handleEntityEvent(bt);
+        //if(bt == 66){
+        //    this.explosionAnimationState.stop();
+        //    this.kickAnimationState.stop();
+        //    this.attackAnimationState.stop();
+        //    this.jumpingAnimationState.stop();
+        //    this.emergeAnimationState.start(this.tickCount);
+        //}
+        //if(bt == 4) {
+        //    this.explosionAnimationState.stop();
+        //    this.kickAnimationState.stop();
+        //    this.attackAnimationState.start(this.tickCount);
+        //    this.attackTick = this.tickCount;
+        //} else if(bt == 61) {
+        //    this.attackAnimationState.stop();
+        //    this.kickAnimationState.stop();
+        //    this.explosionAnimationState.start(this.tickCount);
+        //    this.explosionTick = this.tickCount;
+        //} else if(bt == 62){
+        //    this.attackAnimationState.stop();
+        //    this.explosionAnimationState.stop();
+        //    this.kickAnimationState.start(this.tickCount);
+        //} else {
+        //    super.handleEntityEvent(bt);
+        //}
+        switch ((int) bt) {
+            case (66) -> this.emergeAnimationState.start(this.tickCount);
+            case (62) -> this.kickAnimationState.start(this.tickCount);
+            case (61) -> {
+                this.explosionAnimationState.start(this.tickCount);
+                this.explosionTick = this.tickCount;
+            }
+            case (4) -> {
+                this.attackAnimationState.start(this.tickCount);
+                this.attackTick = this.tickCount;
+            }
+            default -> super.handleEntityEvent(bt);
         }
     }
     public void tick(){
@@ -145,7 +152,7 @@ public class Unburned extends Monster {
         double y = this.getY();
         double z = this.getZ();
        for(int  i = 0; i < 20; i++){
-           this.level.explode(this, ModDamageSource.INCINERATION, null,
+           this.level.explode(this, ModDamageSource.unburnedExplosion(this), null,
                     x + x_view*i,
                     y+0.1,
                     z + z_view*i,

@@ -1,22 +1,22 @@
-package net.team_prometheus.pyromancer.network;
+package net.team_prometheus.pyromancer.network.animations;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 import net.team_prometheus.pyromancer.items.embers.Ember;
-import net.team_prometheus.pyromancer.items.embers.EmbersApplication;
+import net.team_prometheus.pyromancer.items.embers.EmberUtilities;
 
 import java.util.function.Supplier;
 
-public class AnimationsNetwork{
+public class SendAnimationsToServer {
     private final int playerId;
     private final String animId;
-    public AnimationsNetwork(String animId, int playerId){
+    public SendAnimationsToServer(String animId, int playerId){
         this.playerId = playerId;
         this.animId = animId;
     }
-    public AnimationsNetwork(FriendlyByteBuf buf) {
+    public SendAnimationsToServer(FriendlyByteBuf buf) {
         this.playerId = buf.readInt();
         this.animId = buf.readUtf();
     }
@@ -30,7 +30,7 @@ public class AnimationsNetwork{
             Minecraft instance = Minecraft.getInstance();
             assert instance.level != null;
             AbstractClientPlayer player = (AbstractClientPlayer) instance.level.getEntity(playerId);
-            EmbersApplication.playAnimation(player, Ember.byName(animId));
+            EmberUtilities.playAnimation(player, Ember.byName(animId));
         });
     }
 }

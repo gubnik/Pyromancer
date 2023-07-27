@@ -16,10 +16,16 @@ public class ModDamageSource {
     public static DamageSource sizzlingHandFireball(SizzlingHandFireball fireball, @Nullable Entity entity){
         return new IndirectEntityDamageSource("onFire", fireball, entity).setIsFire().setProjectile();
     }
-    public static DamageSource unburnedExplosion(Unburned unburned, @Nullable Entity entity){
-        return new IndirectEntityDamageSource("unburned_explosion", unburned, entity).setIsFire().setExplosion();
+    public static DamageSource unburnedExplosion(Unburned unburned){
+        return new EntityDamageSource("unburned_explosion", unburned).setIsFire().setExplosion();
     }
     public static DamageSource soulflameIgnition(Player player){
-        return new EntityDamageSource("soulflame_ignition", player);
+        return new EntityDamageSource("soulflame_ignition", player).setIsFire().setMagic();
+    }
+    public static DamageSource heavenlyFlame(Player player){
+        return new EntityDamageSource("heavenly_flame", player).setIsFire().damageHelmet();
+    }
+    public static DamageSource aegisOfFire(Player player){
+        return new EntityDamageSource("aegis_of_fire", player).setIsFire();
     }
 }
