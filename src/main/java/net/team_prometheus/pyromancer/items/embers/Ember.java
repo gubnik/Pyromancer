@@ -15,12 +15,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 public enum Ember {
-    SOULFLAME_IGNITION("soulflame_ignition", 8, 5d, EmberAttacks::soulflameIgnition, EmberInfusionType.SOULFLAME, EmberWeaponType.ANY,
-            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "soulflame_ignition"))), 4, 0),
     ASHEN_FORM("ashen_form", 4, 8d, EmberAttacks::ashenForm, EmberInfusionType.FLAME, EmberWeaponType.ANY,
-            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "ashen_form"))), 2, 100),
+            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "ashen_form"))), 2, 10),
+    AEGIS_OF_FIRE("aegis_of_fire", 8, 10d, EmberAttacks::aegisOfFire, EmberInfusionType.FLAME, EmberWeaponType.MACE,
+            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "aegis_of_fire"))), 0, 10),
+    SOULFLAME_IGNITION("soulflame_ignition", 8, 5d, EmberAttacks::soulflameIgnition, EmberInfusionType.SOULFLAME, EmberWeaponType.ANY,
+            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "soulflame_ignition"))), 4, 11),
     HEAVENLY_FLAME("heavenly_flame", 8, 4d, EmberAttacks::heavenlyFlame, EmberInfusionType.HELLBLAZE, EmberWeaponType.SWORD,
-            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "heavenly_flame"))), 4, 100);
+            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "heavenly_flame"))), 10, 60);
+
     private final String name;
     private final int cost;
     private final double damage;

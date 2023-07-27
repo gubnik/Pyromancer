@@ -13,23 +13,20 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.event.ItemStackedOnOtherEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.IItemHandler;
-import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.init.SetupAnimations;
 import net.team_prometheus.pyromancer.items.MaceItem;
 import net.team_prometheus.pyromancer.items.ModItems;
-import net.team_prometheus.pyromancer.network.FunnyMagicWorks;
+import net.team_prometheus.pyromancer.network.animations.GetAnimationFromServer;
 import net.team_prometheus.pyromancer.network.NetworkCore;
 
 import java.util.concurrent.atomic.AtomicReference;
-@SuppressWarnings("unused")
 @Mod.EventBusSubscriber
-public class EmbersApplication {
+public class EmberUtilities {
     @SubscribeEvent
+    @SuppressWarnings("unused")
     public static void applier(ItemStackedOnOtherEvent event){
         ItemStack carriedItemstack = event.getCarriedItem();
         ItemStack itemStack = event.getStackedOnItem();
@@ -47,22 +44,6 @@ public class EmbersApplication {
             itemStack.getOrCreateTag().putString("ember", hoverEmberTag);
         }
     }
-    @SubscribeEvent
-    public static void emberUsed(PlayerInteractEvent.RightClickItem event){
-        ItemStack itemStack = event.getItemStack();
-        String emberTag = itemStack.getOrCreateTag().getString("ember");
-        if (!emberTag.equals("")) {
-            Player player = event.getEntity();
-            Ember ember = Ember.byName(emberTag);
-            if (itemStack.getItem().getUseDuration(itemStack) == 0 && ember.getWeaponType().getWeapon().isInstance(itemStack.getItem())) {
-                PyromancerMod.queueServerWork(ember.getAnimationDelay(), () -> {
-                    ember.getFunction().apply(player);
-                    emberCooldown(player, ember.getCooldown(), emberTag);
-                });
-                playAnimation(ember);
-            }
-        }
-    }
     public static void emberCooldown(Player player, int time, String tag){
         AtomicReference<IItemHandler> itemHandReference = new AtomicReference<>();
         player.getCapability(ForgeCapabilities.ITEM_HANDLER, null).ifPresent(itemHandReference::set);
@@ -76,7 +57,7 @@ public class EmbersApplication {
         }
     }
     public static void playAnimation(Ember ember){
-        NetworkCore.sendToServer(new FunnyMagicWorks(ember.getName()));
+        NetworkCore.sendToServer(new GetAnimationFromServer(ember.getName()));
     }
     public static void playAnimation(AbstractClientPlayer player, Ember ember){
         if (SetupAnimations.animationData.get(player) != null) {
@@ -92,10 +73,12 @@ public class EmbersApplication {
                     ));
         }
     }
-    @SubscribeEvent
-    public static void attackCancel(AttackEntityEvent event){
-        if(SetupAnimations.animationData.get((AbstractClientPlayer) event.getEntity()).isActive()) {
-            event.setCanceled(event.isCancelable());
-        }
-    }
+    //@SubscribeEvent
+    //@SuppressWarnings("unused")
+    //public static void attackCancel(AttackEntityEvent event){
+    //    if(!event.getEntity().getMainHandItem().getOrCreateTag().getString("ember").equals("")
+    //            && event.getEntity().getCooldowns().isOnCooldown(event.getEntity().getMainHandItem().getItem())){
+    //        event.setCanceled(event.isCancelable());
+    //    }
+    //}
 }

@@ -6,7 +6,8 @@
   "mixins": [
     "InventoryMixin",
     "MinecraftMixin",
-    "ServerPlayerMixin"
+    "ServerPlayerMixin",
+    "ItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

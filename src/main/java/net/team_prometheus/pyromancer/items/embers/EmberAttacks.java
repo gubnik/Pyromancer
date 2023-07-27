@@ -4,12 +4,24 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.entity.EntityUtils;
+import net.team_prometheus.pyromancer.init.ModAttributes;
 import net.team_prometheus.pyromancer.init.ModDamageSource;
+import net.team_prometheus.pyromancer.potion_effects.ModEffects;
+
+import java.util.Objects;
+
 @SuppressWarnings("unused")
+@Mod.EventBusSubscriber
 public class EmberAttacks {
     public static int soulflameIgnition(Player player){
         Ember ember = Ember.SOULFLAME_IGNITION;
@@ -35,9 +47,8 @@ public class EmberAttacks {
                     double zz = z + lz * k + dz;
                     level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
                             xx, yy, zz, 1, 0, 0, 0, 0.02);
-                    for (LivingEntity entity : EntityUtils.entityCollector(
-                            new Vec3(xx, yy, zz), 2, level)){
-                        if (!entity.equals(player)) {
+                    for (LivingEntity entity : EntityUtils.entityCollector(new Vec3(xx, yy, zz), 2, level)){
+                        if (!entity.equals(player) && !(entity.hurtTime > 0)) {
                             entity.hurt(ModDamageSource.soulflameIgnition(player), damage);
                             level.sendParticles(ParticleTypes.EXPLOSION, xx, yy, zz, 1, 0, 0, 0, 0);
                         }
@@ -76,12 +87,49 @@ public class EmberAttacks {
         return 0;
     }
     public static int heavenlyFlame(Player player){
+        Ember ember = Ember.HEAVENLY_FLAME;
         double x = player.getX();
-        double y = player.getY() + 1.5;
+        double y = player.getY();
         double z = player.getZ();
+        heavenlyFlameSupport(x, y, z, player, ember);
+        for(int i = 0; i < 3; i++) {
+            PyromancerMod.queueServerWork(i*20, () -> heavenlyFlameSupport(
+                    player.getX(),
+                    player.getY(),
+                    player.getZ(),
+                    player, ember));
+        }
         return 0;
     }
-    public static void heavenlyFlameSupport(int delay, double x, double y, double z, Player player){
-        //
+    public static void heavenlyFlameSupport(double x, double y, double z, Player player, Ember ember){
+        float damage = (float) (ember.getDamage() + player.getAttributeValue(Attributes.ATTACK_DAMAGE)/2+player.getAttributeValue(ModAttributes.PYROMANCY_DAMAGE.get())/2);
+        if(player.level instanceof ServerLevel level) {
+            for (int i = 0; i < 3; i++) {
+                level.sendParticles(ParticleTypes.FLAME, x, y + 2.25, z, (i+1)*10, (i+1)*0.5, 0.1, (i+1)*0.5, 0);
+                for(LivingEntity entity : EntityUtils.entityCollector(new Vec3(x, y, z), 8, player.level)){
+                    if(!entity.equals(player)){
+                        entity.hurt(ModDamageSource.heavenlyFlame(player), damage);
+                    }
+                }
+            }
+        }
+    }
+    public static int aegisOfFire(Player player){
+        Ember ember = Ember.AEGIS_OF_FIRE;
+        for(LivingEntity entity : EntityUtils.entityCollector(new Vec3(player.getX(), player.getY() + 1, player.getZ()), 4, player.level)){
+            if(!entity.equals(player)){
+                entity.hurt(ModDamageSource.aegisOfFire(player), (float) ember.getDamage());
+                entity.addEffect(new MobEffectInstance(ModEffects.MOLTEN_ARMOR.get(), 100,
+                        entity.hasEffect(ModEffects.MOLTEN_ARMOR.get()) ? Objects.requireNonNull(entity.getEffect(ModEffects.MOLTEN_ARMOR.get())).getAmplifier() : 0));
+            }
+        } return 0;
+    }
+    @SubscribeEvent
+    public static void aegisOfFireEffect(LivingHurtEvent event){
+        if(event.getEntity() instanceof Player player
+        && player.getUseItem().getOrCreateTag().getString("ember").equals("aegis_of_fire")){
+            aegisOfFire(player);
+            event.setAmount(event.getAmount() * 0.2f);
+        }
     }
 }
