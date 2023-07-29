@@ -16,7 +16,7 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.phys.Vec3;
-import net.team_prometheus.pyromancer.init.ModDamageSource;
+import net.team_prometheus.pyromancer.entity.ModDamageSource;
 import org.jetbrains.annotations.NotNull;
 
 public class Unburned extends Monster {

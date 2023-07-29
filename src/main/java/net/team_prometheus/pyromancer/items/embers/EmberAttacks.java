@@ -15,12 +15,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.entity.EntityUtils;
 import net.team_prometheus.pyromancer.init.ModAttributes;
-import net.team_prometheus.pyromancer.init.ModDamageSource;
+import net.team_prometheus.pyromancer.entity.ModDamageSource;
 import net.team_prometheus.pyromancer.potion_effects.ModEffects;
 
 import java.util.Objects;
 
-@SuppressWarnings("unused")
+
 @Mod.EventBusSubscriber
 public class EmberAttacks {
     public static int soulflameIgnition(Player player){
@@ -72,18 +72,22 @@ public class EmberAttacks {
         double x = player.getX();
         double y = player.getY() + 1.5;
         double z = player.getZ();
-        int tick = player.tickCount;
         Ember ember = Ember.ASHEN_FORM;
-        float damage = (float) ember.getDamage();
+        float damage = calculateEmberDamage(ember, player, 0.25f, 0.5f);
         double lx = player.getLookAngle().x;
         double ly = player.getLookAngle().y;
         double lz = player.getLookAngle().z;
-        double k = 1.5f;
+        double k = 1.2f;
         player.setDeltaMovement(
                 lx * k,
-                ly * k,
+                ly * 0.1 * k,
                 lz * k
         );
+        for(LivingEntity entity : EntityUtils.entityCollector(new Vec3(x, y, z), 1, player.level)){
+            if(!entity.is(player)){
+                entity.hurt(ModDamageSource.ashenForm(player), damage);
+            }
+        }
         return 0;
     }
     public static int heavenlyFlame(Player player){
@@ -102,7 +106,7 @@ public class EmberAttacks {
         return 0;
     }
     public static void heavenlyFlameSupport(double x, double y, double z, Player player, Ember ember){
-        float damage = (float) (ember.getDamage() + player.getAttributeValue(Attributes.ATTACK_DAMAGE)/2+player.getAttributeValue(ModAttributes.PYROMANCY_DAMAGE.get())/2);
+        float damage = calculateEmberDamage(ember, player, 0.25f, 0.5f);
         if(player.level instanceof ServerLevel level) {
             for (int i = 0; i < 3; i++) {
                 level.sendParticles(ParticleTypes.FLAME, x, y + 2.25, z, (i+1)*10, (i+1)*0.5, 0.1, (i+1)*0.5, 0);
@@ -124,12 +128,29 @@ public class EmberAttacks {
             }
         } return 0;
     }
+
+    // HERE GO EFFECTS
+
     @SubscribeEvent
-    public static void aegisOfFireEffect(LivingHurtEvent event){
-        if(event.getEntity() instanceof Player player
-        && player.getUseItem().getOrCreateTag().getString("ember").equals("aegis_of_fire")){
-            aegisOfFire(player);
-            event.setAmount(event.getAmount() * 0.2f);
+    public static void ashesOnHurtEffects(LivingHurtEvent event){
+        if(event.getEntity() instanceof Player player){
+            switch (player.getUseItem().getOrCreateTag().getString("ember")){
+                case ("ashen_form") -> {
+                    event.setCanceled(true);
+                    player.hurtTime = 0;
+                    player.hurtDuration = 0;
+                    player.hurtMarked = false;
+                    player.hurtDir = 0;
+                }
+                case("aegis_of_fire") ->{
+                    aegisOfFire(player);
+                    event.setAmount(event.getAmount() * 0.2f);
+                }
+            }
         }
+    }
+
+    public static float calculateEmberDamage(Ember ember, Player player, float attackDamageMultiplier, float pyromancyDamageMultiplier){
+        return (float) (ember.getDamage() + player.getAttributeValue(Attributes.ATTACK_DAMAGE) * attackDamageMultiplier + player.getAttributeValue(ModAttributes.PYROMANCY_DAMAGE.get()) * pyromancyDamageMultiplier);
     }
 }

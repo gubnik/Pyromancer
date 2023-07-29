@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.init;
+package net.team_prometheus.pyromancer.entity;
 
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
@@ -27,5 +27,8 @@ public class ModDamageSource {
     }
     public static DamageSource aegisOfFire(Player player){
         return new EntityDamageSource("aegis_of_fire", player).setIsFire();
+    }
+    public static DamageSource ashenForm(Player player){
+        return new EntityDamageSource("ashen_form", player).bypassArmor();
     }
 }

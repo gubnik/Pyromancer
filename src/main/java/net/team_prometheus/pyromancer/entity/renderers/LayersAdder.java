@@ -24,11 +24,13 @@ import java.util.function.Function;
 @Mod.EventBusSubscriber(modid = PyromancerMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class LayersAdder {
     public static ModelLayerLocation MOLTEN_ARMOR = new ModelLayerLocation(new ResourceLocation("minecraft:player"), "molten_armor");
+    public static ModelLayerLocation ASHEN_FORM = new ModelLayerLocation(new ResourceLocation("minecraft:player"), "ashen_form");
 
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event)
     {
         event.registerLayerDefinition(MOLTEN_ARMOR, () -> LayerDefinition.create(PlayerModel.createMesh(CubeDeformation.NONE, false), 64, 64));
+        event.registerLayerDefinition(ASHEN_FORM, () -> LayerDefinition.create(PlayerModel.createMesh(CubeDeformation.NONE, false), 64, 64));
     }
 
     @SubscribeEvent
@@ -42,6 +44,9 @@ public class LayersAdder {
 
         addLayerToPlayerSkin(event, "default", MoltenArmorLayer::new);
         addLayerToPlayerSkin(event, "slim", MoltenArmorLayer::new);
+
+        addLayerToPlayerSkin(event, "default", AshenFormLayer::new);
+        addLayerToPlayerSkin(event, "slim", AshenFormLayer::new);
     }
     private static <E extends Player, M extends HumanoidModel<E>>
     void addLayerToPlayerSkin(EntityRenderersEvent.AddLayers event, String skinName, Function<LivingEntityRenderer<E, M>, ? extends RenderLayer<E, M>> factory)

@@ -6,7 +6,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -14,9 +13,8 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.network.PlayMessages;
 import net.team_prometheus.pyromancer.entity.ModEntities;
-import net.team_prometheus.pyromancer.init.ModDamageSource;
+import net.team_prometheus.pyromancer.entity.ModDamageSource;
 import net.team_prometheus.pyromancer.items.ModItems;
 import org.jetbrains.annotations.NotNull;
 

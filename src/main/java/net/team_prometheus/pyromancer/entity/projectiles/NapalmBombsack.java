@@ -13,9 +13,8 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.network.PlayMessages;
 import net.team_prometheus.pyromancer.entity.ModEntities;
-import net.team_prometheus.pyromancer.init.ModDamageSource;
+import net.team_prometheus.pyromancer.entity.ModDamageSource;
 import net.team_prometheus.pyromancer.items.ModItems;
 import org.jetbrains.annotations.NotNull;
 

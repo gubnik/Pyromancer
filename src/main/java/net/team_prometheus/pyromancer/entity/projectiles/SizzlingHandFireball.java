@@ -19,7 +19,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.team_prometheus.pyromancer.entity.ModEntities;
-import net.team_prometheus.pyromancer.init.ModDamageSource;
+import net.team_prometheus.pyromancer.entity.ModDamageSource;
 import net.team_prometheus.pyromancer.init.PlaySound;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
