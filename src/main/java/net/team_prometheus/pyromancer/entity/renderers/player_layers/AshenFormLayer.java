@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.entity.renderers;
+package net.team_prometheus.pyromancer.entity.renderers.player_layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -35,7 +35,7 @@ public class AshenFormLayer<T extends LivingEntity, M extends HumanoidModel<T>> 
                     1F, // color
                     1F, // color
                     1F, // color
-                    0.6F);
+                    0.3F);
         }
     }
 }

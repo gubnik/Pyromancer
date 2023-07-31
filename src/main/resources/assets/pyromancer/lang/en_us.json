@@ -8,9 +8,17 @@
   "desc.smoldering_twig.line1": "+1 to pyromancy damage and blaze consumption",
 
   "desc.embers.main": "Ember (activated on right click)",
+  "desc.embers.press_alt": "Press ALT to reveal Ember info",
   "desc.embers.soulflame_ignition": "Soulflame Ignition",
+  "desc.embers.soulflame_ignition.effect": "Unleash a vile soulflame that burns through enemies",
   "desc.embers.ashen_form": "Ashen Form",
+  "desc.embers.ashen_form.effect": "Burn yourself into a pile of ash dashing forward",
   "desc.embers.heavenly_flame": "Heavenly Flame",
+  "desc.embers.heavenly_flame.effect": "Raise your weapon to the skies summoning a power of Sun",
+  "desc.embers.aegis_of_fire": "Aegis of Fire",
+  "desc.embers.aegis_of_fire.effect": "Take a defencive stance covering yourself in a barrier of fire",
+  "desc.embers.tornado_of_souls": "Tornado of Souls",
+  "desc.embers.tornado_of_souls.effect": "Put your grief in a swing of an axe to summon a tornado of souls",
 
   "entity.pyromancer.unburned": "Unburned",
 

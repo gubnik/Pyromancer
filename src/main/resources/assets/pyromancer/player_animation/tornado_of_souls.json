@@ -1,0 +1,50 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"tornado_of_souls": {
+			"animation_length": 0.375,
+			"bones": {
+				"right_arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [-98.72262, -34.82857, 2.74067]
+						},
+						"0.375": {
+							"vector": [76.29512, 54.05071, 126.73735],
+							"easing": "easeInBack"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [1, 0, 0]
+						},
+						"0.375": {
+							"vector": [-2, 0, 0],
+							"easing": "easeInBack"
+						}
+					}
+				},
+				"left_arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [-82.5, 55, 0]
+						},
+						"0.375": {
+							"vector": [-73.06031, -14.72666, -7.28591],
+							"easing": "easeInBack"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [-1, 0, 0]
+						},
+						"0.375": {
+							"vector": [-1, 0, 0],
+							"easing": "easeInBack"
+						}
+					}
+				}
+			}
+		}
+	}
+}

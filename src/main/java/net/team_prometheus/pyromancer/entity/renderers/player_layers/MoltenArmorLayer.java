@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.entity.renderers;
+package net.team_prometheus.pyromancer.entity.renderers.player_layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

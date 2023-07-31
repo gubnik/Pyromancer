@@ -68,6 +68,7 @@ public class EmberAttacks {
         }
         return 0;
     }
+
     public static int ashenForm(Player player){
         double x = player.getX();
         double y = player.getY() + 1.5;
@@ -90,6 +91,7 @@ public class EmberAttacks {
         }
         return 0;
     }
+
     public static int heavenlyFlame(Player player){
         Ember ember = Ember.HEAVENLY_FLAME;
         double x = player.getX();
@@ -105,6 +107,7 @@ public class EmberAttacks {
         }
         return 0;
     }
+
     public static void heavenlyFlameSupport(double x, double y, double z, Player player, Ember ember){
         float damage = calculateEmberDamage(ember, player, 0.25f, 0.5f);
         if(player.level instanceof ServerLevel level) {
@@ -127,6 +130,10 @@ public class EmberAttacks {
                         entity.hasEffect(ModEffects.MOLTEN_ARMOR.get()) ? Objects.requireNonNull(entity.getEffect(ModEffects.MOLTEN_ARMOR.get())).getAmplifier() : 0));
             }
         } return 0;
+    }
+
+    public static int tornadoOfSouls(Player player) {
+        return 0;
     }
 
     // HERE GO EFFECTS
@@ -153,4 +160,5 @@ public class EmberAttacks {
     public static float calculateEmberDamage(Ember ember, Player player, float attackDamageMultiplier, float pyromancyDamageMultiplier){
         return (float) (ember.getDamage() + player.getAttributeValue(Attributes.ATTACK_DAMAGE) * attackDamageMultiplier + player.getAttributeValue(ModAttributes.PYROMANCY_DAMAGE.get()) * pyromancyDamageMultiplier);
     }
+
 }

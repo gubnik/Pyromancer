@@ -17,6 +17,9 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.team_prometheus.pyromancer.PyromancerMod;
+import net.team_prometheus.pyromancer.entity.renderers.player_layers.AegisOfFireLayer;
+import net.team_prometheus.pyromancer.entity.renderers.player_layers.AshenFormLayer;
+import net.team_prometheus.pyromancer.entity.renderers.player_layers.MoltenArmorLayer;
 
 import java.util.function.Function;
 @OnlyIn(Dist.CLIENT)
@@ -25,12 +28,14 @@ import java.util.function.Function;
 public class LayersAdder {
     public static ModelLayerLocation MOLTEN_ARMOR = new ModelLayerLocation(new ResourceLocation("minecraft:player"), "molten_armor");
     public static ModelLayerLocation ASHEN_FORM = new ModelLayerLocation(new ResourceLocation("minecraft:player"), "ashen_form");
+    public static ModelLayerLocation AEGIS_OF_FIRE = new ModelLayerLocation(new ResourceLocation("minecraft:player"), "aegis_of_fire");
 
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event)
     {
         event.registerLayerDefinition(MOLTEN_ARMOR, () -> LayerDefinition.create(PlayerModel.createMesh(CubeDeformation.NONE, false), 64, 64));
         event.registerLayerDefinition(ASHEN_FORM, () -> LayerDefinition.create(PlayerModel.createMesh(CubeDeformation.NONE, false), 64, 64));
+        event.registerLayerDefinition(AEGIS_OF_FIRE, () -> LayerDefinition.create(PlayerModel.createMesh(CubeDeformation.NONE, false), 64, 64));
     }
 
     @SubscribeEvent
@@ -47,6 +52,9 @@ public class LayersAdder {
 
         addLayerToPlayerSkin(event, "default", AshenFormLayer::new);
         addLayerToPlayerSkin(event, "slim", AshenFormLayer::new);
+
+        addLayerToPlayerSkin(event, "default", AegisOfFireLayer::new);
+        addLayerToPlayerSkin(event, "slim", AegisOfFireLayer::new);
     }
     private static <E extends Player, M extends HumanoidModel<E>>
     void addLayerToPlayerSkin(EntityRenderersEvent.AddLayers event, String skinName, Function<LivingEntityRenderer<E, M>, ? extends RenderLayer<E, M>> factory)
