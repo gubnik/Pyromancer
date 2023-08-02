@@ -27,16 +27,16 @@ public class ItemAttributeAssignmentHell {
         switch (item.toString()) {
             case ("blazing_journal") -> {
                 if(event.getSlotType() == EquipmentSlot.OFFHAND) {
-                    int quill = itemStack.getOrCreateTag().getInt("quill");
+                    String quill = itemStack.getOrCreateTag().getString("quill");
                     int consumption = switch (quill) {
-                        case (1) -> 2;
-                        case (0) -> 1;
+                        case ("smoldering_twig") -> 2;
+                        case ("blazing_quill") -> 1;
                         default -> 0;
                     };
                     event.addModifier(ModAttributes.BLAZE_CONSUMPTION.get(),
                             new AttributeModifier(PyromancerMod.JOURNAL_BLAZE_CONSUMPTION_UUID, "Journal modifier",
                                     consumption, AttributeModifier.Operation.ADDITION));
-                    if (quill == 1) {
+                    if (quill.equals("smoldering_twig")) {
                         event.addModifier(ModAttributes.PYROMANCY_DAMAGE.get(),
                                 new AttributeModifier(PyromancerMod.JOURNAL_PYROMANCY_DAMAGE_UUID, "Weapon modifier",
                                         1, AttributeModifier.Operation.ADDITION));

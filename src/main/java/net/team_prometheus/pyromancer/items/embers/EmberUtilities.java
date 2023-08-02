@@ -16,7 +16,7 @@ import net.minecraftforge.event.ItemStackedOnOtherEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.IItemHandler;
-import net.team_prometheus.pyromancer.init.SetupAnimations;
+import net.team_prometheus.pyromancer.animations.PyromancerAnimationCore;
 import net.team_prometheus.pyromancer.items.MaceItem;
 import net.team_prometheus.pyromancer.items.ModItems;
 import net.team_prometheus.pyromancer.network.animations.GetAnimationFromServer;
@@ -60,8 +60,8 @@ public class EmberUtilities {
         NetworkCore.sendToServer(new GetAnimationFromServer(ember.getName()));
     }
     public static void playAnimation(AbstractClientPlayer player, Ember ember){
-        if (SetupAnimations.animationData.get(player) != null) {
-            SetupAnimations.animationData.get(player).replaceAnimationWithFade(new AbstractFadeModifier(2) {
+        if (PyromancerAnimationCore.animationData.get(player) != null) {
+            PyromancerAnimationCore.animationData.get(player).replaceAnimationWithFade(new AbstractFadeModifier(2) {
                 @Override protected float getAlpha(String modelName, TransformType type, float progress) {return 0.2f;}
             }, new KeyframeAnimationPlayer(ember.getAnimation())
                     .setFirstPersonMode(FirstPersonMode.THIRD_PERSON_MODEL).

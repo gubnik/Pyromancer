@@ -13,6 +13,7 @@ import net.team_prometheus.pyromancer.entity.EntityUtils;
 import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.entity.projectiles.SizzlingHandFireball;
 import net.team_prometheus.pyromancer.init.ModAttributes;
+import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
 import org.jetbrains.annotations.NotNull;
 @SuppressWarnings("deprecation")
 public class SizzlingHand extends Item implements IPyromancy {

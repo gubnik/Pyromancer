@@ -27,7 +27,6 @@ import net.team_prometheus.pyromancer.entity.models.UnburnedModel;
 import net.team_prometheus.pyromancer.entity.renderers.UnburnedRenderer;
 import net.team_prometheus.pyromancer.init.ModAttributes;
 import net.team_prometheus.pyromancer.enchantments.ModEnchantments;
-import net.team_prometheus.pyromancer.init.ModMenus;
 import net.team_prometheus.pyromancer.init.ModParticleTypes;
 import net.team_prometheus.pyromancer.items.ModItems;
 import org.slf4j.Logger;
@@ -58,7 +57,6 @@ public class PyromancerMod {
         ModBiomes.BIOMES.register(modEventBus);
         ModEnchantments.ENCHANTMENTS.register(modEventBus);
         ModAttributes.ATTRIBUTES.register(modEventBus);
-        ModMenus.REGISTRY.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITY.register(modEventBus);
         ModParticleTypes.PARTICLES.register(modEventBus);
         CONFIGURED_FEATURE_REGISTER.register(modEventBus);

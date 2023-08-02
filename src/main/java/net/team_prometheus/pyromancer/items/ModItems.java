@@ -11,6 +11,8 @@ import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.init.ModTabs;
+import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
+import net.team_prometheus.pyromancer.items.blazing_journal.QuillItem;
 import net.team_prometheus.pyromancer.items.throwables.BombsackItem;
 import net.team_prometheus.pyromancer.items.throwables.NapalmBombsackItem;
 @SuppressWarnings("unused")
@@ -38,10 +40,13 @@ public class ModItems {
     public static RegistryObject<Item> BLAZING_JOURNAL = ITEMS.register("blazing_journal",
             () -> new BlazingJournal(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
     // quills
+
     public static RegistryObject<Item> BLAZING_QUILL = ITEMS.register("blazing_quill",
             () -> new QuillItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
     public static RegistryObject<Item> SMOLDERING_TWIG = ITEMS.register("smoldering_twig",
             () -> new QuillItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
+
+
     // pyromancies
     public static RegistryObject<Item> SIZZLING_HAND = ITEMS.register("sizzling_hand",
             () -> new SizzlingHand(new Item.Properties().tab(ModTabs.PYROMANCER_TAB).stacksTo(1)));

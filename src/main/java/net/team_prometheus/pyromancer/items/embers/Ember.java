@@ -1,18 +1,15 @@
 package net.team_prometheus.pyromancer.items.embers;
 
 import dev.kosmx.playerAnim.core.data.KeyframeAnimation;
-import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationRegistry;
 import net.minecraft.ChatFormatting;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TieredItem;
-import net.team_prometheus.pyromancer.PyromancerMod;
+import net.team_prometheus.pyromancer.animations.AnimationList;
 import net.team_prometheus.pyromancer.items.MaceItem;
 
 import java.security.InvalidParameterException;
-import java.util.Objects;
 import java.util.function.Function;
 
 public enum Ember {
@@ -20,21 +17,21 @@ public enum Ember {
     // FLAME INFUSION
 
     ASHEN_FORM("ashen_form", 1, 8d, EmberAttacks::ashenForm, EmberInfusionType.FLAME, EmberWeaponType.ANY,
-            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "ashen_form"))), 0, 5, 15),
+            AnimationList.ASHEN_FORM(), 0, 5, 15),
     AEGIS_OF_FIRE("aegis_of_fire", 2, 10d, EmberAttacks::aegisOfFire, EmberInfusionType.FLAME, EmberWeaponType.MACE,
-            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "aegis_of_fire"))), 0, 10, 30),
+            AnimationList.AEGIS_OF_FIRE(), 0, 10, 30),
 
     // SOULFLAME INFUSION
 
     SOULFLAME_IGNITION("soulflame_ignition", 8, 5d, EmberAttacks::soulflameIgnition, EmberInfusionType.SOULFLAME, EmberWeaponType.ANY,
-            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "soulflame_ignition"))), 4, 11, 40),
+            AnimationList.SOULFLAME_IGNITION(), 4, 11, 40),
     TORNADO_OF_SOULS("tornado_of_souls", 16, 4d, EmberAttacks::tornadoOfSouls, EmberInfusionType.SOULFLAME, EmberWeaponType.AXE,
-            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "tornado_of_souls"))), 5, 8, 100),
+            AnimationList.TORNADO_OF_SOULS(), 3, 10, 100),
 
     // HELLBLAZE INFUSION
 
     HEAVENLY_FLAME("heavenly_flame", 8, 4d, EmberAttacks::heavenlyFlame, EmberInfusionType.HELLBLAZE, EmberWeaponType.SWORD,
-            Objects.requireNonNull(PlayerAnimationRegistry.getAnimation(new ResourceLocation(PyromancerMod.MOD_ID, "heavenly_flame"))), 10, 60, 100);
+            AnimationList.HEAVENLY_FLAME(), 10, 60, 100);
 
     private final String name;
     private final int cost;

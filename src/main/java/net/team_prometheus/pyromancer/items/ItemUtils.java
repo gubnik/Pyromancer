@@ -3,9 +3,7 @@ package net.team_prometheus.pyromancer.items;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-
-import java.util.List;
-import java.util.function.Function;
+import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
 
 public class ItemUtils {
     public static void changeBlaze(Player player, int amount){

@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.init;
+package net.team_prometheus.pyromancer.animations;
 
 import dev.kosmx.playerAnim.api.layered.AnimationStack;
 import dev.kosmx.playerAnim.api.layered.IAnimation;
@@ -14,15 +14,15 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = PyromancerMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class SetupAnimations {
+public class PyromancerAnimationCore {
     public static final Map<AbstractClientPlayer, ModifierLayer<IAnimation>> animationData = new IdentityHashMap<>();
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        PlayerAnimationAccess.REGISTER_ANIMATION_EVENT.register(SetupAnimations::registerPlayerAnimation);
+        PlayerAnimationAccess.REGISTER_ANIMATION_EVENT.register(PyromancerAnimationCore::registerPlayerAnimation);
     }
     private static void registerPlayerAnimation(AbstractClientPlayer player, AnimationStack stack) {
         var layer = new ModifierLayer<>();
         stack.addAnimLayer(1000, layer); //Register the layer with a priority
-        SetupAnimations.animationData.put(player, layer);
+        PyromancerAnimationCore.animationData.put(player, layer);
     }
 }

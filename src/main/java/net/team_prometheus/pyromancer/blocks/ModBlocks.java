@@ -18,8 +18,6 @@ import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.init.ModTabs;
 import net.team_prometheus.pyromancer.items.ModItems;
-import net.team_prometheus.pyromancer.pyromancer_table.PyromancerTable;
-import net.team_prometheus.pyromancer.worldgen.features.ModFeatures;
 import net.team_prometheus.pyromancer.worldgen.tree_growers.PyrowoodTreeGrower;
 import org.jetbrains.annotations.NotNull;
 
@@ -53,9 +51,6 @@ public class ModBlocks {
             }, CreativeModeTab.TAB_DECORATIONS);
     public static final RegistryObject<Block> FIREBRIAR = registerBlock("firebriar",
             () -> new FirebriarBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_ORANGE).strength(0,0).sound(SoundType.HARD_CROP).noCollission()), CreativeModeTab.TAB_DECORATIONS);
-    //
-    public static final RegistryObject<Block> PYROMANCER_TABLE = registerBlock("pyromancer_table",
-            PyromancerTable::new, ModTabs.PYROMANCER_TAB);
     //
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> output = BLOCKS.register(name, block);

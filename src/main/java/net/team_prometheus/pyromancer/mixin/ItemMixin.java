@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.level.Level;
 import net.team_prometheus.pyromancer.PyromancerMod;
-import net.team_prometheus.pyromancer.items.BlazingJournal;
+import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
 import net.team_prometheus.pyromancer.items.ItemUtils;
 import net.team_prometheus.pyromancer.items.embers.Ember;
 import net.team_prometheus.pyromancer.items.embers.EmberUtilities;
@@ -45,7 +45,6 @@ public abstract class ItemMixin {
             String emberTag = itemStack.getOrCreateTag().getString("ember");
             if (Ember.isValidEmber(emberTag)) {
                 Ember ember = Ember.byName(emberTag);
-                assert ember != null;
                 if (ember.getWeaponType().getWeapon().isInstance(itemStack.getItem())
                     && player.getOffhandItem().getOrCreateTag().getInt("blaze") - ember.getCost() >= 0){
                     ItemUtils.changeBlaze(player, -1 * ember.getCost());
@@ -66,7 +65,6 @@ public abstract class ItemMixin {
             String emberTag = itemStack.getOrCreateTag().getString("ember");
             if (Ember.isValidEmber(emberTag)) {
                 Ember ember = Ember.byName(emberTag);
-                assert ember != null;
                 if (ember.getAnimationDelay() == 0) {
                     cir.setReturnValue(ember.getAnimationDuration());
                 } else cir.setReturnValue(1);

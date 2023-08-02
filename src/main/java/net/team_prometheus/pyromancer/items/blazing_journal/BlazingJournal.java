@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.items;
+package net.team_prometheus.pyromancer.items.blazing_journal;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -20,16 +20,16 @@ public class BlazingJournal extends Item {
 
     public boolean isEnchantable(@NotNull ItemStack itemStack){return true;}
     public int getEnchantmentValue(ItemStack itemStack){return 10;}
-    //public boolean isEnchantable(@NotNull ItemStack itemStack){return false;}
     @Override
     public void inventoryTick(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull Entity entity, int slot, boolean selected){
-        itemStack.getOrCreateTag().putDouble("CustomModelData", itemStack.getOrCreateTag().getInt("quill"));
+        if(itemStack.getOrCreateTag().getString("quill").equals("")) itemStack.getOrCreateTag().putString("quill", "blazing_journal");
+        itemStack.getOrCreateTag().putDouble("CustomModelData", QuillItem.QuillEnum.getQuillId(itemStack.getOrCreateTag().getString("quill")));
     }
     @Override
     public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag){
         super.appendHoverText(itemStack, level, list, flag);
-        String name = QuillItem.getQuillDescription(itemStack);
-        String quillName = "item.pyromancer." + QuillItem.getQuill(itemStack.getOrCreateTag().getInt("quill")).toString();
+        String name = itemStack.getOrCreateTag().getString("quill");
+        String quillName = "item.pyromancer." + name;
         if(Screen.hasShiftDown()) {
             list.add(Component.translatable(quillName).withStyle(ChatFormatting.BOLD));
             list.add(Component.translatable("desc." + name + ".line1").withStyle(ChatFormatting.GOLD));

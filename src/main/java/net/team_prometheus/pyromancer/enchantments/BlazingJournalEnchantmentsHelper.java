@@ -18,7 +18,7 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.team_prometheus.pyromancer.items.BlazingJournal;
+import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
 import net.team_prometheus.pyromancer.items.ItemUtils;
 import net.team_prometheus.pyromancer.items.MaceItem;
 import net.team_prometheus.pyromancer.potion_effects.ModEffects;
