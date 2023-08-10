@@ -29,6 +29,8 @@ import net.team_prometheus.pyromancer.init.ModAttributes;
 import net.team_prometheus.pyromancer.enchantments.ModEnchantments;
 import net.team_prometheus.pyromancer.init.ModParticleTypes;
 import net.team_prometheus.pyromancer.items.ModItems;
+import net.team_prometheus.pyromancer.worldgen.trees.foliage.ModFoliageTypes;
+import net.team_prometheus.pyromancer.worldgen.trees.trunks.ModTrunkTypes;
 import org.slf4j.Logger;
 
 import java.util.*;
@@ -61,6 +63,8 @@ public class PyromancerMod {
         ModParticleTypes.PARTICLES.register(modEventBus);
         CONFIGURED_FEATURE_REGISTER.register(modEventBus);
         ModNetherPlacements.PLACED_FEATURE_REGISTRY.register(modEventBus);
+        ModTrunkTypes.TRUNK_TYPE_REGISTRY.register(modEventBus);
+        ModFoliageTypes.FOLIAGE_PLACER_REGISTRY.register(modEventBus);
         //
         modEventBus.addListener(this::registerPackets);
         modEventBus.addListener(this::commonSetup);
@@ -75,6 +79,7 @@ public class PyromancerMod {
     }
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(ModNetherBiomes::setupTerraBlender);
+
     }
     private void setupClient(final FMLCommonSetupEvent event) {
         EntityRenderers.register(ModEntities.UNBURNED.get(), UnburnedRenderer::new);

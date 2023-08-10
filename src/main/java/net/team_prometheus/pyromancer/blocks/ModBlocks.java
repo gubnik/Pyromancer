@@ -16,9 +16,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
-import net.team_prometheus.pyromancer.init.ModTabs;
 import net.team_prometheus.pyromancer.items.ModItems;
-import net.team_prometheus.pyromancer.worldgen.tree_growers.PyrowoodTreeGrower;
+import net.team_prometheus.pyromancer.worldgen.trees.tree_growers.PyrowoodTreeGrower;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;

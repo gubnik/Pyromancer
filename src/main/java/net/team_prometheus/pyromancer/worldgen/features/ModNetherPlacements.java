@@ -19,6 +19,8 @@ public class ModNetherPlacements {
             ModFeatures.PYROWOOD_NETHER, () ->  List.of(CountOnEveryLayerPlacement.of(10), PlacementUtils.filteredByBlockSurvival(ModBlocks.PYROMOSS_SPROUTS.get()), BiomeFilter.biome()));
     public static RegistryObject<PlacedFeature> PYROMOSS_SPROUTS_PLACEMENT = register("pyromoss_sprouts_placement",
             ModFeatures.PYROMOSS_SPROUTS, () -> List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome()));
+    public static RegistryObject<PlacedFeature> FIREBRIAR_PLACEMENT = register("firebriar_placement",
+            ModFeatures.FIREBRIAR, () -> List.of(CountOnEveryLayerPlacement.of(1), BiomeFilter.biome()));
     public static RegistryObject<PlacedFeature> register(String key, RegistryObject<? extends ConfiguredFeature<?, ?>> feature, Supplier<List<PlacementModifier>> modifiers) {
         return PLACED_FEATURE_REGISTRY.register(key, () -> new PlacedFeature(Holder.hackyErase(feature.getHolder().orElseThrow()), List.copyOf(modifiers.get())));
     }

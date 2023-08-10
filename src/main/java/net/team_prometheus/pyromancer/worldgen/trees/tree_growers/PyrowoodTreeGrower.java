@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.worldgen.tree_growers;
+package net.team_prometheus.pyromancer.worldgen.trees.tree_growers;
 
 import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
@@ -12,6 +12,6 @@ public class PyrowoodTreeGrower extends AbstractTreeGrower {
     @Nullable
     @Override
     protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull RandomSource source, boolean check) {
-        return ModFeatures.PYROWOOD_NETHER.getHolder().get();
+        return ModFeatures.PYROWOOD_NETHER.getHolder().isPresent() ? ModFeatures.PYROWOOD_NETHER.getHolder().get() : null;
     }
 }
