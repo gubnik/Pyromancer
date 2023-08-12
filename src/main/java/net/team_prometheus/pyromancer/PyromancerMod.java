@@ -19,6 +19,7 @@ import net.team_prometheus.pyromancer.network.NetworkCore;
 import net.team_prometheus.pyromancer.potion_effects.ModEffects;
 import net.team_prometheus.pyromancer.worldgen.biomes.ModBiomes;
 import net.team_prometheus.pyromancer.worldgen.biomes.ModNetherBiomes;
+import net.team_prometheus.pyromancer.worldgen.carvers.ModCarvers;
 import net.team_prometheus.pyromancer.worldgen.features.ModNetherPlacements;
 import net.team_prometheus.pyromancer.blocks.ModBlocks;
 import net.team_prometheus.pyromancer.blocks.block_entities.ModBlockEntities;
@@ -65,6 +66,7 @@ public class PyromancerMod {
         ModNetherPlacements.PLACED_FEATURE_REGISTRY.register(modEventBus);
         ModTrunkTypes.TRUNK_TYPE_REGISTRY.register(modEventBus);
         ModFoliageTypes.FOLIAGE_PLACER_REGISTRY.register(modEventBus);
+        ModCarvers.CARVERS.register(modEventBus);
         //
         modEventBus.addListener(this::registerPackets);
         modEventBus.addListener(this::commonSetup);

@@ -7,7 +7,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.RandomSpreadFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
@@ -18,9 +18,10 @@ import java.util.function.Supplier;
 
 public class ModFeatures {
     public static final RegistryObject<ConfiguredFeature<TreeConfiguration, ?>> PYROWOOD_NETHER = register("pyrowood_nether", Feature.TREE,
-            () -> (new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ModBlocks.PYROWOOD_LOG.get()), new NetherPyrowoodTrunkPlacer(6, 3, 1),
-                    BlockStateProvider.simple(ModBlocks.PYROWOOD_LEAVES.get()), new FancyFoliagePlacer(ConstantInt.of(3),
-                    ConstantInt.of(0), 2), new TwoLayersFeatureSize(1, 0, 0))).dirt(BlockStateProvider.simple(Blocks.NETHERRACK)).build());
+            () -> (new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ModBlocks.PYROWOOD_LOG.get()), new NetherPyrowoodTrunkPlacer(7, 3, 1),
+                    BlockStateProvider.simple(ModBlocks.PYROWOOD_LEAVES.get()),
+                    new RandomSpreadFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), ConstantInt.of(3), 24),
+                    new TwoLayersFeatureSize(1, 0, 0))).dirt(BlockStateProvider.simple(Blocks.NETHERRACK)).build());
     public static final RegistryObject<ConfiguredFeature<RandomPatchConfiguration, ?>> PYROMOSS_SPROUTS = register("flaming_grove_vegetation", Feature.RANDOM_PATCH,
             () -> (FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.PYROMOSS_SPROUTS.get())))));
     public static final RegistryObject<ConfiguredFeature<RandomPatchConfiguration, ?>> FIREBRIAR = register("firebriar_vegetation", Feature.RANDOM_PATCH,

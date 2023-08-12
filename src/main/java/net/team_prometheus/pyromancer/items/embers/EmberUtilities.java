@@ -73,12 +73,4 @@ public class EmberUtilities {
                     ));
         }
     }
-    //@SubscribeEvent
-    //@SuppressWarnings("unused")
-    //public static void attackCancel(AttackEntityEvent event){
-    //    if(!event.getEntity().getMainHandItem().getOrCreateTag().getString("ember").equals("")
-    //            && event.getEntity().getCooldowns().isOnCooldown(event.getEntity().getMainHandItem().getItem())){
-    //        event.setCanceled(event.isCancelable());
-    //    }
-    //}
 }

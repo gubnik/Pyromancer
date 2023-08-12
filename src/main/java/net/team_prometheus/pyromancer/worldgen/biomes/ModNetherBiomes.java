@@ -1,14 +1,11 @@
 package net.team_prometheus.pyromancer.worldgen.biomes;
 
-import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
-import net.minecraft.data.worldgen.Carvers;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
+import net.team_prometheus.pyromancer.worldgen.carvers.ModCarvers;
 import net.team_prometheus.pyromancer.worldgen.features.ModNetherPlacements;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
@@ -22,7 +19,7 @@ public class ModNetherBiomes {
     public static Biome flaming_grove(){
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder();
-        biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.NETHER_CAVE);
+        biomeBuilder.addCarver(GenerationStep.Carving.AIR, ModCarvers.FLAMING_GROVE_CARVER.getHolder().get());
         biomeBuilder
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ModNetherPlacements.PYROWOOD_NETHER.getHolder().orElseThrow())
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ModNetherPlacements.PYROMOSS_SPROUTS_PLACEMENT.getHolder().orElseThrow())

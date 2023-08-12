@@ -25,7 +25,7 @@ public class NetherPyrowoodTrunkPlacer extends TrunkPlacer {
     }
     @Override
     protected @NotNull TrunkPlacerType<?> type() {
-        return ModTrunkTypes.NETHER_PYROWOOD_TRUNK_PLACER.get(); //new TrunkPlacerType<>(CODEC);
+        return ModTrunkTypes.NETHER_PYROWOOD_TRUNK_PLACER.get();
     }
     @Override
     public @NotNull List<FoliagePlacer.FoliageAttachment> placeTrunk(@NotNull LevelSimulatedReader levelSimulatedReader, @NotNull BiConsumer<BlockPos, BlockState> bPosState, @NotNull RandomSource randomSource, int someInt, @NotNull BlockPos blockPos, @NotNull TreeConfiguration treeConfiguration) {
@@ -35,32 +35,44 @@ public class NetherPyrowoodTrunkPlacer extends TrunkPlacer {
         int x = blockPos.getX();
         int y = blockPos.getY();
         int z = blockPos.getZ();
-        int dx = 0, dz = 0;
+        int dx, dz;
         int DX = 0, DZ = 0;
         Direction ultDirection = Direction.Plane.HORIZONTAL.getRandomDirection(randomSource);
-        OptionalInt optionalint = OptionalInt.empty();
+        OptionalInt optionalInt = OptionalInt.empty();
+        int k = 0;
         for(int dy = 0; dy < someInt; dy++){
             int y1 = y + dy;
-            if((dy + 1) % 3 == 0){
-                DX += ultDirection.getStepX();
-                DZ += ultDirection.getStepZ();
-            }
-            if(dy < this.getTreeHeight(randomSource) * 0.4) {
+
+            if(dy > someInt * 0.5) {
                 for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-                    dx += direction.getStepX();
-                    dz += direction.getStepZ();
-                    if(this.placeLog(levelSimulatedReader, bPosState, randomSource, mutableBlockPos.set(x + dx + DX, y1, z + dz + DZ), treeConfiguration)){
-                        optionalint = OptionalInt.of(y1 + 1);
+                    dx = direction.getStepX();
+                    dz = direction.getStepZ();
+                    if(this.placeLog(levelSimulatedReader, bPosState, randomSource, mutableBlockPos.set(x + dx*k + DX, y1, z + dz*k + DZ), treeConfiguration)){
+                        optionalInt = OptionalInt.of(y1 + 1);
                     }
                 }
+                k++;
             }
-            if (this.placeLog(levelSimulatedReader, bPosState, randomSource, mutableBlockPos.set(x + DX, y1, z + DZ), treeConfiguration)) {
-                optionalint = OptionalInt.of(y1 + 1);
+            else if (dy <= someInt * 0.5) {
+                if(this.placeLog(levelSimulatedReader, bPosState, randomSource, mutableBlockPos.set(x + DX, y1, z + DZ), treeConfiguration)) {
+                    optionalInt = OptionalInt.of(y1 + 1);
+                }
+                if((dy + 1) % 3 == 0){
+                    DX += ultDirection.getStepX();
+                    DZ += ultDirection.getStepZ();
+                }
+            }
+
+        }
+        //if (optionalInt.isPresent()) {
+        //    list.add(new FoliagePlacer.FoliageAttachment(new BlockPos(x + DX, optionalInt.getAsInt(), z + DZ), 1, false));
+        //}
+        int k1 = k -1;
+        for(Direction direction : Direction.Plane.HORIZONTAL.stream().toList()){
+            if(optionalInt.isPresent()){
+                list.add(new FoliagePlacer.FoliageAttachment(new BlockPos(x + DX + direction.getStepX()*k1, optionalInt.getAsInt(), z + DZ + direction.getStepZ()*k1), 1, false));
             }
         }
-        if (optionalint.isPresent()) {
-            list.add(new FoliagePlacer.FoliageAttachment(new BlockPos(x + DX, optionalint.getAsInt(), z + DZ), 1, false));
-        }
-        return list;
+        return list; 
     }
 }
