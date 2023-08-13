@@ -63,9 +63,9 @@ public class PyromancerMod {
         ModBlockEntities.BLOCK_ENTITY.register(modEventBus);
         ModParticleTypes.PARTICLES.register(modEventBus);
         CONFIGURED_FEATURE_REGISTER.register(modEventBus);
-        ModNetherPlacements.PLACED_FEATURE_REGISTRY.register(modEventBus);
         ModTrunkTypes.TRUNK_TYPE_REGISTRY.register(modEventBus);
         ModFoliageTypes.FOLIAGE_PLACER_REGISTRY.register(modEventBus);
+        ModNetherPlacements.PLACED_FEATURE_REGISTRY.register(modEventBus);
         ModCarvers.CARVERS.register(modEventBus);
         //
         modEventBus.addListener(this::registerPackets);

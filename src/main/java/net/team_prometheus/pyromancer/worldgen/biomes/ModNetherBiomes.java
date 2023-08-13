@@ -22,8 +22,7 @@ public class ModNetherBiomes {
         biomeBuilder.addCarver(GenerationStep.Carving.AIR, ModCarvers.FLAMING_GROVE_CARVER.getHolder().get());
         biomeBuilder
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ModNetherPlacements.PYROWOOD_NETHER.getHolder().orElseThrow())
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ModNetherPlacements.PYROMOSS_SPROUTS_PLACEMENT.getHolder().orElseThrow())
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ModNetherPlacements.FIREBRIAR_PLACEMENT.getHolder().orElseThrow());
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ModNetherPlacements.FLAMING_GROVE_VEGETATION.getHolder().orElseThrow());
         BiomeDefaultFeatures.addNetherDefaultOres(biomeBuilder);
         return new Biome.BiomeBuilder()
                 .precipitation(Biome.Precipitation.NONE).temperature(2f).downfall(0f)

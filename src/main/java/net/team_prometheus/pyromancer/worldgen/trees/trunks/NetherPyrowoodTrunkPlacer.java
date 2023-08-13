@@ -43,7 +43,7 @@ public class NetherPyrowoodTrunkPlacer extends TrunkPlacer {
         for(int dy = 0; dy < someInt; dy++){
             int y1 = y + dy;
 
-            if(dy > someInt * 0.5) {
+            if(dy > someInt * 0.4) {
                 for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
                     dx = direction.getStepX();
                     dz = direction.getStepZ();
@@ -53,7 +53,7 @@ public class NetherPyrowoodTrunkPlacer extends TrunkPlacer {
                 }
                 k++;
             }
-            else if (dy <= someInt * 0.5) {
+            else if (dy <= someInt * 0.4) {
                 if(this.placeLog(levelSimulatedReader, bPosState, randomSource, mutableBlockPos.set(x + DX, y1, z + DZ), treeConfiguration)) {
                     optionalInt = OptionalInt.of(y1 + 1);
                 }
@@ -70,7 +70,7 @@ public class NetherPyrowoodTrunkPlacer extends TrunkPlacer {
         int k1 = k -1;
         for(Direction direction : Direction.Plane.HORIZONTAL.stream().toList()){
             if(optionalInt.isPresent()){
-                list.add(new FoliagePlacer.FoliageAttachment(new BlockPos(x + DX + direction.getStepX()*k1, optionalInt.getAsInt(), z + DZ + direction.getStepZ()*k1), 1, false));
+                list.add(new FoliagePlacer.FoliageAttachment(new BlockPos(x + DX + direction.getStepX()*k1, optionalInt.getAsInt() - 1, z + DZ + direction.getStepZ()*k1), 1, false));
             }
         }
         return list; 
