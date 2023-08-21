@@ -18,7 +18,7 @@ public class ModNetherPlacements {
     public static final RegistryObject<PlacedFeature> PYROWOOD_NETHER = register("pyrowood_nether_placement",
             ModFeatures.PYROWOOD_NETHER, () ->  List.of(CountOnEveryLayerPlacement.of(10), PlacementUtils.filteredByBlockSurvival(ModBlocks.PYROMOSS_SPROUTS.get()), BiomeFilter.biome()));
     public static RegistryObject<PlacedFeature> FLAMING_GROVE_VEGETATION = register("flaming_grove_vegetation_placement",
-            ModFeatures.FLAMING_GROVE_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome()));
+            ModFeatures.FLAMING_GROVE_VEGETATION, () -> List.of(CountPlacement.of(150), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome()));
     public static RegistryObject<PlacedFeature> register(String key, RegistryObject<? extends ConfiguredFeature<?, ?>> feature, Supplier<List<PlacementModifier>> modifiers) {
         return PLACED_FEATURE_REGISTRY.register(key, () -> new PlacedFeature(Holder.hackyErase(feature.getHolder().orElseThrow()), List.copyOf(modifiers.get())));
     }

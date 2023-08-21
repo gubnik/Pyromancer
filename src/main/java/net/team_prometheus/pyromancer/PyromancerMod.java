@@ -53,18 +53,18 @@ public class PyromancerMod {
     private static final Logger LOGGER = LogUtils.getLogger();
     public PyromancerMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModEntities.ENTITIES.register(modEventBus);
-        ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModItems.register(modEventBus);
+        ModEntities.ENTITIES.register(modEventBus);
         ModEffects.EFFECTS.register(modEventBus);
         ModBiomes.BIOMES.register(modEventBus);
         ModEnchantments.ENCHANTMENTS.register(modEventBus);
         ModAttributes.ATTRIBUTES.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITY.register(modEventBus);
         ModParticleTypes.PARTICLES.register(modEventBus);
-        CONFIGURED_FEATURE_REGISTER.register(modEventBus);
         ModTrunkTypes.TRUNK_TYPE_REGISTRY.register(modEventBus);
         ModFoliageTypes.FOLIAGE_PLACER_REGISTRY.register(modEventBus);
+        CONFIGURED_FEATURE_REGISTER.register(modEventBus);
         ModNetherPlacements.PLACED_FEATURE_REGISTRY.register(modEventBus);
         ModCarvers.CARVERS.register(modEventBus);
         //
@@ -81,7 +81,6 @@ public class PyromancerMod {
     }
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(ModNetherBiomes::setupTerraBlender);
-
     }
     private void setupClient(final FMLCommonSetupEvent event) {
         EntityRenderers.register(ModEntities.UNBURNED.get(), UnburnedRenderer::new);
