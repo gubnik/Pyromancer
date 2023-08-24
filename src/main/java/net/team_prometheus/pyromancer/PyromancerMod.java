@@ -10,11 +10,14 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
+import net.team_prometheus.pyromancer.init.PyromancerConfig;
 import net.team_prometheus.pyromancer.network.NetworkCore;
 import net.team_prometheus.pyromancer.potion_effects.ModEffects;
 import net.team_prometheus.pyromancer.worldgen.biomes.ModBiomes;
@@ -53,6 +56,9 @@ public class PyromancerMod {
     private static final Logger LOGGER = LogUtils.getLogger();
     public PyromancerMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, PyromancerConfig.COMMON_SPEC, "pyromancer/common.toml");
+
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
         ModEntities.ENTITIES.register(modEventBus);

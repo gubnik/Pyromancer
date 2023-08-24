@@ -16,6 +16,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
+import net.team_prometheus.pyromancer.init.ModTabs;
 import net.team_prometheus.pyromancer.items.ModItems;
 import net.team_prometheus.pyromancer.worldgen.trees.tree_growers.PyrowoodTreeGrower;
 import org.jetbrains.annotations.NotNull;
@@ -48,6 +49,10 @@ public class ModBlocks {
             return BlocksUtil.flamingGrovePlantable(blockState);
         }
             }, CreativeModeTab.TAB_DECORATIONS);
+
+    public static final RegistryObject<Block> SIZZLING_VINE = registerBlock("sizzling_vine",
+            () -> new SizzlingVineBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.CAVE_VINES)),
+            ModTabs.PYROMANCER_TAB);
     public static final RegistryObject<Block> FIREBRIAR = registerBlock("firebriar",
             () -> new FirebriarBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_ORANGE).strength(0,0).sound(SoundType.HARD_CROP).noCollission()), CreativeModeTab.TAB_DECORATIONS);
     //
