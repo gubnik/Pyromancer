@@ -14,15 +14,13 @@ import net.team_prometheus.pyromancer.entity.PyromancerBoatEntity;
 import net.team_prometheus.pyromancer.entity.PyromancerChestBoatEntity;
 
 @Mod.EventBusSubscriber(modid = PyromancerMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class EntityRenderersHandler
-{
+public class EntityRenderersHandler {
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
         // Register boat layer definitions
         LayerDefinition boatLayerDefinition = BoatModel.createBodyModel(false);
         LayerDefinition chestBoatLayerDefinition = BoatModel.createBodyModel(true);
-
         for (PyromancerBoatEntity.ModelType type : PyromancerBoatEntity.ModelType.values()) {
             ForgeHooksClient.registerLayerDefinition(PyromancerBoatRenderer.createBoatModelName(type), () -> boatLayerDefinition);
             ForgeHooksClient.registerLayerDefinition(PyromancerBoatRenderer.createChestBoatModelName(type), () -> chestBoatLayerDefinition);
