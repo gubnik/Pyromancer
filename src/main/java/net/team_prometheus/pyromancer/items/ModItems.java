@@ -10,6 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.entity.ModEntities;
+import net.team_prometheus.pyromancer.entity.PyromancerBoatEntity;
 import net.team_prometheus.pyromancer.init.ModTabs;
 import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
 import net.team_prometheus.pyromancer.items.blazing_journal.QuillItem;
@@ -55,6 +56,11 @@ public class ModItems {
     // spawn eggs
     public static RegistryObject<Item> UNBURNED_SPAWN_EGG = ITEMS.register("unburned_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.UNBURNED, -10268354, -3297142, new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+
+    // boat
+    public static RegistryObject<Item> PYROWOOD_BOAT = ITEMS.register("pyrowood_boat",
+            () -> new PyromancerBoatItem(false, PyromancerBoatEntity.ModelType.PYROWOOD,
+                    new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
     public static void register (IEventBus eventBus){
         ITEMS.register(eventBus);
     }

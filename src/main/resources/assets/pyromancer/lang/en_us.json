@@ -2,6 +2,17 @@
   "attribute.name.generic.blaze_consumption": "Blaze Consumption",
   "attribute.name.generic.pyromancy_damage": "Pyromancy Damage",
 
+  "block.pyromancer.sizzling_vine": "Sizzling Vine",
+  "block.pyromancer.firebriar": "Firebriar",
+  "block.pyromancer.pyromoss_sprouts": "Pyromoss Sprouts",
+  "block.pyromancer.pyromossed_netherrack": "Pyromossed Netherrack",
+  "block.pyromancer.pyrowood_log": "Pyrowood Log",
+  "block.pyromancer.pyrowood_planks": "Pyrowood Planks",
+  "block.pyromancer.pyrowood_slab": "Pyrowood Slab",
+  "block.pyromancer.pyrowood_fence": "Pyrowood Fence",
+  "block.pyromancer.pyrowood_fence_gate": "Pyrowood Fence Gate",
+  "block.pyromancer.pyrowood_door": "Pyrowood Door",
+
   "desc.press_shift": "Press SHIFT to reveal item info",
   "desc.blazing_journal.charge": "Current blaze charge:",
   "desc.blazing_quill.line1": "No effect",

@@ -4,9 +4,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.extensions.IForgeEnchantment;
 import net.minecraftforge.registries.DeferredRegister;
@@ -14,8 +12,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Map;
 
 @SuppressWarnings("unused")
 public class ModEnchantments implements IForgeEnchantment {
@@ -57,7 +53,7 @@ public class ModEnchantments implements IForgeEnchantment {
     public static RegistryObject<Enchantment> INCINERATING_BLOW = ENCHANTMENTS.register("incinerating_blow", // sword
             () -> new Enchantment(Enchantment.Rarity.RARE, ModEnchantmentCategory.BLAZING_JOURNAL, new EquipmentSlot[]{}) {
             });
-    public static RegistryObject<Enchantment> SIZZLING_BONK = ENCHANTMENTS.register("sizzling_bonk", // shovel
+    public static RegistryObject<Enchantment> COMBUSTION_LAUNCH = ENCHANTMENTS.register("combustion_launch", // shovel
             // TODO: think of better name for this
             () -> new Enchantment(Enchantment.Rarity.RARE, ModEnchantmentCategory.BLAZING_JOURNAL, new EquipmentSlot[]{}) {
             });

@@ -17,6 +17,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
+import net.team_prometheus.pyromancer.entity.renderers.PyromancerBoatRenderer;
 import net.team_prometheus.pyromancer.init.PyromancerConfig;
 import net.team_prometheus.pyromancer.network.NetworkCore;
 import net.team_prometheus.pyromancer.potion_effects.ModEffects;
@@ -58,6 +59,7 @@ public class PyromancerMod {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, PyromancerConfig.COMMON_SPEC, "pyromancer/common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, PyromancerConfig.CLIENT_SPEC, "pyromancer/client.toml");
 
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);

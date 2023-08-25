@@ -43,7 +43,7 @@ public class BlazingJournalEnchantmentsHelper {
                     ItemUtils.changeBlaze(attacker, -1);}
                 if(enchantment.equals(ModEnchantments.INCINERATING_BLOW.get()) && attackingItem instanceof SwordItem){swordAttack(attacker, target);
                     ItemUtils.changeBlaze(attacker, -1);}
-                if(enchantment.equals(ModEnchantments.SIZZLING_BONK.get()) && attackingItem instanceof ShovelItem){shovelAttack(attacker, target);
+                if(enchantment.equals(ModEnchantments.COMBUSTION_LAUNCH.get()) && attackingItem instanceof ShovelItem){shovelAttack(attacker, target);
                     ItemUtils.changeBlaze(attacker, -1);}
                 if(enchantment.equals(ModEnchantments.MELTDOWN.get()) && attackingItem instanceof PickaxeItem){pickaxeAttack(attacker, target);
                     ItemUtils.changeBlaze(attacker, -1);}

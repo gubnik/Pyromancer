@@ -22,7 +22,7 @@ public class BlazingJournal extends Item {
     public int getEnchantmentValue(ItemStack itemStack){return 10;}
     @Override
     public void inventoryTick(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull Entity entity, int slot, boolean selected){
-        if(itemStack.getOrCreateTag().getString("quill").equals("")) itemStack.getOrCreateTag().putString("quill", "blazing_journal");
+        if(itemStack.getOrCreateTag().getString("quill").equals("")) itemStack.getOrCreateTag().putString("quill", "blazing_quill");
         itemStack.getOrCreateTag().putDouble("CustomModelData", QuillItem.QuillEnum.getQuillId(itemStack.getOrCreateTag().getString("quill")));
     }
     @Override

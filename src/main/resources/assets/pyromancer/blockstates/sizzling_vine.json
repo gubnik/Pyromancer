@@ -1,9 +1,9 @@
 {
   "variants": {
-    "thick=true": {
+    "thick=false": {
       "model": "pyromancer:block/sizzling_vine/sizzling_vine"
     },
-    "thick=false": {
+    "thick=true": {
       "model": "pyromancer:block/sizzling_vine/sizzling_vine_thick"
     }
   }

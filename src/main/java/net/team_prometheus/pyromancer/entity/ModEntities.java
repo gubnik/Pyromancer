@@ -16,7 +16,14 @@ import net.team_prometheus.pyromancer.entity.unburned.Unburned;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEntities {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, PyromancerMod.MOD_ID);
-
+    public static final RegistryObject<EntityType<PyromancerBoatEntity>> BOAT = register("boat",
+            EntityType.Builder.<PyromancerBoatEntity>of(PyromancerBoatEntity::new, MobCategory.MISC)
+                    .sized(1.375F, 0.5625F).clientTrackingRange(10)
+                    .fireImmune());
+    public static final RegistryObject<EntityType<PyromancerChestBoatEntity>> CHEST_BOAT = register("chest_boat",
+            EntityType.Builder.<PyromancerChestBoatEntity>of(PyromancerChestBoatEntity::new, MobCategory.MISC)
+                    .sized(1.375F, 0.5625F).clientTrackingRange(10)
+                    .fireImmune());
     public static final RegistryObject<EntityType<Unburned>> UNBURNED = register("unburned",
             EntityType.Builder.<Unburned>of(Unburned::new, MobCategory.MONSTER)
                     .sized(1.3f, 5.2f).fireImmune());

@@ -19,7 +19,7 @@ public class SizzlingVineBlock extends GrowingPlantHeadBlock implements Bonemeal
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(THICK, false));
     }
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(THICK);
     }

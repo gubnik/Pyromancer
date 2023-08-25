@@ -2,6 +2,7 @@ package net.team_prometheus.pyromancer.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -29,12 +30,22 @@ public class ModBlocks {
     //pyrowood
     public static final RegistryObject<Block> PYROWOOD_LOG = registerBlock("pyrowood_log",
             () -> log(MaterialColor.WOOD, MaterialColor.PODZOL), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> STRIPPED_PYROWOOD_LOG = registerBlock("stripped_pyrowood_log",
+            () -> log(MaterialColor.WOOD, MaterialColor.PODZOL), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> PYROWOOD_PLANKS = registerBlock("pyrowood_planks",
             () -> new Block((BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD))), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> PYROWOOD_STAIRS = registerBlock("pyrowood_stairs",
             () -> new StairBlock(PYROWOOD_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(PYROWOOD_PLANKS.get())), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> PYROWOOD_SLAB = registerBlock("pyrowood_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.copy(PYROWOOD_PLANKS.get())), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> PYROWOOD_FENCE = registerBlock("pyrowood_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.copy(PYROWOOD_PLANKS.get())), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> PYROWOOD_FENCE_GATE = registerBlock("pyrowood_fence_gate",
+            () -> new FenceGateBlock(BlockBehaviour.Properties.copy(PYROWOOD_PLANKS.get())), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> PYROWOOD_DOOR = registerBlock("pyrowood_door",
+            () -> new DoorBlock(BlockBehaviour.Properties.copy(PYROWOOD_PLANKS.get())), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> PYROWOOD_TRAPDOOR = registerBlock("pyrowood_trapdoor",
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(PYROWOOD_PLANKS.get())), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> PYROWOOD_LEAVES = registerBlock("pyrowood_leaves",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.JUNGLE_LEAVES).lightLevel(s -> 8)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> PYROWOOD_SAPLING = registerBlock("pyrowood_sapling",
@@ -55,6 +66,8 @@ public class ModBlocks {
             ModTabs.PYROMANCER_TAB);
     public static final RegistryObject<Block> FIREBRIAR = registerBlock("firebriar",
             () -> new FirebriarBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_ORANGE).strength(0,0).sound(SoundType.HARD_CROP).noCollission()), CreativeModeTab.TAB_DECORATIONS);
+    public static final RegistryObject<Block> BLAZING_POPPY = registerBlock("blazing_poppy",
+            () -> new FlowerBlock(MobEffects.HARM, 1, BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_ORANGE).strength(0,0).sound(SoundType.HARD_CROP).noCollission()), CreativeModeTab.TAB_DECORATIONS);
     //
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> output = BLOCKS.register(name, block);
