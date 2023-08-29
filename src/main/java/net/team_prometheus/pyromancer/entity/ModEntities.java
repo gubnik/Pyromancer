@@ -8,6 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
+import net.team_prometheus.pyromancer.entity.attack_effects.HeavenlyFlameEntity;
 import net.team_prometheus.pyromancer.entity.projectiles.Bombsack;
 import net.team_prometheus.pyromancer.entity.projectiles.NapalmBombsack;
 import net.team_prometheus.pyromancer.entity.projectiles.SizzlingHandFireball;
@@ -39,6 +40,13 @@ public class ModEntities {
     public static final RegistryObject<EntityType<NapalmBombsack>> NAPALM_BOMBSACK = register("napalm_bombsack",
             EntityType.Builder.<NapalmBombsack>of(NapalmBombsack::new, MobCategory.MISC)
                     .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10));
+
+    // ATTACK EFFECTS
+
+    public static final RegistryObject<EntityType<HeavenlyFlameEntity>> HEAVENLY_FLAME = register("heavenly_flame",
+            EntityType.Builder.<HeavenlyFlameEntity>of(HeavenlyFlameEntity::new, MobCategory.MISC)
+                    .clientTrackingRange(128).setShouldReceiveVelocityUpdates(false));
+
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String registry_name, EntityType.Builder<T> entityTypeBuilder) {
         return ENTITIES.register(registry_name, () -> entityTypeBuilder.build(registry_name));
     }

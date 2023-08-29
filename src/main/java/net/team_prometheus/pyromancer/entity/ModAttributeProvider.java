@@ -13,5 +13,8 @@ public class ModAttributeProvider {
     public static void entityAttributeProvider(EntityAttributeModificationEvent event){
         event.add(EntityType.PLAYER, ModAttributes.BLAZE_CONSUMPTION.get());
         event.add(EntityType.PLAYER, ModAttributes.PYROMANCY_DAMAGE.get());
+        event.add(EntityType.PLAYER, ModAttributes.FLAME_DAMAGE.get());
+        event.add(EntityType.PLAYER, ModAttributes.SOULFLAME_DAMAGE.get());
+        event.add(EntityType.PLAYER, ModAttributes.HELLBLAZE_DAMAGE.get());
     }
 }

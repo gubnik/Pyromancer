@@ -17,6 +17,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
+import net.team_prometheus.pyromancer.entity.models.HeavenlyFlameModel;
+import net.team_prometheus.pyromancer.entity.renderers.HeavenlyFlameRenderer;
 import net.team_prometheus.pyromancer.init.PyromancerConfig;
 import net.team_prometheus.pyromancer.network.NetworkCore;
 import net.team_prometheus.pyromancer.mob_effects.ModMobEffects;
@@ -91,9 +93,11 @@ public class PyromancerMod {
     }
     private void setupClient(final FMLCommonSetupEvent event) {
         EntityRenderers.register(ModEntities.UNBURNED.get(), UnburnedRenderer::new);
+        EntityRenderers.register(ModEntities.HEAVENLY_FLAME.get(), HeavenlyFlameRenderer::new);
     }
     private void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(UnburnedModel.LAYER_LOCATION, UnburnedModel::createBodyLayer);
+        event.registerLayerDefinition(HeavenlyFlameModel.LAYER_LOCATION, HeavenlyFlameModel::createBodyLayer);
     }
     private static final Collection<AbstractMap.SimpleEntry<Runnable, Integer>> workQueue = new ConcurrentLinkedQueue<>();
     public static void queueServerWork(int tick, Runnable action) {

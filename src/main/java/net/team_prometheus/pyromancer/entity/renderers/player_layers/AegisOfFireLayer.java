@@ -27,7 +27,7 @@ public class AegisOfFireLayer<T extends LivingEntity, M extends HumanoidModel<T>
             poseStack.scale(INFLATION, INFLATION_LESSER, INFLATION);
 
             VertexConsumer vertexconsumer = multiBufferSource.getBuffer(
-                    RenderType.entityTranslucent(AEGIS_OF_FIRE)
+                    RenderType.entityTranslucentEmissive(AEGIS_OF_FIRE)
             );
             this.getParentModel().renderToBuffer(poseStack, vertexconsumer, 15728640, OverlayTexture.NO_OVERLAY,
                     1F, // color
