@@ -15,8 +15,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.entity.EntityUtils;
 import net.team_prometheus.pyromancer.init.ModAttributes;
-import net.team_prometheus.pyromancer.entity.ModDamageSource;
-import net.team_prometheus.pyromancer.potion_effects.ModEffects;
+import net.team_prometheus.pyromancer.damage_source.ModDamageSource;
+import net.team_prometheus.pyromancer.mob_effects.ModMobEffects;
 
 import java.util.Objects;
 
@@ -126,8 +126,8 @@ public class EmberAttacks {
         for(LivingEntity entity : EntityUtils.entityCollector(new Vec3(player.getX(), player.getY() + 1, player.getZ()), 4, player.level)){
             if(!entity.equals(player)){
                 entity.hurt(ModDamageSource.aegisOfFire(player), (float) ember.getDamage());
-                entity.addEffect(new MobEffectInstance(ModEffects.MOLTEN_ARMOR.get(), 100,
-                        entity.hasEffect(ModEffects.MOLTEN_ARMOR.get()) ? Objects.requireNonNull(entity.getEffect(ModEffects.MOLTEN_ARMOR.get())).getAmplifier() : 0));
+                entity.addEffect(new MobEffectInstance(ModMobEffects.MOLTEN_ARMOR.get(), 100,
+                        entity.hasEffect(ModMobEffects.MOLTEN_ARMOR.get()) ? Objects.requireNonNull(entity.getEffect(ModMobEffects.MOLTEN_ARMOR.get())).getAmplifier() : 0));
             }
         } return 0;
     }

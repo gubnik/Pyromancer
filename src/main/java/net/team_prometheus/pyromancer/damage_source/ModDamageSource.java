@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.entity;
+package net.team_prometheus.pyromancer.damage_source;
 
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
@@ -10,7 +10,7 @@ import net.team_prometheus.pyromancer.entity.unburned.Unburned;
 import org.jetbrains.annotations.Nullable;
 
 public class ModDamageSource {
-    public static DamageSource INCINERATION = (new DamageSource("incineration")).setIsFire().bypassEnchantments();
+    public static DamageSource INCINERATION = (new PyromancyDamageSource("incineration")).setHellblaze().bypassEnchantments();
     public static DamageSource ROT = (new DamageSource("rot")).bypassArmor().bypassEnchantments();
     public static DamageSource BOMBSACK = (new DamageSource("bombsack"));
     public static DamageSource sizzlingHandFireball(SizzlingHandFireball fireball, @Nullable Entity entity){
@@ -20,15 +20,15 @@ public class ModDamageSource {
         return new EntityDamageSource("unburned_explosion", unburned).setIsFire().setExplosion();
     }
     public static DamageSource soulflameIgnition(Player player){
-        return new EntityDamageSource("soulflame_ignition", player).setIsFire().setMagic();
+        return new EntityPyromancyDamageSource("soulflame_ignition", player).setIsEmber().setSoulflame();
     }
     public static DamageSource heavenlyFlame(Player player){
-        return new EntityDamageSource("heavenly_flame", player).setIsFire().damageHelmet();
+        return new EntityPyromancyDamageSource("heavenly_flame", player).setIsEmber().setHellblaze().damageHelmet();
     }
     public static DamageSource aegisOfFire(Player player){
-        return new EntityDamageSource("aegis_of_fire", player).setIsFire();
+        return new EntityPyromancyDamageSource("aegis_of_fire", player).setIsEmber().setFlame();
     }
     public static DamageSource ashenForm(Player player){
-        return new EntityDamageSource("ashen_form", player).bypassArmor();
+        return new EntityPyromancyDamageSource("ashen_form", player).setIsEmber().setFlame().bypassArmor();
     }
 }

@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
 import net.team_prometheus.pyromancer.items.ItemUtils;
 import net.team_prometheus.pyromancer.items.MaceItem;
-import net.team_prometheus.pyromancer.potion_effects.ModEffects;
+import net.team_prometheus.pyromancer.mob_effects.ModMobEffects;
 
 import java.util.Comparator;
 import java.util.List;
@@ -123,13 +123,13 @@ public class BlazingJournalEnchantmentsHelper {
     }
     public static void pickaxeAttack(Player attacker, Entity target){
         if(target instanceof LivingEntity livTarget) {
-            if (livTarget.hasEffect(ModEffects.MOLTEN_ARMOR.get())) {
-                livTarget.addEffect(new MobEffectInstance(ModEffects.MOLTEN_ARMOR.get(), 100,
+            if (livTarget.hasEffect(ModMobEffects.MOLTEN_ARMOR.get())) {
+                livTarget.addEffect(new MobEffectInstance(ModMobEffects.MOLTEN_ARMOR.get(), 100,
                         Objects.requireNonNull(
-                                livTarget.getEffect(ModEffects.MOLTEN_ARMOR.get())).getAmplifier())
+                                livTarget.getEffect(ModMobEffects.MOLTEN_ARMOR.get())).getAmplifier())
                 );
             } else {
-                livTarget.addEffect((new MobEffectInstance(ModEffects.MOLTEN_ARMOR.get(), 100, 0)));
+                livTarget.addEffect((new MobEffectInstance(ModMobEffects.MOLTEN_ARMOR.get(), 100, 0)));
             }
         }
     }

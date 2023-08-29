@@ -17,7 +17,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
-import net.team_prometheus.pyromancer.init.ModTabs;
 import net.team_prometheus.pyromancer.items.ModItems;
 import net.team_prometheus.pyromancer.worldgen.trees.tree_growers.PyrowoodTreeGrower;
 import org.jetbrains.annotations.NotNull;
@@ -47,7 +46,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> PYROWOOD_TRAPDOOR = registerBlock("pyrowood_trapdoor",
             () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(PYROWOOD_PLANKS.get())), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> PYROWOOD_LEAVES = registerBlock("pyrowood_leaves",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.JUNGLE_LEAVES).lightLevel(s -> 8)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.JUNGLE_LEAVES).lightLevel(s -> 15).emissiveRendering(Blocks::always)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> PYROWOOD_SAPLING = registerBlock("pyrowood_sapling",
             () -> new WeirdSaplingBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING).color(MaterialColor.COLOR_ORANGE), new PyrowoodTreeGrower()), CreativeModeTab.TAB_DECORATIONS);
     //
@@ -62,12 +61,24 @@ public class ModBlocks {
             }, CreativeModeTab.TAB_DECORATIONS);
 
     public static final RegistryObject<Block> SIZZLING_VINE = registerBlock("sizzling_vine",
-            () -> new SizzlingVineBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.CAVE_VINES)),
-            ModTabs.PYROMANCER_TAB);
+            () -> new SizzlingVineBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.CAVE_VINES).emissiveRendering(Blocks::always)),
+            CreativeModeTab.TAB_DECORATIONS);
     public static final RegistryObject<Block> FIREBRIAR = registerBlock("firebriar",
             () -> new FirebriarBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_ORANGE).strength(0,0).sound(SoundType.HARD_CROP).noCollission()), CreativeModeTab.TAB_DECORATIONS);
     public static final RegistryObject<Block> BLAZING_POPPY = registerBlock("blazing_poppy",
-            () -> new FlowerBlock(MobEffects.HARM, 1, BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_ORANGE).strength(0,0).sound(SoundType.HARD_CROP).noCollission()), CreativeModeTab.TAB_DECORATIONS);
+            () -> new FlowerBlock(MobEffects.HARM, 1, BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_ORANGE).strength(0,0).sound(SoundType.HARD_CROP).noCollission()){
+                @Override
+                protected boolean mayPlaceOn(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos) {
+                    return BlocksUtil.flamingGrovePlantable(blockState);
+                }
+            }, CreativeModeTab.TAB_DECORATIONS);
+    public static final RegistryObject<Block> NETHER_LILY = registerBlock("nether_lily",
+            () -> new FlowerBlock(MobEffects.HARM, 1, BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_ORANGE).strength(0,0).sound(SoundType.HARD_CROP).noCollission().lightLevel(i -> 7).emissiveRendering(Blocks::always)){
+                @Override
+                protected boolean mayPlaceOn(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos) {
+                    return BlocksUtil.flamingGrovePlantable(blockState);
+                }
+            }, CreativeModeTab.TAB_DECORATIONS);
     //
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> output = BLOCKS.register(name, block);

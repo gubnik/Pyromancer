@@ -16,7 +16,7 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.phys.Vec3;
-import net.team_prometheus.pyromancer.entity.ModDamageSource;
+import net.team_prometheus.pyromancer.damage_source.ModDamageSource;
 import org.jetbrains.annotations.NotNull;
 
 public class Unburned extends Monster {
@@ -136,7 +136,7 @@ public class Unburned extends Monster {
         }
         else if(this.attackAnimationState.isStarted()
         && this.attackTick + 8 <= this.tickCount){
-            this.level.explode(this, ModDamageSource.INCINERATION, null,
+            this.level.explode(this, ModDamageSource.unburnedExplosion(this), null,
                     this.getX() + this.getLookAngle().x*2,
                     this.getY() + 2,
                     this.getZ() + this.getLookAngle().z*2,

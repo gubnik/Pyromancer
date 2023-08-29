@@ -14,13 +14,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.team_prometheus.pyromancer.entity.ModEntities;
-import net.team_prometheus.pyromancer.entity.ModDamageSource;
+import net.team_prometheus.pyromancer.damage_source.ModDamageSource;
 import net.team_prometheus.pyromancer.items.ModItems;
 import org.jetbrains.annotations.NotNull;
 
 public class NapalmBombsack extends ThrowableItemProjectile {
     public NapalmBombsack(EntityType<? extends ThrowableItemProjectile> entityType, Level level) {
-        super(ModEntities.BOMBSACK.get(), level);
+        super(ModEntities.NAPALM_BOMBSACK.get(), level);
     }
     @Override
     protected @NotNull Item getDefaultItem() {

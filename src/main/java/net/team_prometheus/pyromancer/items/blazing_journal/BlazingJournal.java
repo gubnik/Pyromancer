@@ -28,6 +28,9 @@ public class BlazingJournal extends Item {
     @Override
     public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag){
         super.appendHoverText(itemStack, level, list, flag);
+        if(itemStack.getOrCreateTag().getString("quill").equals("")){
+            itemStack.getOrCreateTag().putString("quill", "blazing_quill");
+        }
         String name = itemStack.getOrCreateTag().getString("quill");
         String quillName = "item.pyromancer." + name;
         if(Screen.hasShiftDown()) {

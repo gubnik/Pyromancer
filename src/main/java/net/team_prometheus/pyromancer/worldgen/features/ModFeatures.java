@@ -35,8 +35,11 @@ public class ModFeatures {
     public static final RegistryObject<ConfiguredFeature<NetherForestVegetationConfig, ?>> FLAMING_GROVE_VEGETATION = register("flaming_grove_vegetation",
             Feature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
                     new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                    .add(ModBlocks.PYROMOSS_SPROUTS.get().defaultBlockState(), 86)
-                    .add(ModBlocks.FIREBRIAR.get().defaultBlockState(), 13))
+                    .add(ModBlocks.PYROMOSS_SPROUTS.get().defaultBlockState(), 50)
+                    .add(ModBlocks.FIREBRIAR.get().defaultBlockState(), 13)
+                    .add(ModBlocks.BLAZING_POPPY.get().defaultBlockState(), 13)
+                    .add(ModBlocks.NETHER_LILY.get().defaultBlockState(), 11)
+                    .add(ModBlocks.PYROWOOD_SAPLING.get().defaultBlockState(), 3))
                     , 64, 32));
     public static final RegistryObject<ConfiguredFeature<BlockColumnConfiguration, ?>> SIZZLING_VINE = register("cave_vine",
             Feature.BLOCK_COLUMN, ()-> new BlockColumnConfiguration(
