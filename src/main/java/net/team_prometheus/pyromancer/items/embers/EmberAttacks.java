@@ -27,7 +27,7 @@ import java.util.Objects;
 public class EmberAttacks {
     public static int soulflameIgnition(Player player){
         Ember ember = Ember.SOULFLAME_IGNITION;
-        float damage = (float) ember.getDamage();
+        float damage = ember.getDamage();
         //
         double x = player.getX();
         double y = player.getY() + 1.5;
@@ -76,7 +76,7 @@ public class EmberAttacks {
         double y = player.getY() + 1.5;
         double z = player.getZ();
         Ember ember = Ember.ASHEN_FORM;
-        float damage = calculateEmberDamage(ember, player, 0.25f, 0.5f);
+        float damage = ember.getDamage();
         double lx = player.getLookAngle().x;
         double ly = player.getLookAngle().y;
         double lz = player.getLookAngle().z;
@@ -111,15 +111,18 @@ public class EmberAttacks {
     }
 
     public static void heavenlyFlameSupport(double x, double y, double z, Player player, Ember ember){
-        float damage = calculateEmberDamage(ember, player, 0.25f, 0.5f);
+        float damage = ember.getDamage();
         if(player.level instanceof ServerLevel level) {
             for (int i = 0; i < 3; i++) {
                 level.sendParticles(ParticleTypes.FLAME, x, y + 2.25, z, (i+1)*10, (i+1)*0.5, 0.1, (i+1)*0.5, 0);
                 for(LivingEntity entity : EntityUtils.entityCollector(new Vec3(x, y, z), 8, player.level)){
                     if(!entity.equals(player)){
                         HeavenlyFlameEntity heavenlyFlame = new HeavenlyFlameEntity(ModEntities.HEAVENLY_FLAME.get(), level);
+                        heavenlyFlame.setSize(
+                                entity.getBbWidth() / 0.6f
+                        );
                         heavenlyFlame.setPos(
-                                new Vec3(entity.getX(), entity.getY() + entity.getBbHeight(), entity.getZ())
+                                new Vec3(entity.getX(), entity.getY(), entity.getZ())
                         );
                         entity.hurt(ModDamageSource.heavenlyFlame(player), damage);
                         level.addFreshEntity(heavenlyFlame);
@@ -132,7 +135,7 @@ public class EmberAttacks {
         Ember ember = Ember.AEGIS_OF_FIRE;
         for(LivingEntity entity : EntityUtils.entityCollector(new Vec3(player.getX(), player.getY() + 1, player.getZ()), 4, player.level)){
             if(!entity.equals(player)){
-                entity.hurt(ModDamageSource.aegisOfFire(player), (float) ember.getDamage());
+                entity.hurt(ModDamageSource.aegisOfFire(player), ember.getDamage());
                 entity.addEffect(new MobEffectInstance(ModMobEffects.MOLTEN_ARMOR.get(), 100,
                         entity.hasEffect(ModMobEffects.MOLTEN_ARMOR.get()) ? Objects.requireNonNull(entity.getEffect(ModMobEffects.MOLTEN_ARMOR.get())).getAmplifier() : 0));
             }
@@ -163,9 +166,4 @@ public class EmberAttacks {
             }
         }
     }
-
-    public static float calculateEmberDamage(Ember ember, Player player, float attackDamageMultiplier, float pyromancyDamageMultiplier){
-        return (float) (ember.getDamage() + player.getAttributeValue(Attributes.ATTACK_DAMAGE) * attackDamageMultiplier + player.getAttributeValue(ModAttributes.PYROMANCY_DAMAGE.get()) * pyromancyDamageMultiplier);
-    }
-
 }

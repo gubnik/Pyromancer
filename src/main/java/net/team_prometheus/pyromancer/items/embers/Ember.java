@@ -16,26 +16,26 @@ public enum Ember {
 
     // FLAME INFUSION
 
-    ASHEN_FORM("ashen_form", 1, 8d, EmberAttacks::ashenForm, EmberInfusionType.FLAME, EmberWeaponType.ANY,
+    ASHEN_FORM("ashen_form", 1, 8f, EmberAttacks::ashenForm, EmberInfusionType.FLAME, EmberWeaponType.ANY,
             AnimationList.ASHEN_FORM(), 0, 5, 15),
-    AEGIS_OF_FIRE("aegis_of_fire", 2, 10d, EmberAttacks::aegisOfFire, EmberInfusionType.FLAME, EmberWeaponType.MACE,
+    AEGIS_OF_FIRE("aegis_of_fire", 2, 10f, EmberAttacks::aegisOfFire, EmberInfusionType.FLAME, EmberWeaponType.MACE,
             AnimationList.AEGIS_OF_FIRE(), 0, 10, 30),
 
     // SOULFLAME INFUSION
 
-    SOULFLAME_IGNITION("soulflame_ignition", 8, 5d, EmberAttacks::soulflameIgnition, EmberInfusionType.SOULFLAME, EmberWeaponType.ANY,
+    SOULFLAME_IGNITION("soulflame_ignition", 8, 5f, EmberAttacks::soulflameIgnition, EmberInfusionType.SOULFLAME, EmberWeaponType.ANY,
             AnimationList.SOULFLAME_IGNITION(), 4, 11, 40),
-    TORNADO_OF_SOULS("tornado_of_souls", 16, 4d, EmberAttacks::tornadoOfSouls, EmberInfusionType.SOULFLAME, EmberWeaponType.AXE,
+    TORNADO_OF_SOULS("tornado_of_souls", 16, 4f, EmberAttacks::tornadoOfSouls, EmberInfusionType.SOULFLAME, EmberWeaponType.AXE,
             AnimationList.TORNADO_OF_SOULS(), 3, 10, 100),
 
     // HELLBLAZE INFUSION
 
-    HEAVENLY_FLAME("heavenly_flame", 8, 4d, EmberAttacks::heavenlyFlame, EmberInfusionType.HELLBLAZE, EmberWeaponType.SWORD,
+    HEAVENLY_FLAME("heavenly_flame", 8, 4f, EmberAttacks::heavenlyFlame, EmberInfusionType.HELLBLAZE, EmberWeaponType.SWORD,
             AnimationList.HEAVENLY_FLAME(), 10, 60, 100);
 
     private final String name;
     private final int cost;
-    private final double damage;
+    private final float damage;
     private final Function<Player, Integer> function;
     private final EmberInfusionType infusionType;
     private final EmberWeaponType weaponType;
@@ -43,7 +43,7 @@ public enum Ember {
     private final int animationDelay;
     private final int animationDuration;
     private final int cooldown;
-    Ember(String name, int cost, double damage, Function<Player, Integer> function, EmberInfusionType infusionType, EmberWeaponType weaponType, KeyframeAnimation animation, int delay, int animationDuration, int cooldown){
+    Ember(String name, int cost, float damage, Function<Player, Integer> function, EmberInfusionType infusionType, EmberWeaponType weaponType, KeyframeAnimation animation, int delay, int animationDuration, int cooldown){
         this.name = name;
         this.cost = cost;
         this.damage = damage;
@@ -57,7 +57,7 @@ public enum Ember {
     }
     public String getName(){return this.name;}
     public int getCost(){return this.cost;}
-    public double getDamage(){return this.damage;}
+    public float getDamage(){return this.damage;}
     public Function<Player, Integer> getFunction(){return this.function;}
     public EmberInfusionType getInfusionType(){return this.infusionType;}
     public EmberWeaponType getWeaponType(){return this.weaponType;}

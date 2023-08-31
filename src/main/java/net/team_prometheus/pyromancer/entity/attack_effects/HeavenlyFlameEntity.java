@@ -7,9 +7,6 @@ public class HeavenlyFlameEntity extends AttackEffectEntity{
 
     public HeavenlyFlameEntity(EntityType<HeavenlyFlameEntity> entityType, Level level) {
         super(entityType, level);
-    }
-    @Override
-    public void tick(){
-        if(this.tickCount > 8) this.remove(RemovalReason.DISCARDED);
+        this.lifetime = 10;
     }
 }

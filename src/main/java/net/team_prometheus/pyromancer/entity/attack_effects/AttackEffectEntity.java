@@ -8,34 +8,65 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-public class AttackEffectEntity extends Entity {
-    public boolean doesFollowPlayer;
+import java.util.Optional;
+import java.util.UUID;
 
-    private static final EntityDataAccessor<Byte> AEE_ENTITY_FLAGS_ID = SynchedEntityData.defineId(AttackEffectEntity.class, EntityDataSerializers.BYTE);
+public class AttackEffectEntity extends Entity {
+    public int lifetime;
+    private static final EntityDataAccessor<Boolean> FOLLOW_PLAYER = SynchedEntityData.defineId(AttackEffectEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Optional<UUID>> PLAYER_UUID = SynchedEntityData.defineId(AttackEffectEntity.class, EntityDataSerializers.OPTIONAL_UUID);
+    private static final EntityDataAccessor<Float> SIZE = SynchedEntityData.defineId(AttackEffectEntity.class, EntityDataSerializers.FLOAT);
     public AttackEffectEntity(EntityType<? extends AttackEffectEntity> entityType, Level level) {
         super(entityType, level);
+        this.lifetime = 0;
     }
     public void setDoFollowPlayer(boolean b){
-        this.doesFollowPlayer = b;
+        this.entityData.set(FOLLOW_PLAYER, b);
+    }
+    public boolean getDoFollowPlayer(){
+        return this.entityData.get(FOLLOW_PLAYER);
+    }
+    public void setPlayerUuid(UUID uuid){
+        this.entityData.set(PLAYER_UUID, Optional.of(uuid));
+    }
+    public UUID getPlayerUuid(){
+        return this.entityData.get(PLAYER_UUID).isPresent() ? this.entityData.get(PLAYER_UUID).get(): null;
+    }
+    public void setSize(float f){
+        this.entityData.set(SIZE, f);
+    }
+    public float getSize(){
+        return this.entityData.get(SIZE);
     }
     @Override
     protected void defineSynchedData(){
-        this.entityData.define(AEE_ENTITY_FLAGS_ID, (byte) 0);
+        this.entityData.define(FOLLOW_PLAYER, false);
+        this.entityData.define(PLAYER_UUID, Optional.empty());
+        this.entityData.define(SIZE, 1f);
     }
     @Override
     protected void readAdditionalSaveData(@NotNull CompoundTag tag){
-        if(tag.contains("FollowPlayer", 1)) this.setDoFollowPlayer(tag.getBoolean("FollowPlayer"));
+        if(tag.contains("followPlayer", 1)) this.setDoFollowPlayer(tag.getBoolean("followPlayer"));
+        if(tag.contains("owner", 1)) this.setPlayerUuid(tag.getUUID("owner"));
+        if(tag.contains("float", 1)) this.setSize(1f);
     }
     @Override
     protected void addAdditionalSaveData(@NotNull CompoundTag tag){
-        tag.putBoolean("FollowPlayer", this.doesFollowPlayer);
+        if (this.getPlayerUuid() != null) {
+            tag.putUUID("owner", getPlayerUuid());
+        }
+        tag.putBoolean("followPlayer", this.getDoFollowPlayer());
+        tag.putFloat("size", this.getSize());
     }
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
         return new ClientboundAddEntityPacket(this);
+    }
+    @Override
+    public void tick(){
+        if(this.tickCount > lifetime) this.remove(RemovalReason.DISCARDED);
     }
 }
