@@ -6,7 +6,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -16,7 +15,6 @@ import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.entity.EntityUtils;
 import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.entity.attack_effects.HeavenlyFlameEntity;
-import net.team_prometheus.pyromancer.init.ModAttributes;
 import net.team_prometheus.pyromancer.damage_source.ModDamageSource;
 import net.team_prometheus.pyromancer.mob_effects.ModMobEffects;
 
@@ -121,6 +119,7 @@ public class EmberAttacks {
                         heavenlyFlame.setSize(
                                 entity.getBbWidth() / 0.6f
                         );
+                        heavenlyFlame.setPlayerUuid(player.getUUID());
                         heavenlyFlame.setPos(
                                 new Vec3(entity.getX(), entity.getY(), entity.getZ())
                         );
@@ -149,6 +148,7 @@ public class EmberAttacks {
     // HERE GO EFFECTS
 
     @SubscribeEvent
+    @SuppressWarnings("unused")
     public static void ashesOnHurtEffects(LivingHurtEvent event){
         if(event.getEntity() instanceof Player player){
             switch (player.getUseItem().getOrCreateTag().getString("ember")){

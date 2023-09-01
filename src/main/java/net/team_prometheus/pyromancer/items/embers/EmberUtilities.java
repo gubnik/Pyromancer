@@ -59,11 +59,13 @@ public class EmberUtilities {
     public static void playAnimation(Ember ember){
         NetworkCore.sendToServer(new GetAnimationFromServer(ember.getName()));
     }
-    public static void playAnimation(AbstractClientPlayer player, Ember ember){
+    public static void playAnimation(AbstractClientPlayer player, String string){
         if (PyromancerAnimationCore.animationData.get(player) != null) {
             PyromancerAnimationCore.animationData.get(player).replaceAnimationWithFade(new AbstractFadeModifier(2) {
                 @Override protected float getAlpha(String modelName, TransformType type, float progress) {return 0.2f;}
-            }, new KeyframeAnimationPlayer(ember.getAnimation())
+            }, new KeyframeAnimationPlayer(
+                    Ember.isValidEmber(string) ? Ember.byName(string).getAnimation(): Ember.SOULFLAME_IGNITION.getAnimation()
+            )
                     .setFirstPersonMode(FirstPersonMode.THIRD_PERSON_MODEL).
                     setFirstPersonConfiguration(new FirstPersonConfiguration()
                             .setShowLeftArm(true)

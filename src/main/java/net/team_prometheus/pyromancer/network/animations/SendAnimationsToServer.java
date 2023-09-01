@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-import net.team_prometheus.pyromancer.items.embers.Ember;
 import net.team_prometheus.pyromancer.items.embers.EmberUtilities;
 
 import java.util.function.Supplier;
@@ -30,7 +29,7 @@ public class SendAnimationsToServer {
             Minecraft instance = Minecraft.getInstance();
             assert instance.level != null;
             AbstractClientPlayer player = (AbstractClientPlayer) instance.level.getEntity(playerId);
-            EmberUtilities.playAnimation(player, Ember.byName(animId));
+            EmberUtilities.playAnimation(player, animId);
         });
     }
 }

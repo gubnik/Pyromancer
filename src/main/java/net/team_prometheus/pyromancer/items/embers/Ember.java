@@ -30,7 +30,7 @@ public enum Ember {
 
     // HELLBLAZE INFUSION
 
-    HEAVENLY_FLAME("heavenly_flame", 8, 4f, EmberAttacks::heavenlyFlame, EmberInfusionType.HELLBLAZE, EmberWeaponType.SWORD,
+    HEAVENLY_FLAME("heavenly_flame", 1, 4f, EmberAttacks::heavenlyFlame, EmberInfusionType.HELLBLAZE, EmberWeaponType.SWORD,
             AnimationList.HEAVENLY_FLAME(), 10, 60, 100);
 
     private final String name;

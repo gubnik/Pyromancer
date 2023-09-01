@@ -8,6 +8,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
@@ -68,5 +69,10 @@ public class AttackEffectEntity extends Entity {
     @Override
     public void tick(){
         if(this.tickCount > lifetime) this.remove(RemovalReason.DISCARDED);
+        if(this.getDoFollowPlayer() && this.getPlayerUuid() != null){
+            Player player = this.level.getPlayerByUUID(this.getPlayerUuid());
+            assert player != null;
+            this.moveTo(player.getX(), player.getY(), player.getZ());
+        }
     }
 }
