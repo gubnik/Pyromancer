@@ -21,22 +21,8 @@ public class MoltenArmorEffect extends MobEffect {
     }
     @Override
     public @NotNull MobEffect addAttributeModifier(@NotNull Attribute attribute, @NotNull String desc, double amount, AttributeModifier.@NotNull Operation operation) {
-        AttributeModifier attributemodifier = new AttributeModifier(this.MOLTEN_ARMOR_MODIFIER, desc, amount, operation);
+        AttributeModifier attributemodifier = new AttributeModifier(this.MOLTEN_ARMOR_MODIFIER, desc, amount + 1, operation);
         this.attributeModifiers.put(attribute, attributemodifier);
         return this;
     }
-    //@Override
-    //public void applyEffectTick(LivingEntity entity, int level) {
-    //    if(Objects.requireNonNull(entity.getEffect(this)).getDuration() > 2) {
-    //        if (entity.getAttributeValue(Attributes.ARMOR) > 0
-    //                && !Objects.requireNonNull(entity.getAttribute(Attributes.ARMOR))
-    //                .hasModifier(new AttributeModifier(MOLTEN_ARMOR_MODIFIER, "Effect modifier", level * -1, AttributeModifier.Operation.ADDITION))) {
-    //            Objects.requireNonNull(entity.getAttribute(Attributes.ARMOR)).addTransientModifier(
-    //                    new AttributeModifier(MOLTEN_ARMOR_MODIFIER, "Effect modifier", level * -1, AttributeModifier.Operation.ADDITION)
-    //            );
-    //        }
-    //    } else {
-    //        Objects.requireNonNull(entity.getAttribute(Attributes.ARMOR)).removeModifier(MOLTEN_ARMOR_MODIFIER);
-    //    }
-    //}
 }

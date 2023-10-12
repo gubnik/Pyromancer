@@ -33,7 +33,7 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<SizzlingHandFireball>> SIZZLING_HAND_FIREBALL = register("sizzling_hand_fireball",
             EntityType.Builder.<SizzlingHandFireball>of(SizzlingHandFireball::new, MobCategory.MISC)
-                    .setCustomClientFactory(SizzlingHandFireball::new).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10));
+                    .sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10));
     public static final RegistryObject<EntityType<Bombsack>> BOMBSACK = register("bombsack",
             EntityType.Builder.<Bombsack>of(Bombsack::new, MobCategory.MISC)
                     .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10));

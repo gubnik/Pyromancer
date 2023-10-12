@@ -2,6 +2,7 @@ package net.team_prometheus.pyromancer.entity.renderers;
 
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ForgeHooksClient;
@@ -28,5 +29,8 @@ public class EntityRenderersHandler {
         // Register entity renderers
         event.registerEntityRenderer((EntityType<PyromancerBoatEntity>) ModEntities.BOAT.get(), context -> new PyromancerBoatRenderer(context, false));
         event.registerEntityRenderer((EntityType<PyromancerChestBoatEntity>) ModEntities.CHEST_BOAT.get(), context -> new PyromancerBoatRenderer(context, true));
+        event.registerEntityRenderer(ModEntities.SIZZLING_HAND_FIREBALL.get(), context -> new ThrownItemRenderer<>(context, 0.5f, true));
+        event.registerEntityRenderer(ModEntities.BOMBSACK.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.NAPALM_BOMBSACK.get(), ThrownItemRenderer::new);
     }
 }

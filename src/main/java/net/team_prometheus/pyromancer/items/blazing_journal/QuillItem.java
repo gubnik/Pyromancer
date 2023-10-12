@@ -16,8 +16,12 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class QuillItem extends Item {
-    public QuillItem(Properties properties) {
+    public final int blazeConsumptionModifier;
+    public final double pyromancyDamageModifier;
+    public QuillItem(Properties properties, int blazeConsumptionModifier, double pyromancyDamageModifier) {
         super(properties.stacksTo(1));
+        this.blazeConsumptionModifier = blazeConsumptionModifier;
+        this.pyromancyDamageModifier = pyromancyDamageModifier;
     }
     @Override
     public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag){

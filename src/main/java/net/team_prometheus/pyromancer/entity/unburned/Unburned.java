@@ -76,30 +76,6 @@ public class Unburned extends Monster {
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
     }
     public void handleEntityEvent(byte bt){
-        //if(bt == 66){
-        //    this.explosionAnimationState.stop();
-        //    this.kickAnimationState.stop();
-        //    this.attackAnimationState.stop();
-        //    this.jumpingAnimationState.stop();
-        //    this.emergeAnimationState.start(this.tickCount);
-        //}
-        //if(bt == 4) {
-        //    this.explosionAnimationState.stop();
-        //    this.kickAnimationState.stop();
-        //    this.attackAnimationState.start(this.tickCount);
-        //    this.attackTick = this.tickCount;
-        //} else if(bt == 61) {
-        //    this.attackAnimationState.stop();
-        //    this.kickAnimationState.stop();
-        //    this.explosionAnimationState.start(this.tickCount);
-        //    this.explosionTick = this.tickCount;
-        //} else if(bt == 62){
-        //    this.attackAnimationState.stop();
-        //    this.explosionAnimationState.stop();
-        //    this.kickAnimationState.start(this.tickCount);
-        //} else {
-        //    super.handleEntityEvent(bt);
-        //}
         switch ((int) bt) {
             case (66) -> this.emergeAnimationState.start(this.tickCount);
             case (62) -> this.kickAnimationState.start(this.tickCount);

@@ -4,6 +4,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -15,42 +16,62 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.team_prometheus.pyromancer.entity.EntityUtils;
 import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
 import net.team_prometheus.pyromancer.items.ItemUtils;
-import net.team_prometheus.pyromancer.items.MaceItem;
 import net.team_prometheus.pyromancer.mob_effects.ModMobEffects;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 @SuppressWarnings("unused")
 @Mod.EventBusSubscriber
-public class BlazingJournalEnchantmentsHelper {
+public class EnchantmentsHelper {
     @SubscribeEvent
     @SuppressWarnings("unused")
-    public static void effects(AttackEntityEvent event){
+    public static void journalEffects(AttackEntityEvent event){
         Player attacker = event.getEntity();
-        Entity target = event.getTarget();
-        if(attacker.getOffhandItem().getItem() instanceof BlazingJournal
-        && attacker.getOffhandItem().getOrCreateTag().getInt("blaze") > 0
-        && attacker.getAttackStrengthScale(0) > 0.7){
+        LivingEntity target = (LivingEntity) event.getTarget();
+        ItemStack offhandItem = attacker.getOffhandItem();
+        ItemStack mainHandItem = attacker.getMainHandItem();
+        Item attackingItem = attacker.getMainHandItem().getItem();
+
+        if(offhandItem.getItem() instanceof BlazingJournal
+        && offhandItem.getOrCreateTag().getInt("blaze") > 0
+        && attacker.getAttackStrengthScale(0) > 0.7)
+        {
+            for(Enchantment enchantment : offhandItem.getAllEnchantments().keySet()){
+                if(enchantment instanceof BlazingJournalEnchantment blazingJournalEnchantment
+                && blazingJournalEnchantment.getWeaponClass().isInstance(attackingItem)){
+                    blazingJournalEnchantment.getAttack().accept(attacker, target);
+                    ItemUtils.changeBlaze(attacker, -1);
+                }
+            }
+        }
+
+    }
+    @SubscribeEvent
+    public static void regularEffects(LivingDamageEvent event){
+        Entity sourceEntity = event.getSource().getEntity();
+        LivingEntity target = event.getEntity();
+        double modifier;
+        if(sourceEntity instanceof LivingEntity attacker)
+        {
+            ItemStack offhandItem = attacker.getOffhandItem();
+            ItemStack mainHandItem = attacker.getMainHandItem();
             Item attackingItem = attacker.getMainHandItem().getItem();
-            for(Enchantment enchantment : attacker.getOffhandItem().getAllEnchantments().keySet()){
-                if(enchantment.equals(ModEnchantments.BLAZING_STRIKE.get()) && attackingItem instanceof AxeItem){axeAttack(attacker, target);
-                    ItemUtils.changeBlaze(attacker, -1);}
-                if(enchantment.equals(ModEnchantments.INCINERATING_BLOW.get()) && attackingItem instanceof SwordItem){swordAttack(attacker, target);
-                    ItemUtils.changeBlaze(attacker, -1);}
-                if(enchantment.equals(ModEnchantments.COMBUSTION_LAUNCH.get()) && attackingItem instanceof ShovelItem){shovelAttack(attacker, target);
-                    ItemUtils.changeBlaze(attacker, -1);}
-                if(enchantment.equals(ModEnchantments.MELTDOWN.get()) && attackingItem instanceof PickaxeItem){pickaxeAttack(attacker, target);
-                    ItemUtils.changeBlaze(attacker, -1);}
-                if(enchantment.equals(ModEnchantments.INFERNAL_HARVEST.get()) && attackingItem instanceof HoeItem){hoeAttack(attacker, target);
-                    ItemUtils.changeBlaze(attacker, -1);}
-                if(enchantment.equals(ModEnchantments.ERUPTING_VALOR.get()) && attackingItem instanceof MaceItem){maceAttack(attacker, target);
-                    ItemUtils.changeBlaze(attacker, -1);}
+            for(Enchantment enchantment : attacker.getMainHandItem().getAllEnchantments().keySet())
+            {
+                if(enchantment instanceof ModEnchantment modEnchantment)
+                {
+                    modifier = modEnchantment.damageModifier(mainHandItem, mainHandItem.getEnchantmentLevel(modEnchantment), attacker, target);
+                    event.setAmount(event.getAmount() * (float) modifier);
+                }
             }
         }
     }
@@ -63,8 +84,9 @@ public class BlazingJournalEnchantmentsHelper {
             double y = attacker.getY();
             double z = attacker.getZ();
             for (int i = 180; i > 0; i--) {
-                double new_x = x + attacker.getLookAngle().x * modifier * Math.sin(vertical_degree + Math.toRadians(i));
-                double new_z = z + attacker.getLookAngle().z * modifier * Math.sin(vertical_degree + Math.toRadians(i));
+                double sin_modifier = Math.sin(vertical_degree + Math.toRadians(i));
+                double new_x = x + attacker.getLookAngle().x * modifier * sin_modifier;
+                double new_z = z + attacker.getLookAngle().z * modifier * sin_modifier;
                 double new_y = y + Math.cos(vertical_degree + Math.toRadians(i)) * modifier;
                 level.sendParticles(ParticleTypes.FLAME,
                         new_x,
@@ -125,8 +147,7 @@ public class BlazingJournalEnchantmentsHelper {
         if(target instanceof LivingEntity livTarget) {
             if (livTarget.hasEffect(ModMobEffects.MOLTEN_ARMOR.get())) {
                 livTarget.addEffect(new MobEffectInstance(ModMobEffects.MOLTEN_ARMOR.get(), 100,
-                        Objects.requireNonNull(
-                                livTarget.getEffect(ModMobEffects.MOLTEN_ARMOR.get())).getAmplifier())
+                                livTarget.getEffect(ModMobEffects.MOLTEN_ARMOR.get()).getAmplifier())
                 );
             } else {
                 livTarget.addEffect((new MobEffectInstance(ModMobEffects.MOLTEN_ARMOR.get(), 100, 0)));
@@ -134,6 +155,32 @@ public class BlazingJournalEnchantmentsHelper {
         }
     }
     public static void hoeAttack(Player attacker, Entity target){
+        double dx, dy, dz;
+        double[] VALUES;
+        double MAX;
+        Vec3 direction;
+        double cx = attacker.getX();
+        double cy = attacker.getY() + 1.5;
+        double cz = attacker.getZ();
+        for(LivingEntity entity : EntityUtils.entityCollector(new Vec3(cx, cy, cz), 8, attacker.level)){
+            if(!entity.equals(attacker)){
+                dx = attacker.getX() - target.getX();
+                dy = attacker.getY() - target.getY();
+                dz = attacker.getZ() - target.getZ();
+                VALUES = new double[]{
+                        Mth.abs((float)dx),
+                        Mth.abs((float)dy),
+                        Mth.abs((float)dz)};
+                MAX = Arrays.stream(VALUES).max().getAsDouble();
+                dx = dx / MAX;
+                dy = dy / MAX;
+                dz = dz / MAX;
+                direction = new Vec3(dx*2, dy*2, dz*2);
+
+                entity.setDeltaMovement(direction);
+            }
+        }
+
         // Attacks pull nearby enemies closer
     }
     public static void maceAttack(Player attacker, Entity target){

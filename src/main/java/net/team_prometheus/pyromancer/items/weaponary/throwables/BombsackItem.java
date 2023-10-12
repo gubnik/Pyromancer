@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.items.throwables;
+package net.team_prometheus.pyromancer.items.weaponary.throwables;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

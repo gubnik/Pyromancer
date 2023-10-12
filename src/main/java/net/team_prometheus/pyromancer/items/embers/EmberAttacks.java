@@ -11,7 +11,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.entity.EntityUtils;
 import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.entity.attack_effects.HeavenlyFlameEntity;
@@ -23,7 +22,7 @@ import java.util.Objects;
 
 @Mod.EventBusSubscriber
 public class EmberAttacks {
-    public static int soulflameIgnition(Player player){
+    public static void soulflameIgnition(Player player){
         Ember ember = Ember.SOULFLAME_IGNITION;
         float damage = ember.getDamage();
         //
@@ -66,10 +65,9 @@ public class EmberAttacks {
                 }
             }
         }
-        return 0;
     }
 
-    public static int ashenForm(Player player){
+    public static void ashenForm(Player player){
         double x = player.getX();
         double y = player.getY() + 1.5;
         double z = player.getZ();
@@ -89,27 +87,13 @@ public class EmberAttacks {
                 entity.hurt(ModDamageSource.ashenForm(player), damage);
             }
         }
-        return 0;
     }
 
-    public static int heavenlyFlame(Player player){
-        Ember ember = Ember.HEAVENLY_FLAME;
+    public static void heavenlyFlame(Player player){
         double x = player.getX();
         double y = player.getY();
         double z = player.getZ();
-        heavenlyFlameSupport(x, y, z, player, ember);
-        for(int i = 0; i < 3; i++) {
-            PyromancerMod.queueServerWork(i*20, () -> heavenlyFlameSupport(
-                    player.getX(),
-                    player.getY(),
-                    player.getZ(),
-                    player, ember));
-        }
-        return 0;
-    }
-
-    public static void heavenlyFlameSupport(double x, double y, double z, Player player, Ember ember){
-        float damage = ember.getDamage();
+        float damage = Ember.HEAVENLY_FLAME.getDamage();
         if(player.level instanceof ServerLevel level) {
             for (int i = 0; i < 3; i++) {
                 level.sendParticles(ParticleTypes.FLAME, x, y + 2.25, z, (i+1)*10, (i+1)*0.5, 0.1, (i+1)*0.5, 0);
@@ -130,7 +114,8 @@ public class EmberAttacks {
             }
         }
     }
-    public static int aegisOfFire(Player player){
+
+    public static void aegisOfFire(Player player){
         Ember ember = Ember.AEGIS_OF_FIRE;
         for(LivingEntity entity : EntityUtils.entityCollector(new Vec3(player.getX(), player.getY() + 1, player.getZ()), 4, player.level)){
             if(!entity.equals(player)){
@@ -138,12 +123,13 @@ public class EmberAttacks {
                 entity.addEffect(new MobEffectInstance(ModMobEffects.MOLTEN_ARMOR.get(), 100,
                         entity.hasEffect(ModMobEffects.MOLTEN_ARMOR.get()) ? Objects.requireNonNull(entity.getEffect(ModMobEffects.MOLTEN_ARMOR.get())).getAmplifier() : 0));
             }
-        } return 0;
+        }
     }
 
-    public static int tornadoOfSouls(Player player) {
-        return 0;
+    public static void tornadoOfSouls(Player player) {
     }
+
+    public static void empty(Player player){}
 
     // HERE GO EFFECTS
 
@@ -161,7 +147,7 @@ public class EmberAttacks {
                 }
                 case("aegis_of_fire") ->{
                     aegisOfFire(player);
-                    event.setAmount(event.getAmount() * 0.2f);
+                    event.setAmount(event.getAmount() * 0.1f);
                 }
             }
         }

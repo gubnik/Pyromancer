@@ -75,4 +75,7 @@ public class EmberUtilities {
                     ));
         }
     }
+    public static void stopAnimation(Player player){
+        if(player instanceof AbstractClientPlayer abstractClientPlayer) EmberUtilities.playAnimation(abstractClientPlayer, "empty");
+    }
 }
