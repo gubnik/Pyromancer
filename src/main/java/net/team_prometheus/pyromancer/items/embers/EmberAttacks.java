@@ -13,7 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.team_prometheus.pyromancer.entity.EntityUtils;
 import net.team_prometheus.pyromancer.entity.ModEntities;
-import net.team_prometheus.pyromancer.entity.attack_effects.HeavenlyFlameEntity;
+import net.team_prometheus.pyromancer.entity.attack_effects.FirePillarEntity;
 import net.team_prometheus.pyromancer.damage_source.ModDamageSource;
 import net.team_prometheus.pyromancer.mob_effects.ModMobEffects;
 
@@ -99,7 +99,7 @@ public class EmberAttacks {
                 level.sendParticles(ParticleTypes.FLAME, x, y + 2.25, z, (i+1)*10, (i+1)*0.5, 0.1, (i+1)*0.5, 0);
                 for(LivingEntity entity : EntityUtils.entityCollector(new Vec3(x, y, z), 8, player.level)){
                     if(!entity.equals(player)){
-                        HeavenlyFlameEntity heavenlyFlame = new HeavenlyFlameEntity(ModEntities.HEAVENLY_FLAME.get(), level);
+                        FirePillarEntity heavenlyFlame = new FirePillarEntity(ModEntities.FIRE_PILLAR.get(), level);
                         heavenlyFlame.setSize(
                                 entity.getBbWidth() / 0.6f
                         );

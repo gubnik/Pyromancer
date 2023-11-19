@@ -40,8 +40,8 @@ public class ModFeatures {
                     .add(ModBlocks.BLAZING_POPPY.get().defaultBlockState(), 13)
                     .add(ModBlocks.NETHER_LILY.get().defaultBlockState(), 11)
                     .add(ModBlocks.PYROWOOD_SAPLING.get().defaultBlockState(), 3))
-                    , 64, 32));
-    public static final RegistryObject<ConfiguredFeature<BlockColumnConfiguration, ?>> SIZZLING_VINE = register("cave_vine",
+                    , 32, 16));
+    public static final RegistryObject<ConfiguredFeature<BlockColumnConfiguration, ?>> SIZZLING_VINE = register("sizzling_vines",
             Feature.BLOCK_COLUMN, ()-> new BlockColumnConfiguration(
                     List.of(BlockColumnConfiguration.layer(
                             new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()

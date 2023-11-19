@@ -29,4 +29,7 @@ public class ModDamageSource {
     public static DamageSource sizzlingHand(Entity player){
         return new EntityPyromancyDamageSource("sizzling_hand", player).setFlame().setProjectile();
     }
+    public static DamageSource spark(Entity player){
+        return new EntityPyromancyDamageSource("spark", player).setHellblaze().setProjectile();
+    }
 }

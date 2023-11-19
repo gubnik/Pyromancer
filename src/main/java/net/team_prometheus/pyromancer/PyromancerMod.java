@@ -17,25 +17,25 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
+import net.team_prometheus.pyromancer.blocks.ModBlocks;
+import net.team_prometheus.pyromancer.blocks.block_entities.ModBlockEntities;
+import net.team_prometheus.pyromancer.enchantments.ModEnchantments;
+import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.entity.models.HeavenlyFlameModel;
 import net.team_prometheus.pyromancer.entity.models.PyromancerArmorModel;
-import net.team_prometheus.pyromancer.entity.renderers.HeavenlyFlameRenderer;
+import net.team_prometheus.pyromancer.entity.models.UnburnedModel;
+import net.team_prometheus.pyromancer.entity.renderers.FirePillarRenderer;
+import net.team_prometheus.pyromancer.entity.renderers.UnburnedRenderer;
+import net.team_prometheus.pyromancer.init.ModAttributes;
+import net.team_prometheus.pyromancer.init.ModParticleTypes;
 import net.team_prometheus.pyromancer.init.PyromancerConfig;
-import net.team_prometheus.pyromancer.network.NetworkCore;
+import net.team_prometheus.pyromancer.items.ModItems;
 import net.team_prometheus.pyromancer.mob_effects.ModMobEffects;
+import net.team_prometheus.pyromancer.network.NetworkCore;
 import net.team_prometheus.pyromancer.worldgen.biomes.ModBiomes;
 import net.team_prometheus.pyromancer.worldgen.biomes.ModNetherBiomes;
 import net.team_prometheus.pyromancer.worldgen.carvers.ModCarvers;
 import net.team_prometheus.pyromancer.worldgen.features.ModNetherPlacements;
-import net.team_prometheus.pyromancer.blocks.ModBlocks;
-import net.team_prometheus.pyromancer.blocks.block_entities.ModBlockEntities;
-import net.team_prometheus.pyromancer.entity.ModEntities;
-import net.team_prometheus.pyromancer.entity.models.UnburnedModel;
-import net.team_prometheus.pyromancer.entity.renderers.UnburnedRenderer;
-import net.team_prometheus.pyromancer.init.ModAttributes;
-import net.team_prometheus.pyromancer.enchantments.ModEnchantments;
-import net.team_prometheus.pyromancer.init.ModParticleTypes;
-import net.team_prometheus.pyromancer.items.ModItems;
 import net.team_prometheus.pyromancer.worldgen.trees.foliage.ModFoliageTypes;
 import net.team_prometheus.pyromancer.worldgen.trees.trunks.ModTrunkTypes;
 import org.slf4j.Logger;
@@ -56,7 +56,7 @@ public class PyromancerMod {
     public static final UUID MACE_CC_RANGE_MODIFIER_UUID = UUID.fromString("2df56af0-1e64-11ee-be56-0242ac120002");
     public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURE_REGISTER = DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, MOD_ID);
 
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     public PyromancerMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -94,7 +94,7 @@ public class PyromancerMod {
     }
     private void setupClient(final FMLCommonSetupEvent event) {
         EntityRenderers.register(ModEntities.UNBURNED.get(), UnburnedRenderer::new);
-        EntityRenderers.register(ModEntities.HEAVENLY_FLAME.get(), HeavenlyFlameRenderer::new);
+        EntityRenderers.register(ModEntities.FIRE_PILLAR.get(), FirePillarRenderer::new);
     }
     private void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(UnburnedModel.LAYER_LOCATION, UnburnedModel::createBodyLayer);

@@ -14,8 +14,10 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlazingJournal extends Item {
-    public BlazingJournal(Properties properties) {
+    public final boolean canHoldQuill;
+    public BlazingJournal(Properties properties, boolean canHoldQuill) {
         super(properties.stacksTo(1));
+        this.canHoldQuill = canHoldQuill;
     }
 
     public boolean isEnchantable(@NotNull ItemStack itemStack){return true;}

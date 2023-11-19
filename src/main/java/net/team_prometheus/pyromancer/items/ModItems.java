@@ -16,8 +16,10 @@ import net.team_prometheus.pyromancer.init.ModTabs;
 import net.team_prometheus.pyromancer.items.armor.PyromancerArmorItem;
 import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
 import net.team_prometheus.pyromancer.items.blazing_journal.QuillItem;
+import net.team_prometheus.pyromancer.items.blazing_journal.compendium.CompendiumOfFlame;
 import net.team_prometheus.pyromancer.items.coating.CoatingItem;
 import net.team_prometheus.pyromancer.items.weaponary.cryomancy.ConductorItem;
+import net.team_prometheus.pyromancer.items.weaponary.pyromancy.CourtOfEmbersItem;
 import net.team_prometheus.pyromancer.items.weaponary.pyromancy.SizzlingHandItem;
 import net.team_prometheus.pyromancer.items.weaponary.throwables.BombsackItem;
 import net.team_prometheus.pyromancer.items.weaponary.throwables.NapalmBombsackItem;
@@ -52,7 +54,9 @@ public class ModItems {
 
     // journal
     public static RegistryObject<Item> BLAZING_JOURNAL = ITEMS.register("blazing_journal",
-            () -> new BlazingJournal(new Item.Properties().tab(ModTabs.PYROMANCER_TAB)));
+            () -> new BlazingJournal(new Item.Properties().tab(ModTabs.PYROMANCER_TAB), true));
+    public static RegistryObject<Item> COMPENDIUM_OF_FLAME = ITEMS.register("compendium_of_flame",
+            () -> new CompendiumOfFlame(new Item.Properties().tab(ModTabs.PYROMANCER_TAB), true));
 
 
     // quills
@@ -65,6 +69,8 @@ public class ModItems {
     // pyromancies
     public static RegistryObject<Item> SIZZLING_HAND = ITEMS.register("sizzling_hand",
             () -> new SizzlingHandItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB).stacksTo(1)));
+    public static RegistryObject<Item> COURT_OF_EMBERS = ITEMS.register("court_of_embers",
+            () -> new CourtOfEmbersItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB).stacksTo(1)));
     public static RegistryObject<Item> EMBER = ITEMS.register("ember",
             () -> new EmberItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB).stacksTo(1)));
 

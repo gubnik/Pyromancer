@@ -10,18 +10,18 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.team_prometheus.pyromancer.PyromancerMod;
-import net.team_prometheus.pyromancer.entity.attack_effects.HeavenlyFlameEntity;
+import net.team_prometheus.pyromancer.entity.attack_effects.FirePillarEntity;
 import net.team_prometheus.pyromancer.entity.models.HeavenlyFlameModel;
 import org.jetbrains.annotations.NotNull;
 
-public class HeavenlyFlameRenderer extends EntityRenderer<HeavenlyFlameEntity> {
-    private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(PyromancerMod.MOD_ID, "textures/entity/heavenly_flame.png");
-    private final HeavenlyFlameModel<HeavenlyFlameEntity> model;
-    public HeavenlyFlameRenderer(EntityRendererProvider.Context context) {
+public class FirePillarRenderer extends EntityRenderer<FirePillarEntity> {
+    private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(PyromancerMod.MOD_ID, "textures/entity/fire_pillar.png");
+    private final HeavenlyFlameModel<FirePillarEntity> model;
+    public FirePillarRenderer(EntityRendererProvider.Context context) {
         super(context);
         this.model = new HeavenlyFlameModel<>(context.bakeLayer(HeavenlyFlameModel.LAYER_LOCATION));
     }
-    public void render(@NotNull HeavenlyFlameEntity entity, float p_114529_, float p_114530_, @NotNull PoseStack poseStack, MultiBufferSource multiBufferSource, int p_114533_){
+    public void render(@NotNull FirePillarEntity entity, float p_114529_, float p_114530_, @NotNull PoseStack poseStack, MultiBufferSource multiBufferSource, int p_114533_){
         VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityTranslucentEmissive(TEXTURE_LOCATION));
         int tick = entity.tickCount;
         float scale = entity.getSize();
@@ -39,7 +39,7 @@ public class HeavenlyFlameRenderer extends EntityRenderer<HeavenlyFlameEntity> {
         super.render(entity, p_114529_, p_114530_, poseStack, multiBufferSource, p_114533_);
     }
     @Override
-    public @NotNull ResourceLocation getTextureLocation(@NotNull HeavenlyFlameEntity p_114482_) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull FirePillarEntity p_114482_) {
         return TEXTURE_LOCATION;
     }
 }

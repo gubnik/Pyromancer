@@ -9,6 +9,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.network.animations.GetAnimationFromServer;
 import net.team_prometheus.pyromancer.network.animations.SendAnimationsToServer;
+import net.team_prometheus.pyromancer.network.key.SwapPyromancyKeyMessage;
 
 public class NetworkCore {
     private static SimpleChannel INSTANCE;
@@ -26,6 +27,11 @@ public class NetworkCore {
                 .decoder(GetAnimationFromServer::new)
                 .encoder(GetAnimationFromServer::toBytes)
                 .consumerMainThread(GetAnimationFromServer::handle)
+                .add();
+        network.messageBuilder(SwapPyromancyKeyMessage.class, id++, NetworkDirection.PLAY_TO_SERVER)
+                .decoder(SwapPyromancyKeyMessage::new)
+                .encoder(SwapPyromancyKeyMessage::toBytes)
+                .consumerMainThread(SwapPyromancyKeyMessage::handle)
                 .add();
     }
     public static <MSG> void sendToServer(MSG message) {

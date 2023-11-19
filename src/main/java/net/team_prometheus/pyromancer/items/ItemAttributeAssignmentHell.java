@@ -13,6 +13,7 @@ import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.enchantments.ModEnchantments;
 import net.team_prometheus.pyromancer.init.ModAttributes;
 import net.team_prometheus.pyromancer.items.blazing_journal.QuillItem;
+import net.team_prometheus.pyromancer.items.blazing_journal.compendium.CompendiumOfFlame;
 import net.team_prometheus.pyromancer.items.weaponary.pyromancy.PyromancyItem;
 
 @SuppressWarnings("unused")
@@ -48,6 +49,18 @@ public class ItemAttributeAssignmentHell {
             event.addModifier(ModAttributes.PYROMANCY_DAMAGE.get(),
                     new AttributeModifier(PyromancerMod.BASE_PYROMANCY_DAMAGE_UUID, "Weapon modifier",
                             pyromancyItem.pyromancyDamageModifier, AttributeModifier.Operation.ADDITION));
+        }
+        if(item instanceof CompendiumOfFlame && event.getSlotType() == EquipmentSlot.MAINHAND){
+            ItemStack activeItem = ItemUtils.getItemFromItem(itemStack, itemStack.getOrCreateTag().getInt("active_slot"));
+            if(activeItem != ItemStack.EMPTY){
+                PyromancyItem pyromancyItem = (PyromancyItem) activeItem.getItem();
+                event.addModifier(ModAttributes.BLAZE_CONSUMPTION.get(),
+                        new AttributeModifier(PyromancerMod.BASE_BLAZE_CONSUMPTION_UUID, "Weapon modifier",
+                                pyromancyItem.blazeConsumptionModifier, AttributeModifier.Operation.ADDITION));
+                event.addModifier(ModAttributes.PYROMANCY_DAMAGE.get(),
+                        new AttributeModifier(PyromancerMod.BASE_PYROMANCY_DAMAGE_UUID, "Weapon modifier",
+                                pyromancyItem.pyromancyDamageModifier, AttributeModifier.Operation.ADDITION));
+            }
         }
 
         if(item instanceof MaceItem mace && event.getSlotType() == EquipmentSlot.MAINHAND){

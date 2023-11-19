@@ -10,14 +10,14 @@ import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.entity.projectiles.SizzlingHandFireball;
 import net.team_prometheus.pyromancer.items.ItemUtils;
 import org.jetbrains.annotations.NotNull;
-public class SizzlingHandItem extends PyromancyItem {
-    public SizzlingHandItem(Properties properties) {
-        super(properties, 1, 4);
-        this.SHRINK = true;
+public class CourtOfEmbersItem extends PyromancyItem{
+    public CourtOfEmbersItem(Properties properties) {
+        super(properties, 2, 2);
+        this.SHRINK = false;
     }
     @Override
     public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
-        return UseAnim.BOW;
+        return UseAnim.SPEAR;
     }
     @Override
     public int getUseDuration(@NotNull ItemStack itemstack) {
@@ -28,7 +28,7 @@ public class SizzlingHandItem extends PyromancyItem {
         if(time % 3 == 0){
             if (entity instanceof Player player){
                 EntityUtils.shootProjectile(new SizzlingHandFireball(ModEntities.SIZZLING_HAND_FIREBALL.get(), level).setParameters(1.5f, 10),
-                        player, 1.5f, 0.1f);
+                        player, 1.5f, 0.3f);
                 ItemUtils.changeBlaze(player, -1 * getBlazeCost(entity));
             }
         }
