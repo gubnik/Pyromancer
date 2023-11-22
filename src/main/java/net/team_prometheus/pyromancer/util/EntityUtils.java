@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.entity;
+package net.team_prometheus.pyromancer.util;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;

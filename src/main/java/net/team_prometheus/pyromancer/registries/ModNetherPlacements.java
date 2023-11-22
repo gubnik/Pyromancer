@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.worldgen.features;
+package net.team_prometheus.pyromancer.registries;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -11,7 +11,6 @@ import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
-import net.team_prometheus.pyromancer.blocks.ModBlocks;
 
 import java.util.List;
 import java.util.function.Supplier;

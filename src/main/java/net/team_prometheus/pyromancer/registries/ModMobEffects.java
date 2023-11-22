@@ -1,10 +1,12 @@
-package net.team_prometheus.pyromancer.mob_effects;
+package net.team_prometheus.pyromancer.registries;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
+import net.team_prometheus.pyromancer.mob_effects.IncinerationEffect;
+import net.team_prometheus.pyromancer.mob_effects.MoltenArmorEffect;
 import net.team_prometheus.pyromancer.mob_effects.coating_effects.MercuryCoatingEffect;
 
 public class ModMobEffects {

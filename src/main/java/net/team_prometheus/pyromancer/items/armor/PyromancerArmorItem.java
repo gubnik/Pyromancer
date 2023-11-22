@@ -13,8 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.team_prometheus.pyromancer.entity.models.PyromancerArmorModel;
-import net.team_prometheus.pyromancer.init.ModAttributes;
-import net.team_prometheus.pyromancer.init.ModTabs;
+import net.team_prometheus.pyromancer.registries.ModAttributes;
+import net.team_prometheus.pyromancer.registries.ModTabs;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;

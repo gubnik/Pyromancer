@@ -15,7 +15,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.team_prometheus.pyromancer.items.ModItems;
+import net.team_prometheus.pyromancer.registries.ModItems;
+import org.jetbrains.annotations.NotNull;
 
 public class PyromancerChestBoatEntity extends ChestBoat {
     public PyromancerChestBoatEntity(EntityType<? extends Boat> p_219869_, Level p_219870_) {
@@ -26,7 +27,7 @@ public class PyromancerChestBoatEntity extends ChestBoat {
         super(p_219872_, p_219873_, p_219874_, p_219875_);
     }
     @Override
-    public Packet<?> getAddEntityPacket()
+    public @NotNull Packet<?> getAddEntityPacket()
     {
         return new ClientboundAddEntityPacket(this);
     }
@@ -47,7 +48,7 @@ public class PyromancerChestBoatEntity extends ChestBoat {
     }
 
     @Override
-    protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos)
+    protected void checkFallDamage(double y, boolean onGround, @NotNull BlockState state, @NotNull BlockPos pos)
     {
         this.lastYd = this.getDeltaMovement().y;
         if (!this.isPassenger())
@@ -91,7 +92,7 @@ public class PyromancerChestBoatEntity extends ChestBoat {
     }
 
     @Override
-    public Item getDropItem()
+    public @NotNull Item getDropItem()
     {
         switch (PyromancerBoatEntity.ModelType.byId(this.entityData.get(DATA_ID_TYPE)))
         {
@@ -113,11 +114,11 @@ public class PyromancerChestBoatEntity extends ChestBoat {
 
     @Deprecated
     @Override
-    public void setType(Type vanillaType) {}
+    public void setType(@NotNull Type vanillaType) {}
 
     @Deprecated
     @Override
-    public Type getBoatType()
+    public @NotNull Type getBoatType()
     {
         return Type.OAK;
     }

@@ -7,6 +7,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
+import net.team_prometheus.pyromancer.registries.ModFoliageTypes;
 import org.jetbrains.annotations.NotNull;
 
 public class NetherPyrowoodFoliagePlacer extends FancyFoliagePlacer {

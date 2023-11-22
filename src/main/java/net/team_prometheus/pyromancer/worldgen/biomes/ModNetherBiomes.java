@@ -5,8 +5,8 @@ import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.team_prometheus.pyromancer.PyromancerMod;
-import net.team_prometheus.pyromancer.worldgen.carvers.ModCarvers;
-import net.team_prometheus.pyromancer.worldgen.features.ModNetherPlacements;
+import net.team_prometheus.pyromancer.registries.ModCarvers;
+import net.team_prometheus.pyromancer.registries.ModNetherPlacements;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 

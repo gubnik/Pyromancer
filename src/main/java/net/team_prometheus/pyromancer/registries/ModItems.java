@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.items;
+package net.team_prometheus.pyromancer.registries;
 
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.CreativeModeTab;
@@ -10,20 +10,20 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
-import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.entity.PyromancerBoatEntity;
-import net.team_prometheus.pyromancer.init.ModTabs;
+import net.team_prometheus.pyromancer.items.EmberItem;
+import net.team_prometheus.pyromancer.items.PyromancerBoatItem;
 import net.team_prometheus.pyromancer.items.armor.PyromancerArmorItem;
-import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
+import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournalItem;
 import net.team_prometheus.pyromancer.items.blazing_journal.QuillItem;
-import net.team_prometheus.pyromancer.items.blazing_journal.compendium.CompendiumOfFlame;
 import net.team_prometheus.pyromancer.items.coating.CoatingItem;
+import net.team_prometheus.pyromancer.items.compendium.CompendiumOfFlame;
+import net.team_prometheus.pyromancer.items.weaponary.MaceItem;
 import net.team_prometheus.pyromancer.items.weaponary.cryomancy.ConductorItem;
 import net.team_prometheus.pyromancer.items.weaponary.pyromancy.CourtOfEmbersItem;
 import net.team_prometheus.pyromancer.items.weaponary.pyromancy.SizzlingHandItem;
 import net.team_prometheus.pyromancer.items.weaponary.throwables.BombsackItem;
 import net.team_prometheus.pyromancer.items.weaponary.throwables.NapalmBombsackItem;
-import net.team_prometheus.pyromancer.mob_effects.ModMobEffects;
 
 @SuppressWarnings("unused")
 public class ModItems {
@@ -54,7 +54,7 @@ public class ModItems {
 
     // journal
     public static RegistryObject<Item> BLAZING_JOURNAL = ITEMS.register("blazing_journal",
-            () -> new BlazingJournal(new Item.Properties().tab(ModTabs.PYROMANCER_TAB), true));
+            () -> new BlazingJournalItem(new Item.Properties().tab(ModTabs.PYROMANCER_TAB), true));
     public static RegistryObject<Item> COMPENDIUM_OF_FLAME = ITEMS.register("compendium_of_flame",
             () -> new CompendiumOfFlame(new Item.Properties().tab(ModTabs.PYROMANCER_TAB), true));
 

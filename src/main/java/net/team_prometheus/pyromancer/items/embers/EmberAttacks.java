@@ -11,11 +11,11 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.team_prometheus.pyromancer.entity.EntityUtils;
-import net.team_prometheus.pyromancer.entity.ModEntities;
+import net.team_prometheus.pyromancer.util.EntityUtils;
+import net.team_prometheus.pyromancer.registries.ModEntities;
 import net.team_prometheus.pyromancer.entity.attack_effects.FirePillarEntity;
 import net.team_prometheus.pyromancer.damage_source.ModDamageSource;
-import net.team_prometheus.pyromancer.mob_effects.ModMobEffects;
+import net.team_prometheus.pyromancer.registries.ModMobEffects;
 
 import java.util.Objects;
 

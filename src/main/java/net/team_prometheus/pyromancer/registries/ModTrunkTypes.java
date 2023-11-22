@@ -1,10 +1,11 @@
-package net.team_prometheus.pyromancer.worldgen.trees.trunks;
+package net.team_prometheus.pyromancer.registries;
 
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
+import net.team_prometheus.pyromancer.worldgen.trees.trunks.NetherPyrowoodTrunkPlacer;
 
 public class ModTrunkTypes {
     //public static TrunkPlacerType<NetherPyrowoodTrunkPlacer> NETHER_PYROWOOD_TRUNK_PLACER; //= TrunkPlacerType.register("nether_pyrowood_trunk_placer", NetherPyrowoodTrunkPlacer.CODEC);

@@ -20,10 +20,10 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.team_prometheus.pyromancer.entity.EntityUtils;
-import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
-import net.team_prometheus.pyromancer.items.ItemUtils;
-import net.team_prometheus.pyromancer.mob_effects.ModMobEffects;
+import net.team_prometheus.pyromancer.util.EntityUtils;
+import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournalItem;
+import net.team_prometheus.pyromancer.util.ItemUtils;
+import net.team_prometheus.pyromancer.registries.ModMobEffects;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -41,7 +41,7 @@ public class EnchantmentsHelper {
         ItemStack mainHandItem = attacker.getMainHandItem();
         Item attackingItem = attacker.getMainHandItem().getItem();
 
-        if(offhandItem.getItem() instanceof BlazingJournal
+        if(offhandItem.getItem() instanceof BlazingJournalItem
         && offhandItem.getOrCreateTag().getInt("blaze") > 0
         && attacker.getAttackStrengthScale(0) > 0.7)
         {
@@ -180,13 +180,10 @@ public class EnchantmentsHelper {
                 entity.setDeltaMovement(direction);
             }
         }
-
         // Attacks pull nearby enemies closer
     }
     public static void maceAttack(Player attacker, Entity target){
         // Attacks performed after being hurt create an explosion of fire at your position
         // TODO: figure this shit out, it sounds cool as fuck but also troublesome as fuck
     }
-    // TODO: implement those
-    // TODO: to future me, don't forget to make these thingies ignite enemies
 }

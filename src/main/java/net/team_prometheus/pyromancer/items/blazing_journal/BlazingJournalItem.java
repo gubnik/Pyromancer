@@ -13,9 +13,9 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class BlazingJournal extends Item {
+public class BlazingJournalItem extends Item {
     public final boolean canHoldQuill;
-    public BlazingJournal(Properties properties, boolean canHoldQuill) {
+    public BlazingJournalItem(Properties properties, boolean canHoldQuill) {
         super(properties.stacksTo(1));
         this.canHoldQuill = canHoldQuill;
     }
@@ -45,6 +45,6 @@ public class BlazingJournal extends Item {
         }
     }
     public static boolean isJournal(Item item){
-        return(item instanceof BlazingJournal);
+        return(item instanceof BlazingJournalItem);
     }
 }

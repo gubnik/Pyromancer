@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.worldgen.features;
+package net.team_prometheus.pyromancer.registries;
 
 import net.minecraft.core.Direction;
 import net.minecraft.util.random.SimpleWeightedRandomList;
@@ -19,7 +19,6 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.RandomizedIntSt
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
-import net.team_prometheus.pyromancer.blocks.ModBlocks;
 import net.team_prometheus.pyromancer.blocks.SizzlingVineBlock;
 import net.team_prometheus.pyromancer.worldgen.trees.trunks.NetherPyrowoodTrunkPlacer;
 

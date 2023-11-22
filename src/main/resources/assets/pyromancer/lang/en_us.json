@@ -28,8 +28,8 @@
   "desc.embers.heavenly_flame.effect": "Raise your weapon to the skies summoning a power of Sun",
   "desc.embers.aegis_of_fire": "Aegis of Fire",
   "desc.embers.aegis_of_fire.effect": "Take a defencive stance covering yourself in a barrier of fire",
-  "desc.embers.tornado_of_souls": "Tornado of Souls",
-  "desc.embers.tornado_of_souls.effect": "Put your grief in a swing of an axe to summon a tornado of souls",
+  "desc.embers.tornado_of_souls": "Tornado of Souls (WIP)",
+  "desc.embers.tornado_of_souls.effect": "Put your grief in a swing of an axe to summon a tornado of souls (WIP)",
 
   "entity.pyromancer.unburned": "Unburned",
 
@@ -49,6 +49,9 @@
   "item.pyromancer.netherite_mace": "Netherite Mace",
 
   "item.pyromancer.sizzling_hand": "Sizzling Hand",
+  "item.pyromancer.court_of_embers": "Court of Embers",
+
+  "item.pyromancer.conductor": "Conductor",
 
   "itemGroup.pyromancer_tab": "Pyromancer"
 }

@@ -5,7 +5,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.team_prometheus.pyromancer.init.ModAttributes;
+import net.team_prometheus.pyromancer.registries.ModAttributes;
 import net.team_prometheus.pyromancer.items.embers.Ember;
 @Mod.EventBusSubscriber
 public class PyromancyDamageSource extends DamageSource {

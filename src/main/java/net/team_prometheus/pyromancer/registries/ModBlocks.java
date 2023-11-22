@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.blocks;
+package net.team_prometheus.pyromancer.registries;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,7 +17,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
-import net.team_prometheus.pyromancer.items.ModItems;
+import net.team_prometheus.pyromancer.blocks.FirebriarBlock;
+import net.team_prometheus.pyromancer.blocks.SizzlingVineBlock;
+import net.team_prometheus.pyromancer.blocks.WeirdSaplingBlock;
+import net.team_prometheus.pyromancer.util.BlocksUtils;
 import net.team_prometheus.pyromancer.worldgen.trees.tree_growers.PyrowoodTreeGrower;
 import org.jetbrains.annotations.NotNull;
 
@@ -56,7 +59,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> PYROMOSS_SPROUTS = registerBlock("pyromoss_sprouts",
             () -> new TallGrassBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XYZ)){
         protected boolean mayPlaceOn(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos) {
-            return BlocksUtil.flamingGrovePlantable(blockState);
+            return BlocksUtils.flamingGrovePlantable(blockState);
         }
             }, CreativeModeTab.TAB_DECORATIONS);
 
@@ -69,14 +72,14 @@ public class ModBlocks {
             () -> new FlowerBlock(MobEffects.HARM, 1, BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_ORANGE).strength(0,0).sound(SoundType.HARD_CROP).noCollission()){
                 @Override
                 protected boolean mayPlaceOn(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos) {
-                    return BlocksUtil.flamingGrovePlantable(blockState);
+                    return BlocksUtils.flamingGrovePlantable(blockState);
                 }
             }, CreativeModeTab.TAB_DECORATIONS);
     public static final RegistryObject<Block> NETHER_LILY = registerBlock("nether_lily",
             () -> new FlowerBlock(MobEffects.HARM, 1, BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_ORANGE).strength(0,0).sound(SoundType.HARD_CROP).noCollission().lightLevel(i -> 7).emissiveRendering(Blocks::always)){
                 @Override
                 protected boolean mayPlaceOn(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos) {
-                    return BlocksUtil.flamingGrovePlantable(blockState);
+                    return BlocksUtils.flamingGrovePlantable(blockState);
                 }
             }, CreativeModeTab.TAB_DECORATIONS);
     //

@@ -11,9 +11,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
-import net.team_prometheus.pyromancer.entity.EntityUtils;
+import net.team_prometheus.pyromancer.util.EntityUtils;
 import net.team_prometheus.pyromancer.damage_source.ModDamageSource;
-import net.team_prometheus.pyromancer.init.PlaySound;
+import net.team_prometheus.pyromancer.registries.PlaySound;
 import org.jetbrains.annotations.NotNull;
 
 public class SizzlingHandFireball extends Fireball implements ItemSupplier {

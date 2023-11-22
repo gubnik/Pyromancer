@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.items;
+package net.team_prometheus.pyromancer.items.weaponary;
 
 import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.Multimap;

@@ -10,11 +10,14 @@ import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.team_prometheus.pyromancer.PyromancerMod;
-import net.team_prometheus.pyromancer.enchantments.ModEnchantments;
-import net.team_prometheus.pyromancer.init.ModAttributes;
+import net.team_prometheus.pyromancer.registries.ModEnchantments;
+import net.team_prometheus.pyromancer.registries.ModAttributes;
 import net.team_prometheus.pyromancer.items.blazing_journal.QuillItem;
-import net.team_prometheus.pyromancer.items.blazing_journal.compendium.CompendiumOfFlame;
+import net.team_prometheus.pyromancer.items.compendium.CompendiumOfFlame;
+import net.team_prometheus.pyromancer.items.weaponary.MaceItem;
 import net.team_prometheus.pyromancer.items.weaponary.pyromancy.PyromancyItem;
+import net.team_prometheus.pyromancer.registries.ModItems;
+import net.team_prometheus.pyromancer.util.ItemUtils;
 
 @SuppressWarnings("unused")
 @Mod.EventBusSubscriber

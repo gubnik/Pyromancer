@@ -27,7 +27,7 @@ dependencies {
     implementation fg.deobf("dev.kosmx.player-anim:player-animation-lib-forge:1.0.2")
 }
 
-version = '2.0.0'
+version = '2.0.0-test'
 group = 'net.team_prometheus.pyromancer'
 archivesBaseName = 'pyromancer'
 

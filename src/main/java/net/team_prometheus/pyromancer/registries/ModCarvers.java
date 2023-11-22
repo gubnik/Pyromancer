@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.worldgen.carvers;
+package net.team_prometheus.pyromancer.registries;
 
 import net.minecraft.core.Registry;
 import net.minecraft.tags.BlockTags;

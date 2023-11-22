@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.init;
+package net.team_prometheus.pyromancer.registries;
 
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;

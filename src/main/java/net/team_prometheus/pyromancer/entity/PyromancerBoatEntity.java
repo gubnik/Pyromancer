@@ -15,8 +15,10 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.team_prometheus.pyromancer.blocks.ModBlocks;
-import net.team_prometheus.pyromancer.items.ModItems;
+import net.team_prometheus.pyromancer.registries.ModBlocks;
+import net.team_prometheus.pyromancer.registries.ModItems;
+import net.team_prometheus.pyromancer.registries.ModEntities;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
@@ -26,14 +28,14 @@ public class PyromancerBoatEntity extends Boat {
             this.blocksBuilding = true;
         }
         public PyromancerBoatEntity(Level level, double x, double y, double z) {
-            this((EntityType<PyromancerBoatEntity>)ModEntities.BOAT.get(), level);
+            this((EntityType<PyromancerBoatEntity>) ModEntities.BOAT.get(), level);
             this.setPos(x, y, z);
             this.xo = x;
             this.yo = y;
             this.zo = z;
         }
         @Override
-        public Packet<?> getAddEntityPacket()
+        public @NotNull Packet<?> getAddEntityPacket()
         {
             return new ClientboundAddEntityPacket(this);
         }
@@ -49,7 +51,7 @@ public class PyromancerBoatEntity extends Boat {
             }
         }
         @Override
-        protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {
+        protected void checkFallDamage(double y, boolean onGround, @NotNull BlockState state, @NotNull BlockPos pos) {
             this.lastYd = this.getDeltaMovement().y;
             if (!this.isPassenger()) {
                 if (onGround) {
@@ -80,7 +82,7 @@ public class PyromancerBoatEntity extends Boat {
             }
         }
         @Override
-        public Item getDropItem() {
+        public @NotNull Item getDropItem() {
             switch (ModelType.byId(this.entityData.get(DATA_ID_TYPE))) {
                 case PYROWOOD:
                     return ModItems.PYROWOOD_BOAT.get();

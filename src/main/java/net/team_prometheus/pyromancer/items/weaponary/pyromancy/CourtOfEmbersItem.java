@@ -5,19 +5,20 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import net.team_prometheus.pyromancer.entity.EntityUtils;
-import net.team_prometheus.pyromancer.entity.ModEntities;
+import net.team_prometheus.pyromancer.registries.ModEntities;
 import net.team_prometheus.pyromancer.entity.projectiles.SizzlingHandFireball;
-import net.team_prometheus.pyromancer.items.ItemUtils;
+import net.team_prometheus.pyromancer.util.EntityUtils;
+import net.team_prometheus.pyromancer.util.ItemUtils;
 import org.jetbrains.annotations.NotNull;
-public class CourtOfEmbersItem extends PyromancyItem{
+
+public class CourtOfEmbersItem extends PyromancyItem {
     public CourtOfEmbersItem(Properties properties) {
         super(properties, 2, 2);
         this.SHRINK = false;
     }
     @Override
     public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
-        return UseAnim.SPEAR;
+        return UseAnim.CUSTOM;
     }
     @Override
     public int getUseDuration(@NotNull ItemStack itemstack) {
@@ -25,6 +26,7 @@ public class CourtOfEmbersItem extends PyromancyItem{
     }
     @Override
     public void onUseTick(@NotNull Level level, @NotNull LivingEntity entity, @NotNull ItemStack itemStack, int time) {
+        super.onUseTick(level, entity, itemStack, time);
         if(time % 3 == 0){
             if (entity instanceof Player player){
                 EntityUtils.shootProjectile(new SizzlingHandFireball(ModEntities.SIZZLING_HAND_FIREBALL.get(), level).setParameters(1.5f, 10),
@@ -33,4 +35,5 @@ public class CourtOfEmbersItem extends PyromancyItem{
             }
         }
     }
+
 }

@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
-import net.team_prometheus.pyromancer.mob_effects.ModMobEffects;
+import net.team_prometheus.pyromancer.registries.ModMobEffects;
 import org.jetbrains.annotations.NotNull;
 
 public class MoltenArmorLayer <T extends LivingEntity, M extends HumanoidModel<T>> extends RenderLayer<T, M> {

@@ -4,7 +4,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.team_prometheus.pyromancer.blocks.ModBlocks;
+import net.team_prometheus.pyromancer.registries.ModBlocks;
+import net.team_prometheus.pyromancer.registries.ModBiomes;
 
 public class ModNetherSurfaceRules {
     private static final SurfaceRules.RuleSource BEDROCK = makeStateRule(Blocks.BEDROCK);

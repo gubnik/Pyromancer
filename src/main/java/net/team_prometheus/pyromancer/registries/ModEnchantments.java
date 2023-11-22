@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.enchantments;
+package net.team_prometheus.pyromancer.registries;
 
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -11,7 +11,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
-import net.team_prometheus.pyromancer.items.MaceItem;
+import net.team_prometheus.pyromancer.enchantments.BlazingJournalEnchantment;
+import net.team_prometheus.pyromancer.enchantments.EnchantmentsHelper;
+import net.team_prometheus.pyromancer.enchantments.ModEnchantment;
+import net.team_prometheus.pyromancer.enchantments.ModEnchantmentCategory;
+import net.team_prometheus.pyromancer.items.weaponary.MaceItem;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")

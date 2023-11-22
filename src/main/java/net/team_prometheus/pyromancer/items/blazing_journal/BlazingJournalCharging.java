@@ -6,9 +6,9 @@ import net.minecraft.world.item.Items;
 import net.minecraftforge.event.ItemStackedOnOtherEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.team_prometheus.pyromancer.init.PyromancerConfig;
-import net.team_prometheus.pyromancer.items.ItemUtils;
-import net.team_prometheus.pyromancer.items.blazing_journal.compendium.CompendiumOfFlame;
+import net.team_prometheus.pyromancer.PyromancerConfig;
+import net.team_prometheus.pyromancer.util.ItemUtils;
+import net.team_prometheus.pyromancer.items.compendium.CompendiumOfFlame;
 import net.team_prometheus.pyromancer.items.weaponary.pyromancy.PyromancyItem;
 
 @Mod.EventBusSubscriber
@@ -25,7 +25,7 @@ public class BlazingJournalCharging {
         String oldQuill = journal.getOrCreateTag().getString("quill");
 
         if(carriedItemstack.getItem() instanceof QuillItem quillItem
-        && event.getClickAction().equals(ClickAction.SECONDARY) && (journal.getItem() instanceof BlazingJournal blazingJournal && blazingJournal.canHoldQuill)){
+        && event.getClickAction().equals(ClickAction.SECONDARY) && (journal.getItem() instanceof BlazingJournalItem blazingJournal && blazingJournal.canHoldQuill)){
             if(!oldQuill.equals(quillItem.toString())){
                 journal.getOrCreateTag().putString("quill", quillItem.toString());
                 event.getCarriedSlotAccess().set(new ItemStack(QuillItem.QuillEnum.getQuillItem(oldQuill)));
@@ -34,7 +34,7 @@ public class BlazingJournalCharging {
         }
 
         if(carriedItemstack.getItem().equals(Items.BLAZE_POWDER)
-        && event.getClickAction().equals(ClickAction.SECONDARY) && journal.getItem() instanceof BlazingJournal){
+        && event.getClickAction().equals(ClickAction.SECONDARY) && journal.getItem() instanceof BlazingJournalItem){
             while (journal.getOrCreateTag().getInt("blaze") + blazeValue <= journalMaxCapacity){
                 carriedItemstack.setCount(carriedItemstack.getCount() - 1);
                 event.getCarriedSlotAccess().set(carriedItemstack);

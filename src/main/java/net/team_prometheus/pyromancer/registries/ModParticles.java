@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.init;
+package net.team_prometheus.pyromancer.registries;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;

@@ -7,7 +7,7 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TieredItem;
 import net.team_prometheus.pyromancer.animations.AnimationList;
-import net.team_prometheus.pyromancer.items.MaceItem;
+import net.team_prometheus.pyromancer.items.weaponary.MaceItem;
 import java.security.InvalidParameterException;
 import java.util.function.Consumer;
 

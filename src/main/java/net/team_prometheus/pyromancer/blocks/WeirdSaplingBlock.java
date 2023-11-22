@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.team_prometheus.pyromancer.util.BlocksUtils;
 import org.jetbrains.annotations.NotNull;
 
 public class WeirdSaplingBlock extends BushBlock implements BonemealableBlock {
@@ -25,7 +26,7 @@ public class WeirdSaplingBlock extends BushBlock implements BonemealableBlock {
         return SHAPE;
     }
     protected boolean mayPlaceOn(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos) {
-        return BlocksUtil.flamingGrovePlantable(blockState);
+        return BlocksUtils.flamingGrovePlantable(blockState);
     }
     public boolean isValidBonemealTarget(@NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull BlockState blockState, boolean p_50900_) {
         return true;

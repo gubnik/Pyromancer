@@ -17,8 +17,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.IItemHandler;
 import net.team_prometheus.pyromancer.animations.PyromancerAnimationCore;
-import net.team_prometheus.pyromancer.items.MaceItem;
-import net.team_prometheus.pyromancer.items.ModItems;
+import net.team_prometheus.pyromancer.items.weaponary.MaceItem;
+import net.team_prometheus.pyromancer.registries.ModItems;
 import net.team_prometheus.pyromancer.network.animations.GetAnimationFromServer;
 import net.team_prometheus.pyromancer.network.NetworkCore;
 

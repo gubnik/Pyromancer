@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.init;
+package net.team_prometheus.pyromancer;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.IConfigEvent;

@@ -2,7 +2,6 @@ package net.team_prometheus.pyromancer.mixin;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

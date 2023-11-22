@@ -8,11 +8,12 @@ import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.team_prometheus.pyromancer.registries.ModBlocks;
 import org.jetbrains.annotations.NotNull;
 
 public class SizzlingVineBlock extends GrowingPlantHeadBlock implements BonemealableBlock {
     public static final BooleanProperty THICK = BooleanProperty.create("thick");
-    protected SizzlingVineBlock(Properties properties) {
+    public SizzlingVineBlock(Properties properties) {
         super(properties, Direction.DOWN,
                 Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D),
                 false, 0.05);

@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.items.blazing_journal.compendium;
+package net.team_prometheus.pyromancer.items.compendium;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;

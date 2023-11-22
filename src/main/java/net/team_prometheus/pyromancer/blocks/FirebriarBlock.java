@@ -1,11 +1,8 @@
 package net.team_prometheus.pyromancer.blocks;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,11 +14,8 @@ import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.team_prometheus.pyromancer.util.BlocksUtils;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
-import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class FirebriarBlock extends FlowerBlock {
@@ -35,7 +29,7 @@ public class FirebriarBlock extends FlowerBlock {
         builder.add(STAGE);
     }
     protected boolean mayPlaceOn(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos) {
-        return BlocksUtil.flamingGrovePlantable(blockState);
+        return BlocksUtils.flamingGrovePlantable(blockState);
     }
     @Override
     public void entityInside(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, @NotNull Entity entity){

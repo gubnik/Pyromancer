@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.entity;
+package net.team_prometheus.pyromancer.registries;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -8,6 +8,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.team_prometheus.pyromancer.PyromancerMod;
+import net.team_prometheus.pyromancer.entity.PyromancerBoatEntity;
+import net.team_prometheus.pyromancer.entity.PyromancerChestBoatEntity;
 import net.team_prometheus.pyromancer.entity.attack_effects.FirePillarEntity;
 import net.team_prometheus.pyromancer.entity.projectiles.Bombsack;
 import net.team_prometheus.pyromancer.entity.projectiles.NapalmBombsack;

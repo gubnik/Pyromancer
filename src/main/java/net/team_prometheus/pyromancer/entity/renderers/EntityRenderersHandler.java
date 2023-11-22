@@ -10,10 +10,10 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.team_prometheus.pyromancer.PyromancerMod;
-import net.team_prometheus.pyromancer.entity.ModEntities;
 import net.team_prometheus.pyromancer.entity.PyromancerBoatEntity;
 import net.team_prometheus.pyromancer.entity.PyromancerChestBoatEntity;
-
+import net.team_prometheus.pyromancer.registries.ModEntities;
+@SuppressWarnings("all")
 @Mod.EventBusSubscriber(modid = PyromancerMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EntityRenderersHandler {
     @SubscribeEvent

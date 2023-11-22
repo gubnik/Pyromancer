@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.items.blazing_journal.compendium;
+package net.team_prometheus.pyromancer.items.compendium;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -14,15 +14,15 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.team_prometheus.pyromancer.items.ItemUtils;
-import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
+import net.team_prometheus.pyromancer.util.ItemUtils;
+import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournalItem;
 import net.team_prometheus.pyromancer.items.weaponary.pyromancy.PyromancyItem;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class CompendiumOfFlame extends BlazingJournal {
+public class CompendiumOfFlame extends BlazingJournalItem {
     public static final int MAX_ITEMS = 5;
     public CompendiumOfFlame(Properties properties, boolean canHoldQuill) {
         super(properties, canHoldQuill);
@@ -45,7 +45,7 @@ public class CompendiumOfFlame extends BlazingJournal {
             for(int i = 0; i < MAX_ITEMS; i++){
                 if((slotItem = ItemUtils.getItemFromItem(itemStack, i)).getItem() instanceof PyromancyItem){
                     pyromancy = Component.translatable("item.pyromancer." + slotItem.getItem()).getString();
-                    list.add(Component.literal("1 : " + pyromancy));
+                    list.add(Component.literal("#1 | " + pyromancy).withStyle(ChatFormatting.GOLD));
                 }
             }
             String blaze = Component.translatable("desc.blazing_journal.charge").getString();

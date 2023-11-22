@@ -34,12 +34,12 @@ public class RotParticle extends TextureSheetParticle {
         this.spriteSet = spriteSet;
         this.setSize(0.2f, 0.2f);
         this.quadSize *= 1.5f;
-        this.lifetime = (int) Math.max(1, 10 + (this.random.nextInt(2) - 1));
+        this.lifetime = Math.max(1, 10 + (this.random.nextInt(2) - 1));
         this.gravity = 0.1f;
         this.hasPhysics = true;
-        this.xd = vx * 0.30000000000000004;
-        this.yd = vy * 0.30000000000000004;
-        this.zd = vz * 0.30000000000000004;
+        this.xd = vx * 0.3;
+        this.yd = vy * 0.3;
+        this.zd = vz * 0.3;
         this.pickSprite(spriteSet);
     }
     @Override

@@ -1,4 +1,4 @@
-package net.team_prometheus.pyromancer.init;
+package net.team_prometheus.pyromancer.registries;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;

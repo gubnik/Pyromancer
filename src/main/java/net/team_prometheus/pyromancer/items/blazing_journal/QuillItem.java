@@ -9,7 +9,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.RegistryObject;
-import net.team_prometheus.pyromancer.items.ModItems;
+import net.team_prometheus.pyromancer.registries.ModItems;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;

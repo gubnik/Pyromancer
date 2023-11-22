@@ -1,9 +1,7 @@
 package net.team_prometheus.pyromancer.items.weaponary.cryomancy;
 
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -14,27 +12,26 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.team_prometheus.pyromancer.damage_source.ModDamageSource;
-import net.team_prometheus.pyromancer.entity.EntityUtils;
-import net.team_prometheus.pyromancer.init.ModTabs;
-import net.team_prometheus.pyromancer.init.PyromancerConfig;
-import net.team_prometheus.pyromancer.items.ItemUtils;
-import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
+import net.team_prometheus.pyromancer.util.EntityUtils;
+import net.team_prometheus.pyromancer.registries.ModTabs;
+import net.team_prometheus.pyromancer.PyromancerConfig;
+import net.team_prometheus.pyromancer.util.ItemUtils;
+import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournalItem;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ConductorItem extends CryomancyItem{
     public ConductorItem() {
-        super(new Properties().tab(ModTabs.PYROMANCER_TAB).stacksTo(1), 1, 2f);
+        super(new Properties().tab(ModTabs.PYROMANCER_TAB).stacksTo(1), 2, 2f);
     }
 
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, @NotNull Player entity, @NotNull InteractionHand hand){
 
         int journalMaxCapacity = PyromancerConfig.COMMON.journalMaxCapacity.get();
 
-        if(entity.getOffhandItem().getItem() instanceof BlazingJournal){
+        if(entity.getOffhandItem().getItem() instanceof BlazingJournalItem){
             ItemStack journal = entity.getOffhandItem();
-
             if(journal.getOrCreateTag().getInt("blaze") <= journalMaxCapacity - blazeRegained) {
                 entity.startUsingItem(hand);
                 return new  InteractionResultHolder<>(InteractionResult.SUCCESS, entity.getItemInHand(hand));
@@ -71,7 +68,7 @@ public class ConductorItem extends CryomancyItem{
 
     public void conductorParticle(float damage, float radius, Vec3 placement, Player source, Level level){
         if(level instanceof ServerLevel serverLevel){
-            serverLevel.sendParticles(ParticleTypes.SNOWFLAKE, placement.x, placement.y, placement.z, 15, radius, radius, radius, 0.05);
+            serverLevel.sendParticles(ParticleTypes.SNOWFLAKE, placement.x, placement.y, placement.z, 30, radius, radius, radius, 0.1);
         }
         for (LivingEntity entity : EntityUtils.entityCollector(placement, radius, level)){
             if(!entity.equals(source)){
@@ -79,6 +76,5 @@ public class ConductorItem extends CryomancyItem{
                 ItemUtils.changeBlaze(source, this.blazeRegained);
             }
         }
-        if(source instanceof ServerPlayer sp) sp.sendSystemMessage(Component.literal("balls"));
     }
 }

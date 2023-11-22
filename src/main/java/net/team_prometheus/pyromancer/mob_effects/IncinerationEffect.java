@@ -7,7 +7,7 @@ import net.team_prometheus.pyromancer.damage_source.ModDamageSource;
 import org.jetbrains.annotations.NotNull;
 
 public class IncinerationEffect extends MobEffect {
-    protected IncinerationEffect() {
+    public IncinerationEffect() {
         super(MobEffectCategory.HARMFUL, 0);
     }
     @Override

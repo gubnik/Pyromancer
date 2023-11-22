@@ -10,7 +10,7 @@ import java.util.function.BiConsumer;
 public class BlazingJournalEnchantment extends Enchantment {
     private final Class<? extends TieredItem> weaponClass;
     private final BiConsumer<Player, LivingEntity> attack;
-    protected BlazingJournalEnchantment(Class<? extends TieredItem> tieredClass, BiConsumer<Player, LivingEntity> biConsumer) {
+    public BlazingJournalEnchantment(Class<? extends TieredItem> tieredClass, BiConsumer<Player, LivingEntity> biConsumer) {
         super(Rarity.UNCOMMON, ModEnchantmentCategory.BLAZING_JOURNAL, new EquipmentSlot[]{});
         this.weaponClass = tieredClass;
         this.attack = biConsumer;

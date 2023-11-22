@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.team_prometheus.pyromancer.entity.ModEntities;
+import net.team_prometheus.pyromancer.registries.ModEntities;
 import net.team_prometheus.pyromancer.entity.projectiles.Bombsack;
 import org.jetbrains.annotations.NotNull;
 

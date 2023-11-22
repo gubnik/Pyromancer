@@ -9,7 +9,7 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.team_prometheus.pyromancer.items.MaceItem;
+import net.team_prometheus.pyromancer.items.weaponary.MaceItem;
 
 @Mod.EventBusSubscriber
 public class EmbersTooltipProvider {

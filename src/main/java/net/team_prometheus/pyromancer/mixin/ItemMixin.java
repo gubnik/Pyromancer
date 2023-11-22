@@ -11,8 +11,8 @@ import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.level.Level;
 import net.team_prometheus.pyromancer.PyromancerMod;
 import net.team_prometheus.pyromancer.animations.PyromancerAnimationCore;
-import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournal;
-import net.team_prometheus.pyromancer.items.ItemUtils;
+import net.team_prometheus.pyromancer.items.blazing_journal.BlazingJournalItem;
+import net.team_prometheus.pyromancer.util.ItemUtils;
 import net.team_prometheus.pyromancer.items.embers.Ember;
 import net.team_prometheus.pyromancer.items.embers.EmberUtilities;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,7 +30,7 @@ public abstract class ItemMixin {
         String emberTag = itemStack.getOrCreateTag().getString("ember");
         // condition
         if(itemStack.getItem() instanceof TieredItem && Ember.isValidEmber(emberTag)
-        && player.getOffhandItem().getItem() instanceof BlazingJournal
+        && player.getOffhandItem().getItem() instanceof BlazingJournalItem
         && player.getOffhandItem().getOrCreateTag().getInt("blaze") - Ember.byName(emberTag).getCost() >= 0){
             // body
             InteractionResultHolder<ItemStack> result;
@@ -46,7 +46,7 @@ public abstract class ItemMixin {
     @Inject(method="onUseTick", at = @At("HEAD"), cancellable = true)
     public void onUseTick(Level level, LivingEntity entity, ItemStack itemStack, int tick, CallbackInfo cir) {
         if(itemStack.getItem() instanceof TieredItem && entity instanceof Player player
-        && player.getOffhandItem().getItem() instanceof BlazingJournal) {
+        && player.getOffhandItem().getItem() instanceof BlazingJournalItem) {
             String emberTag = itemStack.getOrCreateTag().getString("ember");
             if (Ember.isValidEmber(emberTag)) {
                 Ember ember = Ember.byName(emberTag);

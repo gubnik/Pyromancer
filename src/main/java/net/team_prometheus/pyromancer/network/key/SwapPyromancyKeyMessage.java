@@ -4,13 +4,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.NetworkEvent;
-import net.team_prometheus.pyromancer.items.blazing_journal.compendium.CompendiumOfFlame;
+import net.team_prometheus.pyromancer.items.compendium.CompendiumOfFlame;
 
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SwapPyromancyKeyMessage {
     int type, pressedms;
 
