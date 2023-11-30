@@ -1,6 +1,6 @@
 {
-  "attribute.name.generic.blaze_consumption": "Blaze Consumption",
-  "attribute.name.generic.pyromancy_damage": "Pyromancy Damage",
+  "attribute.generic.blaze_consumption": "Blaze Consumption",
+  "attribute.generic.pyromancy_damage": "Pyromancy Damage",
 
   "block.pyromancer.sizzling_vine": "Sizzling Vine",
   "block.pyromancer.firebriar": "Firebriar",

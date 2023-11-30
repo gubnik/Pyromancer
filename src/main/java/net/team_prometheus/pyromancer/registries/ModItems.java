@@ -29,7 +29,6 @@ import net.team_prometheus.pyromancer.items.weaponary.throwables.NapalmBombsackI
 public class ModItems {
     public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PyromancerMod.MOD_ID);
 
-
     // maces
     public static RegistryObject<Item> WOODEN_MACE = ITEMS.register("wooden_mace",
             () -> new MaceItem(Tiers.WOOD, 5, -2.8f, 0.5f, (new Item.Properties()).tab(CreativeModeTab.TAB_COMBAT)));
